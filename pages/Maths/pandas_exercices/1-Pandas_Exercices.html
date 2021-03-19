@@ -1,0 +1,2532 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Étape 1. Importez les bibliothèques nécessaires &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/pages/Maths/pandas_exercices/1-Pandas_Exercices.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Maths/pandas_exercices/1-Pandas_Exercices.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Étape 1. Importez les bibliothèques nécessaires
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-2-importez-le-jeux-de-donnees-a-partir-de">
+   Étape 2. Importez le jeux de données à partir de:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-3-attribuez-le-a-une-variable-appelee-euro-2012">
+   Étape 3. Attribuez-le à une variable appelée euro_2012.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-4-selectionnez-uniquement-la-colonne-goals">
+   Étape 4. Sélectionnez uniquement la colonne Goals.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-5-combien-d-equipes-ont-participe-a-l-euro2012">
+   Étape 5. Combien d’équipes ont participé à l’Euro2012?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-6-quel-est-le-nombre-de-colonnes-dans-le-jeux-de-donnees">
+   Étape 6. Quel est le nombre de colonnes dans le jeux de données?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-7-afficher-uniquement-les-colonnes-equipe-cartons-jaunes-et-cartons-rouges-et-les-affecter-a-une-base-de-donnees-appelee-discipline">
+   Étape 7. Afficher uniquement les colonnes Équipe, Cartons jaunes et Cartons rouges et les affecter à une base de données appelée discipline
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-8-trier-les-equipes-par-cartons-rouges-puis-par-cartons-jaunes">
+   Étape 8. Trier les équipes par cartons rouges, puis par cartons jaunes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-9-calculer-la-moyenne-des-cartons-jaunes-attribues-par-equipe">
+   Étape 9. Calculer la moyenne des cartons jaunes attribués par équipe.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-10-filtrer-les-equipes-qui-ont-marque-plus-de-6-buts">
+   Étape 10. Filtrer les équipes qui ont marqué plus de 6 buts.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-11-selectionnez-les-equipes-que-leur-nom-commence-par-g">
+   Étape 11. Sélectionnez les équipes que leur nom commence par G
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-12-selectionnez-les-7-premieres-colonnes">
+   Étape 12. Sélectionnez les 7 premières colonnes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-13-selectionnez-toutes-les-colonnes-sauf-les-3-dernieres">
+   Étape 13. Sélectionnez toutes les colonnes sauf les 3 dernières.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-14-afficher-uniquement-la-precision-de-tir-d-angleterre-d-italie-et-de-russie">
+   Étape 14. Afficher uniquement la précision de tir d’Angleterre, d’Italie et de Russie
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-1-importez-l-ensemble-de-donnees-a-partir-de">
+   Étape 1. Importez l’ensemble de données à partir de:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-2-attribuez-le-a-une-variable-appelee-drinks">
+   Étape 2. Attribuez-le à une variable appelée drinks.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-3-quel-continent-boit-plus-de-l-alcool-en-moyenne">
+   Étape 3. Quel continent boit plus de l’alcool en moyenne?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-4-pour-chaque-continent-afficher-les-statistiques-de-la-consommation-de-l-alcool">
+   Étape 4. Pour chaque continent, afficher les statistiques de la consommation de l’alcool.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-5-afficher-la-consommation-moyenne-d-alcool-par-continent-pour-chaque-colonne">
+   Étape 5. Afficher la consommation moyenne d’alcool par continent pour chaque colonne
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-6-afficher-la-consommation-mediane-d-alcool-par-continent-pour-chaque-colonne">
+   Étape 6. Afficher la consommation médiane d’alcool par continent pour chaque colonne
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etape-7-afficher-les-valeurs-moyenne-minimale-et-maximale-de-la-consommation-d-alcool">
+   Étape 7. Afficher les valeurs moyenne, minimale et maximale de la consommation d’alcool.
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1><center> Filtrage et tri des données </center></h1>
+<div class="section" id="etape-1-importez-les-bibliotheques-necessaires">
+<h1>Étape 1. Importez les bibliothèques nécessaires<a class="headerlink" href="#etape-1-importez-les-bibliotheques-necessaires" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-2-importez-le-jeux-de-donnees-a-partir-de">
+<h1>Étape 2. Importez le jeux de données à partir de:<a class="headerlink" href="#etape-2-importez-le-jeux-de-donnees-a-partir-de" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://drive.google.com/file/d/1jzDqkF_zO5dinAOsbPp0jOe_LjjSXcwI/view?usp=sharing">https://drive.google.com/file/d/1jzDqkF_zO5dinAOsbPp0jOe_LjjSXcwI/view?usp=sharing</a></p>
+</div>
+<div class="section" id="etape-3-attribuez-le-a-une-variable-appelee-euro-2012">
+<h1>Étape 3. Attribuez-le à une variable appelée euro_2012.<a class="headerlink" href="#etape-3-attribuez-le-a-une-variable-appelee-euro-2012" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euro_2012</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../pandas_exercices/euro_2012.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">euro_2012</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Goals</th>
+      <th>Shots on target</th>
+      <th>Shots off target</th>
+      <th>Shooting Accuracy</th>
+      <th>% Goals-to-shots</th>
+      <th>Total shots (inc. Blocked)</th>
+      <th>Hit Woodwork</th>
+      <th>Penalty goals</th>
+      <th>Penalties not scored</th>
+      <th>...</th>
+      <th>Saves made</th>
+      <th>Saves-to-shots ratio</th>
+      <th>Fouls Won</th>
+      <th>Fouls Conceded</th>
+      <th>Offsides</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+      <th>Subs on</th>
+      <th>Subs off</th>
+      <th>Players Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>4</td>
+      <td>13</td>
+      <td>12</td>
+      <td>51.9%</td>
+      <td>16.0%</td>
+      <td>32</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>13</td>
+      <td>81.3%</td>
+      <td>41</td>
+      <td>62</td>
+      <td>2</td>
+      <td>9</td>
+      <td>0</td>
+      <td>9</td>
+      <td>9</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>4</td>
+      <td>13</td>
+      <td>18</td>
+      <td>41.9%</td>
+      <td>12.9%</td>
+      <td>39</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>9</td>
+      <td>60.1%</td>
+      <td>53</td>
+      <td>73</td>
+      <td>8</td>
+      <td>7</td>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>10</td>
+      <td>10</td>
+      <td>50.0%</td>
+      <td>20.0%</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>10</td>
+      <td>66.7%</td>
+      <td>25</td>
+      <td>38</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+      <td>7</td>
+      <td>7</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>11</td>
+      <td>18</td>
+      <td>50.0%</td>
+      <td>17.2%</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>22</td>
+      <td>88.1%</td>
+      <td>43</td>
+      <td>45</td>
+      <td>6</td>
+      <td>5</td>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>3</td>
+      <td>22</td>
+      <td>24</td>
+      <td>37.9%</td>
+      <td>6.5%</td>
+      <td>65</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>6</td>
+      <td>54.6%</td>
+      <td>36</td>
+      <td>51</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 35 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-4-selectionnez-uniquement-la-colonne-goals">
+<h1>Étape 4. Sélectionnez uniquement la colonne Goals.<a class="headerlink" href="#etape-4-selectionnez-uniquement-la-colonne-goals" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euro_2012</span><span class="p">[</span><span class="s2">&quot;Goals&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      4
+1      4
+2      4
+3      5
+4      3
+5     10
+6      5
+7      6
+8      2
+9      2
+10     6
+11     1
+12     5
+13    12
+14     5
+15     2
+Name: Goals, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-5-combien-d-equipes-ont-participe-a-l-euro2012">
+<h1>Étape 5. Combien d’équipes ont participé à l’Euro2012?<a class="headerlink" href="#etape-5-combien-d-equipes-ont-participe-a-l-euro2012" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">euro_2012</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">euro_2012</span><span class="o">.</span><span class="n">Team</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+16
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-6-quel-est-le-nombre-de-colonnes-dans-le-jeux-de-donnees">
+<h1>Étape 6. Quel est le nombre de colonnes dans le jeux de données?<a class="headerlink" href="#etape-6-quel-est-le-nombre-de-colonnes-dans-le-jeux-de-donnees" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">euro_2012</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-7-afficher-uniquement-les-colonnes-equipe-cartons-jaunes-et-cartons-rouges-et-les-affecter-a-une-base-de-donnees-appelee-discipline">
+<h1>Étape 7. Afficher uniquement les colonnes Équipe, Cartons jaunes et Cartons rouges et les affecter à une base de données appelée discipline<a class="headerlink" href="#etape-7-afficher-uniquement-les-colonnes-equipe-cartons-jaunes-et-cartons-rouges-et-les-affecter-a-une-base-de-donnees-appelee-discipline" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discipline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">euro_2012</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">],</span> <span class="n">euro_2012</span><span class="p">[</span><span class="s2">&quot;Yellow Cards&quot;</span><span class="p">],</span> <span class="n">euro_2012</span><span class="p">[</span><span class="s2">&quot;Red Cards&quot;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">discipline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Poland</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Portugal</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Republic of Ireland</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sweden</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ukraine</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discipline</span> <span class="o">=</span> <span class="n">euro_2012</span><span class="p">[[</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow Cards&#39;</span><span class="p">,</span> <span class="s1">&#39;Red Cards&#39;</span><span class="p">]]</span>
+<span class="n">discipline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Poland</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Portugal</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Republic of Ireland</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sweden</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ukraine</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-8-trier-les-equipes-par-cartons-rouges-puis-par-cartons-jaunes">
+<h1>Étape 8. Trier les équipes par cartons rouges, puis par cartons jaunes<a class="headerlink" href="#etape-8-trier-les-equipes-par-cartons-rouges-puis-par-cartons-jaunes" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discipline</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Red Cards&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow Cards&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Poland</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Republic of Ireland</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Portugal</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sweden</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ukraine</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-9-calculer-la-moyenne-des-cartons-jaunes-attribues-par-equipe">
+<h1>Étape 9. Calculer la moyenne des cartons jaunes attribués par équipe.<a class="headerlink" href="#etape-9-calculer-la-moyenne-des-cartons-jaunes-attribues-par-equipe" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discipline</span><span class="p">[</span><span class="s1">&#39;Yellow Cards&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.4375
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-10-filtrer-les-equipes-qui-ont-marque-plus-de-6-buts">
+<h1>Étape 10. Filtrer les équipes qui ont marqué plus de 6 buts.<a class="headerlink" href="#etape-10-filtrer-les-equipes-qui-ont-marque-plus-de-6-buts" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lesmeilleurs</span> <span class="o">=</span> <span class="n">euro_2012</span><span class="p">[</span><span class="n">euro_2012</span><span class="p">[</span><span class="s1">&#39;Goals&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">lesmeilleurs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Goals</th>
+      <th>Shots on target</th>
+      <th>Shots off target</th>
+      <th>Shooting Accuracy</th>
+      <th>% Goals-to-shots</th>
+      <th>Total shots (inc. Blocked)</th>
+      <th>Hit Woodwork</th>
+      <th>Penalty goals</th>
+      <th>Penalties not scored</th>
+      <th>...</th>
+      <th>Saves made</th>
+      <th>Saves-to-shots ratio</th>
+      <th>Fouls Won</th>
+      <th>Fouls Conceded</th>
+      <th>Offsides</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+      <th>Subs on</th>
+      <th>Subs off</th>
+      <th>Players Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>10</td>
+      <td>32</td>
+      <td>32</td>
+      <td>47.8%</td>
+      <td>15.6%</td>
+      <td>80</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>10</td>
+      <td>62.6%</td>
+      <td>63</td>
+      <td>49</td>
+      <td>12</td>
+      <td>4</td>
+      <td>0</td>
+      <td>15</td>
+      <td>15</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>12</td>
+      <td>42</td>
+      <td>33</td>
+      <td>55.9%</td>
+      <td>16.0%</td>
+      <td>100</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>15</td>
+      <td>93.8%</td>
+      <td>102</td>
+      <td>83</td>
+      <td>19</td>
+      <td>11</td>
+      <td>0</td>
+      <td>17</td>
+      <td>17</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 35 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-11-selectionnez-les-equipes-que-leur-nom-commence-par-g">
+<h1>Étape 11. Sélectionnez les équipes que leur nom commence par G<a class="headerlink" href="#etape-11-selectionnez-les-equipes-que-leur-nom-commence-par-g" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lesgg</span> <span class="o">=</span> <span class="n">euro_2012</span><span class="p">[</span><span class="n">euro_2012</span><span class="p">[</span><span class="s1">&#39;Team&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G&#39;</span><span class="p">]</span> 
+<span class="n">lesgg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Goals</th>
+      <th>Shots on target</th>
+      <th>Shots off target</th>
+      <th>Shooting Accuracy</th>
+      <th>% Goals-to-shots</th>
+      <th>Total shots (inc. Blocked)</th>
+      <th>Hit Woodwork</th>
+      <th>Penalty goals</th>
+      <th>Penalties not scored</th>
+      <th>...</th>
+      <th>Saves made</th>
+      <th>Saves-to-shots ratio</th>
+      <th>Fouls Won</th>
+      <th>Fouls Conceded</th>
+      <th>Offsides</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+      <th>Subs on</th>
+      <th>Subs off</th>
+      <th>Players Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>10</td>
+      <td>32</td>
+      <td>32</td>
+      <td>47.8%</td>
+      <td>15.6%</td>
+      <td>80</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>10</td>
+      <td>62.6%</td>
+      <td>63</td>
+      <td>49</td>
+      <td>12</td>
+      <td>4</td>
+      <td>0</td>
+      <td>15</td>
+      <td>15</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>5</td>
+      <td>8</td>
+      <td>18</td>
+      <td>30.7%</td>
+      <td>19.2%</td>
+      <td>32</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>13</td>
+      <td>65.1%</td>
+      <td>67</td>
+      <td>48</td>
+      <td>12</td>
+      <td>9</td>
+      <td>1</td>
+      <td>12</td>
+      <td>12</td>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 35 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-12-selectionnez-les-7-premieres-colonnes">
+<h1>Étape 12. Sélectionnez les 7 premières colonnes<a class="headerlink" href="#etape-12-selectionnez-les-7-premieres-colonnes" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euro_2012</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Goals</th>
+      <th>Shots on target</th>
+      <th>Shots off target</th>
+      <th>Shooting Accuracy</th>
+      <th>% Goals-to-shots</th>
+      <th>Total shots (inc. Blocked)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>4</td>
+      <td>13</td>
+      <td>12</td>
+      <td>51.9%</td>
+      <td>16.0%</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>4</td>
+      <td>13</td>
+      <td>18</td>
+      <td>41.9%</td>
+      <td>12.9%</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>10</td>
+      <td>10</td>
+      <td>50.0%</td>
+      <td>20.0%</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>11</td>
+      <td>18</td>
+      <td>50.0%</td>
+      <td>17.2%</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>3</td>
+      <td>22</td>
+      <td>24</td>
+      <td>37.9%</td>
+      <td>6.5%</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>10</td>
+      <td>32</td>
+      <td>32</td>
+      <td>47.8%</td>
+      <td>15.6%</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>5</td>
+      <td>8</td>
+      <td>18</td>
+      <td>30.7%</td>
+      <td>19.2%</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>6</td>
+      <td>34</td>
+      <td>45</td>
+      <td>43.0%</td>
+      <td>7.5%</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>2</td>
+      <td>12</td>
+      <td>36</td>
+      <td>25.0%</td>
+      <td>4.1%</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Poland</td>
+      <td>2</td>
+      <td>15</td>
+      <td>23</td>
+      <td>39.4%</td>
+      <td>5.2%</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Portugal</td>
+      <td>6</td>
+      <td>22</td>
+      <td>42</td>
+      <td>34.3%</td>
+      <td>9.3%</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Republic of Ireland</td>
+      <td>1</td>
+      <td>7</td>
+      <td>12</td>
+      <td>36.8%</td>
+      <td>5.2%</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>5</td>
+      <td>9</td>
+      <td>31</td>
+      <td>22.5%</td>
+      <td>12.5%</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>12</td>
+      <td>42</td>
+      <td>33</td>
+      <td>55.9%</td>
+      <td>16.0%</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sweden</td>
+      <td>5</td>
+      <td>17</td>
+      <td>19</td>
+      <td>47.2%</td>
+      <td>13.8%</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ukraine</td>
+      <td>2</td>
+      <td>7</td>
+      <td>26</td>
+      <td>21.2%</td>
+      <td>6.0%</td>
+      <td>38</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-13-selectionnez-toutes-les-colonnes-sauf-les-3-dernieres">
+<h1>Étape 13. Sélectionnez toutes les colonnes sauf les 3 dernières.<a class="headerlink" href="#etape-13-selectionnez-toutes-les-colonnes-sauf-les-3-dernieres" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euro_2012</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Goals</th>
+      <th>Shots on target</th>
+      <th>Shots off target</th>
+      <th>Shooting Accuracy</th>
+      <th>% Goals-to-shots</th>
+      <th>Total shots (inc. Blocked)</th>
+      <th>Hit Woodwork</th>
+      <th>Penalty goals</th>
+      <th>Penalties not scored</th>
+      <th>...</th>
+      <th>Clean Sheets</th>
+      <th>Blocks</th>
+      <th>Goals conceded</th>
+      <th>Saves made</th>
+      <th>Saves-to-shots ratio</th>
+      <th>Fouls Won</th>
+      <th>Fouls Conceded</th>
+      <th>Offsides</th>
+      <th>Yellow Cards</th>
+      <th>Red Cards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Croatia</td>
+      <td>4</td>
+      <td>13</td>
+      <td>12</td>
+      <td>51.9%</td>
+      <td>16.0%</td>
+      <td>32</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>10</td>
+      <td>3</td>
+      <td>13</td>
+      <td>81.3%</td>
+      <td>41</td>
+      <td>62</td>
+      <td>2</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Czech Republic</td>
+      <td>4</td>
+      <td>13</td>
+      <td>18</td>
+      <td>41.9%</td>
+      <td>12.9%</td>
+      <td>39</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>10</td>
+      <td>6</td>
+      <td>9</td>
+      <td>60.1%</td>
+      <td>53</td>
+      <td>73</td>
+      <td>8</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>4</td>
+      <td>10</td>
+      <td>10</td>
+      <td>50.0%</td>
+      <td>20.0%</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>10</td>
+      <td>5</td>
+      <td>10</td>
+      <td>66.7%</td>
+      <td>25</td>
+      <td>38</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>5</td>
+      <td>11</td>
+      <td>18</td>
+      <td>50.0%</td>
+      <td>17.2%</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>2</td>
+      <td>29</td>
+      <td>3</td>
+      <td>22</td>
+      <td>88.1%</td>
+      <td>43</td>
+      <td>45</td>
+      <td>6</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>France</td>
+      <td>3</td>
+      <td>22</td>
+      <td>24</td>
+      <td>37.9%</td>
+      <td>6.5%</td>
+      <td>65</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>7</td>
+      <td>5</td>
+      <td>6</td>
+      <td>54.6%</td>
+      <td>36</td>
+      <td>51</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Germany</td>
+      <td>10</td>
+      <td>32</td>
+      <td>32</td>
+      <td>47.8%</td>
+      <td>15.6%</td>
+      <td>80</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>11</td>
+      <td>6</td>
+      <td>10</td>
+      <td>62.6%</td>
+      <td>63</td>
+      <td>49</td>
+      <td>12</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Greece</td>
+      <td>5</td>
+      <td>8</td>
+      <td>18</td>
+      <td>30.7%</td>
+      <td>19.2%</td>
+      <td>32</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>23</td>
+      <td>7</td>
+      <td>13</td>
+      <td>65.1%</td>
+      <td>67</td>
+      <td>48</td>
+      <td>12</td>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>6</td>
+      <td>34</td>
+      <td>45</td>
+      <td>43.0%</td>
+      <td>7.5%</td>
+      <td>110</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>2</td>
+      <td>18</td>
+      <td>7</td>
+      <td>20</td>
+      <td>74.1%</td>
+      <td>101</td>
+      <td>89</td>
+      <td>16</td>
+      <td>16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>2</td>
+      <td>12</td>
+      <td>36</td>
+      <td>25.0%</td>
+      <td>4.1%</td>
+      <td>60</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>9</td>
+      <td>5</td>
+      <td>12</td>
+      <td>70.6%</td>
+      <td>35</td>
+      <td>30</td>
+      <td>3</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Poland</td>
+      <td>2</td>
+      <td>15</td>
+      <td>23</td>
+      <td>39.4%</td>
+      <td>5.2%</td>
+      <td>48</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>8</td>
+      <td>3</td>
+      <td>6</td>
+      <td>66.7%</td>
+      <td>48</td>
+      <td>56</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Portugal</td>
+      <td>6</td>
+      <td>22</td>
+      <td>42</td>
+      <td>34.3%</td>
+      <td>9.3%</td>
+      <td>82</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>2</td>
+      <td>11</td>
+      <td>4</td>
+      <td>10</td>
+      <td>71.5%</td>
+      <td>73</td>
+      <td>90</td>
+      <td>10</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Republic of Ireland</td>
+      <td>1</td>
+      <td>7</td>
+      <td>12</td>
+      <td>36.8%</td>
+      <td>5.2%</td>
+      <td>28</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>23</td>
+      <td>9</td>
+      <td>17</td>
+      <td>65.4%</td>
+      <td>43</td>
+      <td>51</td>
+      <td>11</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>5</td>
+      <td>9</td>
+      <td>31</td>
+      <td>22.5%</td>
+      <td>12.5%</td>
+      <td>59</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>8</td>
+      <td>3</td>
+      <td>10</td>
+      <td>77.0%</td>
+      <td>34</td>
+      <td>43</td>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Spain</td>
+      <td>12</td>
+      <td>42</td>
+      <td>33</td>
+      <td>55.9%</td>
+      <td>16.0%</td>
+      <td>100</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>5</td>
+      <td>8</td>
+      <td>1</td>
+      <td>15</td>
+      <td>93.8%</td>
+      <td>102</td>
+      <td>83</td>
+      <td>19</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sweden</td>
+      <td>5</td>
+      <td>17</td>
+      <td>19</td>
+      <td>47.2%</td>
+      <td>13.8%</td>
+      <td>39</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>12</td>
+      <td>5</td>
+      <td>8</td>
+      <td>61.6%</td>
+      <td>35</td>
+      <td>51</td>
+      <td>7</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ukraine</td>
+      <td>2</td>
+      <td>7</td>
+      <td>26</td>
+      <td>21.2%</td>
+      <td>6.0%</td>
+      <td>38</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>13</td>
+      <td>76.5%</td>
+      <td>48</td>
+      <td>31</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>16 rows × 32 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-14-afficher-uniquement-la-precision-de-tir-d-angleterre-d-italie-et-de-russie">
+<h1>Étape 14. Afficher uniquement la précision de tir d’Angleterre, d’Italie et de Russie<a class="headerlink" href="#etape-14-afficher-uniquement-la-precision-de-tir-d-angleterre-d-italie-et-de-russie" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euro_2012</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">12</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>Shooting Accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>England</td>
+      <td>50.0%</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Italy</td>
+      <td>43.0%</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Russia</td>
+      <td>22.5%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<h1><center> Regroupement </center></h1></div>
+<div class="section" id="etape-1-importez-l-ensemble-de-donnees-a-partir-de">
+<h1>Étape 1. Importez l’ensemble de données à partir de:<a class="headerlink" href="#etape-1-importez-l-ensemble-de-donnees-a-partir-de" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://drive.google.com/file/d/1QBqGhUyvxpsaJ6U9pRbyg8HkTxAai7d-/view?usp=sharing">https://drive.google.com/file/d/1QBqGhUyvxpsaJ6U9pRbyg8HkTxAai7d-/view?usp=sharing</a></p>
+</div>
+<div class="section" id="etape-2-attribuez-le-a-une-variable-appelee-drinks">
+<h1>Étape 2. Attribuez-le à une variable appelée drinks.<a class="headerlink" href="#etape-2-attribuez-le-a-une-variable-appelee-drinks" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinks</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../pandas_exercices/drinks.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">drinks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>beer_servings</th>
+      <th>spirit_servings</th>
+      <th>wine_servings</th>
+      <th>total_litres_of_pure_alcohol</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>AS</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Albania</td>
+      <td>89</td>
+      <td>132</td>
+      <td>54</td>
+      <td>4.9</td>
+      <td>EU</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Algeria</td>
+      <td>25</td>
+      <td>0</td>
+      <td>14</td>
+      <td>0.7</td>
+      <td>AF</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Andorra</td>
+      <td>245</td>
+      <td>138</td>
+      <td>312</td>
+      <td>12.4</td>
+      <td>EU</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>217</td>
+      <td>57</td>
+      <td>45</td>
+      <td>5.9</td>
+      <td>AF</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>188</th>
+      <td>Venezuela</td>
+      <td>333</td>
+      <td>100</td>
+      <td>3</td>
+      <td>7.7</td>
+      <td>SA</td>
+    </tr>
+    <tr>
+      <th>189</th>
+      <td>Vietnam</td>
+      <td>111</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>AS</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>Yemen</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.1</td>
+      <td>AS</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>Zambia</td>
+      <td>32</td>
+      <td>19</td>
+      <td>4</td>
+      <td>2.5</td>
+      <td>AF</td>
+    </tr>
+    <tr>
+      <th>192</th>
+      <td>Zimbabwe</td>
+      <td>64</td>
+      <td>18</td>
+      <td>4</td>
+      <td>4.7</td>
+      <td>AF</td>
+    </tr>
+  </tbody>
+</table>
+<p>193 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-3-quel-continent-boit-plus-de-l-alcool-en-moyenne">
+<h1>Étape 3. Quel continent boit plus de l’alcool en moyenne?<a class="headerlink" href="#etape-3-quel-continent-boit-plus-de-l-alcool-en-moyenne" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">drinks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">drinks</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">])</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;total_litres_of_pure_alcohol&quot;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>beer_servings</th>
+      <th>spirit_servings</th>
+      <th>wine_servings</th>
+      <th>total_litres_of_pure_alcohol</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>EU</th>
+      <td>8720</td>
+      <td>5965</td>
+      <td>6400</td>
+      <td>387.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;total_litres_of_pure_alcohol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;EU&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="etape-4-pour-chaque-continent-afficher-les-statistiques-de-la-consommation-de-l-alcool">
+<h1>Étape 4. Pour chaque continent, afficher les statistiques de la consommation de l’alcool.<a class="headerlink" href="#etape-4-pour-chaque-continent-afficher-les-statistiques-de-la-consommation-de-l-alcool" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp2</span> <span class="o">=</span> <span class="n">drinks</span><span class="o">.</span><span class="n">total_litres_of_pure_alcohol</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">drinks</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">])</span>
+<span class="n">tmp2</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AF</th>
+      <td>53.0</td>
+      <td>3.007547</td>
+      <td>2.647557</td>
+      <td>0.0</td>
+      <td>0.70</td>
+      <td>2.30</td>
+      <td>4.700</td>
+      <td>9.1</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>44.0</td>
+      <td>2.170455</td>
+      <td>2.770239</td>
+      <td>0.0</td>
+      <td>0.10</td>
+      <td>1.20</td>
+      <td>2.425</td>
+      <td>11.5</td>
+    </tr>
+    <tr>
+      <th>EU</th>
+      <td>45.0</td>
+      <td>8.617778</td>
+      <td>3.358455</td>
+      <td>0.0</td>
+      <td>6.60</td>
+      <td>10.00</td>
+      <td>10.900</td>
+      <td>14.4</td>
+    </tr>
+    <tr>
+      <th>OC</th>
+      <td>16.0</td>
+      <td>3.381250</td>
+      <td>3.345688</td>
+      <td>0.0</td>
+      <td>1.00</td>
+      <td>1.75</td>
+      <td>6.150</td>
+      <td>10.4</td>
+    </tr>
+    <tr>
+      <th>SA</th>
+      <td>12.0</td>
+      <td>6.308333</td>
+      <td>1.531166</td>
+      <td>3.8</td>
+      <td>5.25</td>
+      <td>6.85</td>
+      <td>7.375</td>
+      <td>8.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-5-afficher-la-consommation-moyenne-d-alcool-par-continent-pour-chaque-colonne">
+<h1>Étape 5. Afficher la consommation moyenne d’alcool par continent pour chaque colonne<a class="headerlink" href="#etape-5-afficher-la-consommation-moyenne-d-alcool-par-continent-pour-chaque-colonne" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>beer_servings</th>
+      <th>spirit_servings</th>
+      <th>wine_servings</th>
+      <th>total_litres_of_pure_alcohol</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AF</th>
+      <td>61.471698</td>
+      <td>16.339623</td>
+      <td>16.264151</td>
+      <td>3.007547</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>37.045455</td>
+      <td>60.840909</td>
+      <td>9.068182</td>
+      <td>2.170455</td>
+    </tr>
+    <tr>
+      <th>EU</th>
+      <td>193.777778</td>
+      <td>132.555556</td>
+      <td>142.222222</td>
+      <td>8.617778</td>
+    </tr>
+    <tr>
+      <th>OC</th>
+      <td>89.687500</td>
+      <td>58.437500</td>
+      <td>35.625000</td>
+      <td>3.381250</td>
+    </tr>
+    <tr>
+      <th>SA</th>
+      <td>175.083333</td>
+      <td>114.750000</td>
+      <td>62.416667</td>
+      <td>6.308333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-6-afficher-la-consommation-mediane-d-alcool-par-continent-pour-chaque-colonne">
+<h1>Étape 6. Afficher la consommation médiane d’alcool par continent pour chaque colonne<a class="headerlink" href="#etape-6-afficher-la-consommation-mediane-d-alcool-par-continent-pour-chaque-colonne" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>beer_servings</th>
+      <th>spirit_servings</th>
+      <th>wine_servings</th>
+      <th>total_litres_of_pure_alcohol</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AF</th>
+      <td>32.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.30</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>17.5</td>
+      <td>16.0</td>
+      <td>1.0</td>
+      <td>1.20</td>
+    </tr>
+    <tr>
+      <th>EU</th>
+      <td>219.0</td>
+      <td>122.0</td>
+      <td>128.0</td>
+      <td>10.00</td>
+    </tr>
+    <tr>
+      <th>OC</th>
+      <td>52.5</td>
+      <td>37.0</td>
+      <td>8.5</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>SA</th>
+      <td>162.5</td>
+      <td>108.5</td>
+      <td>12.0</td>
+      <td>6.85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="etape-7-afficher-les-valeurs-moyenne-minimale-et-maximale-de-la-consommation-d-alcool">
+<h1>Étape 7. Afficher les valeurs moyenne, minimale et maximale de la consommation d’alcool.<a class="headerlink" href="#etape-7-afficher-les-valeurs-moyenne-minimale-et-maximale-de-la-consommation-d-alcool" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinks</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">,</span><span class="s1">&#39;min&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>beer_servings</th>
+      <th>spirit_servings</th>
+      <th>wine_servings</th>
+      <th>total_litres_of_pure_alcohol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean</th>
+      <td>106.160622</td>
+      <td>80.994819</td>
+      <td>49.450777</td>
+      <td>4.717098</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>376.000000</td>
+      <td>438.000000</td>
+      <td>370.000000</td>
+      <td>14.400000</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\Maths\pandas_exercices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

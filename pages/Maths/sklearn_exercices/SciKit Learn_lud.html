@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scikit Learn &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/pages/Maths/sklearn_exercices/SciKit Learn_lud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Maths/sklearn_exercices/SciKit Learn_lud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#subdivision-en-echantillons-dapprentissage-et-de-test">
+   Subdivision en échantillons d’apprentissage et de test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#construction-du-modele-sur-lechantillon-dapprentissage-exemple-de-code-avec-la-regression-lineaire-et-polynomiale">
+   Construction du modèle sur l’échantillon d’apprentissage (exemple de code avec la régression linéaire et polynomiale)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction-sur-lechantillon-test-exemple-de-code-qui-fait-la-prediction">
+   Prédiction sur l’échantillon test (exemple de code qui fait la prédiction)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation-sur-lechantillon-test-erreur-quadratique-moyen-exemple-de-code">
+   Evaluation sur l’échantillon test : Erreur quadratique moyen (exemple de code)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validation-croisee-k-folds-principe-exemple-de-code-qui-permet-de-faire-levaluation-dun-modele-par-la-validation-croisee">
+   Validation croisée (k-folds) (Principe + exemple de code qui permet de faire l’évaluation d’un modèle par la validation croisée
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gridsearch-principe-exemple-de-code">
+   GridSearch (Principe + exemple de code)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selection-des-variables-principe-exemple-de-code-avec-la-methode-recursive-feature-elimination">
+   Sélection des variables (Principe + exemple de code avec la méthode recursive feature elimination).
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simpleimputer">
+   SimpleImputer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#labelencoder">
+   LabelEncoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-du-principe-de-featurescaling-exemple-de-code-de-son-utilisation-avec-standardscaler">
+   Définition du principe de FeatureScaling + exemple de code de son utilisation avec StandardScaler
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="scikit-learn">
+<h1>Scikit Learn<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h1>
+<p>Scikit-learn est une bibliothèque libre Python destinée à l’apprentissage automatique. Elle est développée par de nombreux contributeurs notamment, dans le monde académique, par des instituts français d’enseignement supérieur et de recherche comme l’Inria.</p>
+<p>Elle propose dans son framework de nombreuses bibliothèques d’algorithmes à implémenter clé en main, à disposition des data scientists.</p>
+<p>Elle comprend notamment des fonctions pour estimer des forêts aléatoires, des régressions logistiques, des algorithmes de classification, et les machines à vecteurs de support. Elle est conçue pour s’harmoniser avec d’autres bibliothèques libres Python, notamment NumPy et SciPy.</p>
+<p><em>Source : <a class="reference external" href="https://fr.wikipedia.org/wiki/Scikit-learn">Wikipedia</a></em></p>
+<p>Pour plus d’informations, consulter le <a class="reference external" href="https://scikit-learn.org/stable/">site officiel de scikit-lear</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">drinks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../Maths/pandas_exercices/qualite-vin-rouge.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">drinks</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,:</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1599, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="subdivision-en-echantillons-dapprentissage-et-de-test">
+<h2>Subdivision en échantillons d’apprentissage et de test<a class="headerlink" href="#subdivision-en-echantillons-dapprentissage-et-de-test" title="Permalink to this headline">¶</a></h2>
+<p>On utilise le mudule <code class="docutils literal notranslate"><span class="pre">sklearn.modele_selection</span></code>dont la doc officielle est consultable <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html?highlight=model_selection#module-sklearn.model_selection">ici</a></p>
+<p>(exemple de code qui marche sur un jeu de données après son importation)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">model_selection</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#subdivision des données : exemple avec éch.test= 300 </span>
+<span class="n">X_app</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_app</span><span class="p">,</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_app</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">y_app</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># éch.app = taille de la matrice de départ (1599) - éch.test (300) = 1299</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1299, 11) (300, 11) (1299,) (300,)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="construction-du-modele-sur-lechantillon-dapprentissage-exemple-de-code-avec-la-regression-lineaire-et-polynomiale">
+<h2>Construction du modèle sur l’échantillon d’apprentissage (exemple de code avec la régression linéaire et polynomiale)<a class="headerlink" href="#construction-du-modele-sur-lechantillon-dapprentissage-exemple-de-code-avec-la-regression-lineaire-et-polynomiale" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#création d&#39;une instance de la classe LogisticRegression</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">&quot;liblinear&quot;</span><span class="p">)</span>
+<span class="n">modele</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_app</span><span class="p">,</span><span class="n">y_app</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modele</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="n">modele</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.12278587  2.22614985 -0.55153076  0.25235712  0.24746431  0.13536923
+  -0.1226654  -0.03533445  0.44953865 -0.29418977 -0.51622414]
+ [-0.15609688  2.43483731  0.25597229  0.08082915  0.25254871  0.00326801
+  -0.01934333 -0.23386545  0.2316966  -0.54200419 -0.29059609]
+ [ 0.03530297  1.46597539  0.25852551 -0.0603076   1.33431618 -0.02062759
+   0.02028731  1.52193285  1.44474489 -1.78597062 -0.84379093]
+ [ 0.01213624 -1.17835338 -0.8896766  -0.01519475 -0.33091125  0.01924233
+  -0.01269057 -0.26549778 -0.32848966  0.8009871   0.16794296]
+ [-0.03487567 -3.18477227  0.18292502  0.12127181 -1.28221676  0.01142552
+  -0.01376678 -1.44970223 -2.04506505  1.86263232  0.78058523]
+ [-0.37642933 -0.50305567  0.80430051 -0.29488693 -0.21258568  0.01175952
+  -0.01698033 -0.64335219 -2.65399148  0.56065139  0.87071325]] [-0.03801806 -0.23276004  1.52212351 -0.28705098 -1.43982995 -0.64272058]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prediction-sur-lechantillon-test-exemple-de-code-qui-fait-la-prediction">
+<h2>Prédiction sur l’échantillon test (exemple de code qui fait la prédiction)<a class="headerlink" href="#prediction-sur-lechantillon-test-exemple-de-code-qui-fait-la-prediction" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">modele</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#matrice de confusion</span>
+<span class="c1">#confrontation entre Y obs. sur l’éch. test et la prédiction</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0  0  2  0  0  0]
+ [ 0  0  6  3  0  0]
+ [ 0  0 95 30  1  0]
+ [ 0  0 40 89  4  0]
+ [ 0  0  2 21  4  0]
+ [ 0  0  0  1  2  0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#taux de succès</span>
+<span class="n">acc</span><span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6266666666666667
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#taux d&#39;erreur</span>
+<span class="n">err</span><span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span><span class="n">acc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3733333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sensibilité (ou rappel)</span>
+<span class="n">se</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">se</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.         0.         0.75396825 0.66917293 0.14814815 0.        ]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluation-sur-lechantillon-test-erreur-quadratique-moyen-exemple-de-code">
+<h2>Evaluation sur l’échantillon test : Erreur quadratique moyen (exemple de code)<a class="headerlink" href="#evaluation-sur-lechantillon-test-erreur-quadratique-moyen-exemple-de-code" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4633333333333333
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="validation-croisee-k-folds-principe-exemple-de-code-qui-permet-de-faire-levaluation-dun-modele-par-la-validation-croisee">
+<h2>Validation croisée (k-folds) (Principe + exemple de code qui permet de faire l’évaluation d’un modèle par la validation croisée<a class="headerlink" href="#validation-croisee-k-folds-principe-exemple-de-code-qui-permet-de-faire-levaluation-dun-modele-par-la-validation-croisee" title="Permalink to this headline">¶</a></h2>
+<p>La validation croisée (« cross-validation ») est, en apprentissage automatique, une méthode d’estimation de fiabilité d’un modèle fondé sur une technique d’échantillonnage.</p>
+<p>En validation croisée à <em>k</em> blocs, <em>« k-fold cross-validation »</em> : on divise l’échantillon original en <em>k</em> échantillons (ou <em>« blocs »</em> ), puis on sélectionne un des <em>k</em> échantillons comme ensemble de validation pendant que les <em>k-1</em> autres échantillons constituent l’ensemble d’apprentissage. Après apprentissage, on peut calculer une performance de validation. Puis on répète l’opération en sélectionnant un autre échantillon de validation parmi les blocs prédéfinis. À l’issue de la procédure nous obtenons ainsi <em>k</em> scores de performances, un par bloc. La moyenne et l’écart type des <em>k</em> scores de performances peuvent être calculés pour estimer le biais et la variance de la performance de validation.</p>
+<p><img alt="kfolds.png" src="../../../_images/kfolds.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="n">success</span> <span class="o">=</span>  <span class="n">cross_val_score</span><span class="p">(</span><span class="n">modele</span><span class="p">,</span> <span class="n">X_app</span><span class="p">,</span> <span class="n">y_app</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.58846154, 0.55      , 0.56538462, 0.58846154, 0.57528958])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gridsearch-principe-exemple-de-code">
+<h2>GridSearch (Principe + exemple de code)<a class="headerlink" href="#gridsearch-principe-exemple-de-code" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+
+<span class="n">mvs</span><span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
+<span class="n">modele2</span> <span class="o">=</span> <span class="n">mvs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_app</span><span class="p">,</span><span class="n">y_app</span><span class="p">)</span>
+
+<span class="c1">#prédiction ech. test</span>
+<span class="n">y_pred2</span> <span class="o">=</span> <span class="n">modele2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1">#matrice de confusion</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred2</span><span class="p">))</span>
+
+<span class="c1">#succès en test</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  0   0   0   2   0   0]
+ [  0   0   3   6   0   0]
+ [  0   0  51  75   0   0]
+ [  0   0  30 103   0   0]
+ [  0   0   1  26   0   0]
+ [  0   0   0   3   0   0]]
+0.5133333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#combinaisons de paramètres à évaluer</span>
+<span class="n">parametres</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;kernel&#39;</span><span class="p">:[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;linear&#39;</span><span class="p">]}]</span>
+<span class="c1">#évaluation en validation croisée de 3 x 2 = 6 configurations</span>
+<span class="c1">#accuracysera le critère à utiliser pour sélectionner la meilleure config</span>
+<span class="c1">#mvsest l’instance de la classe svm.SVC (cf. page précédente)</span>
+<span class="n">grid</span><span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">mvs</span><span class="p">,</span><span class="n">param_grid</span><span class="o">=</span><span class="n">parametres</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#lancer la recherche –attention, gourmand en calculs</span>
+<span class="n">grille</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_app</span><span class="p">,</span><span class="n">y_app</span><span class="p">)</span>
+<span class="c1">#résultat pour chaque combinaison</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">grille</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&quot;params&quot;</span><span class="p">,</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]])</span> 
+<span class="c1">#meilleur paramétrage</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grille</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span> <span class="c1"># {‘C’ : 10, ‘kernel’ : ‘linear’}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           params  mean_test_score
+0     {&#39;C&#39;: 0.1, &#39;kernel&#39;: &#39;rbf&#39;}         0.491919
+1  {&#39;C&#39;: 0.1, &#39;kernel&#39;: &#39;linear&#39;}         0.567357
+2       {&#39;C&#39;: 1, &#39;kernel&#39;: &#39;rbf&#39;}         0.498848
+3    {&#39;C&#39;: 1, &#39;kernel&#39;: &#39;linear&#39;}         0.567357
+4      {&#39;C&#39;: 10, &#39;kernel&#39;: &#39;rbf&#39;}         0.550431
+5   {&#39;C&#39;: 10, &#39;kernel&#39;: &#39;linear&#39;}         0.570434
+{&#39;C&#39;: 10, &#39;kernel&#39;: &#39;linear&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#meilleur performance –estimée en interne par validation croisée</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grille</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="c1">#prédiction avec le modèle «optimal» c.-à-d. {‘C’ : 10, ‘kernel’ : ‘linear’}</span>
+<span class="n">y_pred3</span> <span class="o">=</span> <span class="n">grille</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="c1">#taux de succès en testprint(metrics.accuracy_score(y_test,y_pred3))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="selection-des-variables-principe-exemple-de-code-avec-la-methode-recursive-feature-elimination">
+<h2>Sélection des variables (Principe + exemple de code avec la méthode recursive feature elimination).<a class="headerlink" href="#selection-des-variables-principe-exemple-de-code-avec-la-methode-recursive-feature-elimination" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="simpleimputer">
+<h2>SimpleImputer<a class="headerlink" href="#simpleimputer" title="Permalink to this headline">¶</a></h2>
+<p>Remplacer les valeurs manquantes par la moyenne</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imptr</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="labelencoder">
+<h2>LabelEncoder<a class="headerlink" href="#labelencoder" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="definition-du-principe-de-featurescaling-exemple-de-code-de-son-utilisation-avec-standardscaler">
+<h2>Définition du principe de FeatureScaling + exemple de code de son utilisation avec StandardScaler<a class="headerlink" href="#definition-du-principe-de-featurescaling-exemple-de-code-de-son-utilisation-avec-standardscaler" title="Permalink to this headline">¶</a></h2>
+<p>Certains outils statistiques nécessitent une transformation des données afin de pouvoir être utilisés ou optimisés. Par exemple, dans le cadre de l’utilisation d’un test de Student ou bien d’une régression linéaire, l’hypothèse de normalité est primordiale.<br>
+Ou encore, dans le cas où les données ne répondent pas aux hypothèses recquises, les équivalents non paramétriques de la théorie des tests nécessitent une transformation des données en vecteur des rangs associés aux données.<br></p>
+<p>Les méthodes de transformation des données se déclinent donc en trois familles:<br></p>
+<ul class="simple">
+<li><p>la standardisation ou l’action de centrer-réduire les données pour diminuer l’échelle de dispersion tout en conservant la forme des distributions conjointes (moyenne = 0 et ecart-type = 1)  (= centrer-réduire la matrice X en retranchant pour chaque vecteur Xj sa moyenne et en divisant par son écart-type)</p></li>
+<li><p>la transformation en vecteur de rangs dont l’objectif est de se concentrer sur l’ordre des valeurs des données et plus sur les valeurs elles-mêmes,</p></li>
+<li><p>la normalisation des données. Normaliser les données revient à appliquer une fonction f sur Xj tel que f(j) suit une loi normale. Plusieurs méthodes simples existent : l’élévation au carré, la transformation logarithmique, la transformation arc-sinus, exponentielle, racine carrée, etc. Cependant, ces méthodes requièrent l’absence de valeurs négatives (à l’exception de la mise à l’exponentielle et de la transformation inverse). Il existe d’autres outils de normalisation plus performants comme la normalisation de box-cox</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\Maths\sklearn_exercices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

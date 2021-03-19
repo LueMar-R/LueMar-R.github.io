@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rappel des Notions Statistiques &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SciPy" href="SciPy.html" />
+    <link rel="prev" title="Environnement Virtuel Conda" href="../environnement_virtuel_conda.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/pages/Maths/Rappel_Notions_Statistiques_Lud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Maths/Rappel_Notions_Statistiques_Lud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution">
+   Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#moyenne">
+   Moyenne
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mediane">
+   Médiane
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variance">
+   Variance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecart-type">
+   Écart type
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fonction-gaussienne">
+   Fonction gaussienne
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outliers">
+   Outliers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#centile">
+   Centile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecart-interquartile">
+   Écart interquartile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-covariance">
+   La covariance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-coefficient-de-correlation-de-pearson">
+   Le coefficient de corrélation de pearson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-boite-a-moustache">
+   La boite à moustache
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="rappel-des-notions-statistiques">
+<h1>Rappel des Notions Statistiques<a class="headerlink" href="#rappel-des-notions-statistiques" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="distribution">
+<h2>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+</ul>
+<p>Une distribution est une fonction qui associe une fréquence d’apparition à une classe de valeur. Cela permet de résumer l’information contenue dans un ensemble de données.<br>
+Une distribution est souvent associée à un graphique.</p>
+</div>
+<div class="section" id="moyenne">
+<h2>Moyenne<a class="headerlink" href="#moyenne" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>La moyenne <span class="math notranslate nohighlight">\(M\)</span> est l’indicateur le plus simple pour résumer l’information fournie par un ensemble de données statistiques : elle est égale à la somme de ces données divisée par leur nombre. Elle peut donc être calculée en ne connaissant que ces deux éléments, sans connaître toute la distribution.</p>
+<p>La moyenne d’une distribution n’est pas toujours le meilleur indicateur : la médiane est souvent plus pertinente. Mais son calcul exige de connaître toute la distribution, ou en tout cas sa partie centrale.</p>
+<div class="math notranslate nohighlight">
+\[M =\frac{\sum_{i=0}^n n}{n}\]</div>
+</div>
+<div class="section" id="mediane">
+<h2>Médiane<a class="headerlink" href="#mediane" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>La médiane <span class="math notranslate nohighlight">\(M_e\)</span> d’une série statistique <strong>ordonnée</strong> est une valeur qui partage la population en deux groupes de même effectif.</p>
+<ul class="simple">
+<li><p>Si l’effectif total de la série est impair: <span class="math notranslate nohighlight">\(N=2p+1\)</span>, la médiane est la <span class="math notranslate nohighlight">\((p+1)^{\text{ème}}\)</span> valeur.</p></li>
+<li><p>Si l’effectif est pair: <span class="math notranslate nohighlight">\(N=2p\)</span>, on prend en général pour médiane la moyenne de la <span class="math notranslate nohighlight">\(p^{\text{ème}}\)</span> et de la <span class="math notranslate nohighlight">\((p+1)^{\text{ème}}\)</span> valeur.</p></li>
+</ul>
+<p>Ainsi, pour une distribution de salaires, la médiane est le salaire au-dessous duquel se situent 50 % des salaires. C’est de manière équivalente le salaire au-dessus duquel se situent 50 % des salaires.</p>
+<p>De nombreuses grandeurs économiques sont limitées vers le bas et non vers le haut. Par exemple, le salaire horaire est limité vers le bas par le SMIC alors que certains salaires peuvent être très élevés. La moyenne est tirée vers le haut par les salaires élevés, même s’ils sont peu nombreux, et elle est pour cette raison généralement supérieure à la médiane.</p>
+<p>Par ailleurs, l’incertitude qui affecte les valeurs extrêmes, en particulier les valeurs élevées, se reporte sur la moyenne mais n’affecte pas la médiane. Celle-ci est de ce point de vue un indicateur plus fiable.</p>
+</div>
+<div class="section" id="variance">
+<h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>La variance <span class="math notranslate nohighlight">\(V\)</span> d’une série est la moyenne des carrés des écarts à la moyenne:</p>
+<div class="math notranslate nohighlight">
+\[V = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \mu)^2} {n}\]</div>
+</div>
+<div class="section" id="ecart-type">
+<h2>Écart type<a class="headerlink" href="#ecart-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>L’écart-type <span class="math notranslate nohighlight">\(\sigma\)</span> d’une série statistique sert à mesurer la dispersion, ou l’étalement, d’un ensemble de valeurs autour de leur moyenne. Plus l’écart-type est faible, plus la population est homogène.</p>
+<p>L’écart type est égal à la racine carrée de la variance:
+$<span class="math notranslate nohighlight">\(\sigma=\sqrt{V}\)</span>$</p>
+</div>
+<div class="section" id="fonction-gaussienne">
+<h2>Fonction gaussienne<a class="headerlink" href="#fonction-gaussienne" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>La fonction gaussienne ou normale est une loi de probabilité caractérisée par sa moyenne <span class="math notranslate nohighlight">\(\mu\)</span> et sa variance <span class="math notranslate nohighlight">\(\sigma ^{2}\)</span>.</p>
+<p>Une variable aléatoire <span class="math notranslate nohighlight">\(x\)</span> suivant une loi normale a pour densité de probabilité :</p>
+<div class="math notranslate nohighlight">
+\[ P(x) = \frac{1}{\sigma \sqrt {2\pi }} e^{ - ( {x - \mu } )^2 / 2 \sigma ^2} \]</div>
+<p>Cette fonction de densité, appelée courbe de Gauss, possède une forme caractéristique rappelant celle d’une cloche. Elle se répartit de manière symétrique autour de la moyenne, point où elle atteint son maximum. Elle décroît ensuite à mesure que les valeurs sont éloignées de la moyenne.</p>
+</div>
+<div class="section" id="outliers">
+<h2>Outliers<a class="headerlink" href="#outliers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+</ul>
+<p>Un outlier, ou valeur aberrante, est une valeur extrême, anormalement différente de la distribution d’une variable. En d’autres termes, la valeur de cette observation diffère grandement des autres valeurs de la même variable.</p>
+<p>Par exemple, si on prend la variable <em>Salaire</em> de la population française, l’ensemble des valeurs constituent une distribution de la variable <em>Salaire</em>. Imaginons qu’en général, pour cette distribution, les salaires varient entre 1600€ et 3000 €. Si on observe un individu avec un salaire à 10 000€, c’est une valeur extrême. On dira qu’il s’agit d’un outlier.</p>
+<p>Dans le même sens, imaginons qu’une personne touche 200 € seulement, c’est un salaire anormalement bas. Il s’agit également d’une valeur aberrante.</p>
+</div>
+<div class="section" id="centile">
+<h2>Centile<a class="headerlink" href="#centile" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>Les centiles d’une variable sont les valeurs-seuils de cette variable qui, lorsque l’on ordonne la population selon les valeurs de la variable, la partitionnent en 100 sous-populations de taille égale. On les note souvent p01, p02,… p98, p99.</p>
+</div>
+<div class="section" id="ecart-interquartile">
+<h2>Écart interquartile<a class="headerlink" href="#ecart-interquartile" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>L’écart interquartile est une autre étendue utilisée comme mesure de la dispersion. La différence entre les quartiles supérieur et inférieur <span class="math notranslate nohighlight">\(Q3 - Q1\)</span>, qu’on appelle l’écart interquartile, indique aussi la dispersion d’un ensemble de données. L’écart interquartile couvre 50 % d’un ensemble de données et élimine l’influence des valeurs aberrantes.</p>
+<p>Écart interquartile = différence entre le quartile supérieur <span class="math notranslate nohighlight">\(Q3\)</span> et le quartile inférieur <span class="math notranslate nohighlight">\(Q1\)</span></p>
+</div>
+<div class="section" id="la-covariance">
+<h2>La covariance<a class="headerlink" href="#la-covariance" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>Si la variance permet d’étudier les variations d’une variable par rapport à elle-même, la covariance permet, elle, d’étudier les variations simultanées de deux variables par rapport à leur moyenne respective.</p>
+<div class="math notranslate nohighlight">
+\[ Cov_{x,y}=\frac{\sum_{i=1}^{N}(x_{i}-\bar{x})(y_{i}-\bar{y})}{N-1} \]</div>
+</div>
+<div class="section" id="le-coefficient-de-correlation-de-pearson">
+<h2>Le coefficient de corrélation de pearson<a class="headerlink" href="#le-coefficient-de-correlation-de-pearson" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p>Cette statistique permet d’associer deux populations, en mesurant la corrélation linéaire entre deux variables X et Y.</p>
+<div class="math notranslate nohighlight">
+\[ r = \frac{ Cov_{x,y}}{ \sigma_x \sigma_y} \]</div>
+</div>
+<div class="section" id="la-boite-a-moustache">
+<h2>La boite à moustache<a class="headerlink" href="#la-boite-a-moustache" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Definition</p></li>
+<li><p>Exemple pratique</p></li>
+</ul>
+<p><img alt="boite_moustache" src="https://mrmint.fr/wp-content/uploads/2017/11/box-plot-interpretation.png" /></p>
+<div class="math notranslate nohighlight">
+\[ y = X. \theta \]</div>
+<div class="math notranslate nohighlight">
+\[ J(\theta) = \frac{1}{2.m} \displaystyle\sum (X.\theta - y)^2 \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial J(\theta)}{\partial \theta} = \frac{1}{m} X^T(X.\theta - y) \]</div>
+<div class="math notranslate nohighlight">
+\[ \theta = \theta - \frac{\partial J(\theta)}{\partial \theta}  \]</div>
+<div class="math notranslate nohighlight">
+\[ y = a_1.x + a_0 \]</div>
+<div class="math notranslate nohighlight">
+\[ y = a_0 + a_1.x_1 + a_2.x_2 + ... + a_n.x_n \]</div>
+<div class="math notranslate nohighlight">
+\[ y = a_0 + a_1.x + a_2.x^2 + ...+ a_n.x^n \]</div>
+<div class="math notranslate nohighlight">
+\[ y = a.x^2 + b.x +c \]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\Maths"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../environnement_virtuel_conda.html" title="previous page">Environnement Virtuel Conda</a>
+    <a class='right-next' id="next-link" href="SciPy.html" title="next page">SciPy</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyse des sentiments: Word2vec (Suite) &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/pages/NLP/corrections/TP4-TAL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/NLP/corrections/TP4-TAL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importation-des-donnees">
+   Importation des données
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="analyse-des-sentiments-word2vec-suite">
+<h1>Analyse des sentiments:  Word2vec (Suite)<a class="headerlink" href="#analyse-des-sentiments-word2vec-suite" title="Permalink to this headline">¶</a></h1>
+<p><br> <br></p>
+<div class="section" id="importation-des-donnees">
+<h2>Importation des données<a class="headerlink" href="#importation-des-donnees" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># Import various modules for string cleaning</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read data from files </span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s2">&quot;labeledTrainData.tsv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+ <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s2">&quot;testData.tsv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>sentiment</th>
+      <th>review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>"5814_8"</td>
+      <td>1</td>
+      <td>"With all this stuff going down at the moment ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>"2381_9"</td>
+      <td>1</td>
+      <td>"\"The Classic War of the Worlds\" by Timothy ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>"7759_3"</td>
+      <td>0</td>
+      <td>"The film starts with a manager (Nicholas Bell...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>"3630_4"</td>
+      <td>0</td>
+      <td>"It must be assumed that those who praised thi...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>"9495_8"</td>
+      <td>1</td>
+      <td>"Superbly trashy and wondrously unpretentious ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;300features_40minwords_10context&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gensim.models.word2vec.Word2Vec
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vectors</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16490, 300)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s2">&quot;flower&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">review_to_wordlist</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">remove_stopwords</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+    <span class="c1"># Function to convert a document to a sequence of words,</span>
+    <span class="c1"># optionally removing stop words.  Returns a list of words.</span>
+    <span class="c1">#</span>
+    <span class="c1"># 1. Remove HTML</span>
+    <span class="n">review_text</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">review</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+    <span class="c1">#  </span>
+    <span class="c1"># 2. Remove non-letters</span>
+    <span class="n">review_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[^a-zA-Z]&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">review_text</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># 3. Convert words to lower case and split them</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">review_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="c1">#</span>
+    <span class="c1"># 4. Optionally remove stop words (false by default)</span>
+    <span class="k">if</span> <span class="n">remove_stopwords</span><span class="p">:</span>
+        <span class="n">stops</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="c1"># 5. Return a list of words</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># Make sure that numpy is imported</span>
+
+<span class="k">def</span> <span class="nf">makeFeatureVec</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_features</span><span class="p">):</span>
+    <span class="c1"># Function to average all of the word vectors in a given</span>
+    <span class="c1"># paragraph</span>
+    <span class="c1">#</span>
+    <span class="c1"># Pre-initialize an empty numpy array (for speed)</span>
+    <span class="n">featureVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_features</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">nwords</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="c1"># </span>
+    <span class="c1"># Index2word is a list that contains the names of the words in </span>
+    <span class="c1"># the model&#39;s vocabulary. Convert it to a set, for speed </span>
+    <span class="n">index2word_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index2word</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># Loop over each word in the review and, if it is in the model&#39;s</span>
+    <span class="c1"># vocaublary, add its feature vector to the total</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">index2word_set</span><span class="p">:</span> 
+            <span class="n">nwords</span> <span class="o">=</span> <span class="n">nwords</span> <span class="o">+</span> <span class="mf">1.</span>
+            <span class="n">featureVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">featureVec</span><span class="p">,</span><span class="n">model</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
+    <span class="c1"># </span>
+    <span class="c1"># Divide the result by the number of words to get the average</span>
+    <span class="n">featureVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">featureVec</span><span class="p">,</span><span class="n">nwords</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">featureVec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getAvgFeatureVecs</span><span class="p">(</span><span class="n">reviews</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_features</span><span class="p">):</span>
+    <span class="c1"># Given a set of reviews (each one a list of words), calculate </span>
+    <span class="c1"># the average feature vector for each one and return a 2D numpy array </span>
+    <span class="c1"># </span>
+    <span class="c1"># Initialize a counter</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># </span>
+    <span class="c1"># Preallocate a 2D numpy array, for speed</span>
+    <span class="n">reviewFeatureVecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">reviews</span><span class="p">),</span><span class="n">num_features</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+    <span class="c1"># </span>
+    <span class="c1"># Loop through the reviews</span>
+    <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">:</span>
+       <span class="c1">#</span>
+       <span class="c1"># Print a status message every 1000th review</span>
+       <span class="k">if</span> <span class="n">counter</span><span class="o">%</span><span class="k">1000</span>. == 0.:
+           <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Review </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">reviews</span><span class="p">)))</span>            
+       <span class="c1"># </span>
+       <span class="c1"># Call the function (defined above) that makes average feature vectors</span>
+       <span class="n">reviewFeatureVecs</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="n">makeFeatureVec</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_features</span><span class="p">)</span>
+       <span class="c1">#</span>
+       <span class="c1"># Increment the counter</span>
+       <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reviewFeatureVecs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ****************************************************************</span>
+<span class="c1"># Calculate average feature vectors for training and testing sets,</span>
+<span class="c1"># using the functions we defined above. Notice that we now use stop word</span>
+<span class="c1"># removal.</span>
+
+<span class="n">clean_train_reviews</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]:</span>
+    <span class="n">clean_train_reviews</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">review_to_wordlist</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">remove_stopwords</span><span class="o">=</span><span class="kc">True</span> <span class="p">))</span>
+    
+
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Creating average feature vecs for test reviews&quot;</span><span class="p">)</span>
+<span class="n">clean_test_reviews</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]:</span>
+    <span class="n">clean_test_reviews</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">review_to_wordlist</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> \
+        <span class="n">remove_stopwords</span><span class="o">=</span><span class="kc">True</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating average feature vecs for test reviews
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainDataVecs</span> <span class="o">=</span> <span class="n">getAvgFeatureVecs</span><span class="p">(</span><span class="n">clean_train_reviews</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="mi">300</span> <span class="p">)</span>
+<span class="n">testDataVecs</span> <span class="o">=</span> <span class="n">getAvgFeatureVecs</span><span class="p">(</span> <span class="n">clean_test_reviews</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="mi">300</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Review 0 of 25000
+Review 1000 of 25000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:21: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Review 2000 of 25000
+Review 3000 of 25000
+Review 4000 of 25000
+Review 5000 of 25000
+Review 6000 of 25000
+Review 7000 of 25000
+Review 8000 of 25000
+Review 9000 of 25000
+Review 10000 of 25000
+Review 11000 of 25000
+Review 12000 of 25000
+Review 13000 of 25000
+Review 14000 of 25000
+Review 15000 of 25000
+Review 16000 of 25000
+Review 17000 of 25000
+Review 18000 of 25000
+Review 19000 of 25000
+Review 20000 of 25000
+Review 21000 of 25000
+Review 22000 of 25000
+Review 23000 of 25000
+Review 24000 of 25000
+Review 0 of 25000
+Review 1000 of 25000
+Review 2000 of 25000
+Review 3000 of 25000
+Review 4000 of 25000
+Review 5000 of 25000
+Review 6000 of 25000
+Review 7000 of 25000
+Review 8000 of 25000
+Review 9000 of 25000
+Review 10000 of 25000
+Review 11000 of 25000
+Review 12000 of 25000
+Review 13000 of 25000
+Review 14000 of 25000
+Review 15000 of 25000
+Review 16000 of 25000
+Review 17000 of 25000
+Review 18000 of 25000
+Review 19000 of 25000
+Review 20000 of 25000
+Review 21000 of 25000
+Review 22000 of 25000
+Review 23000 of 25000
+Review 24000 of 25000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">trainDataVecs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">testDataVecs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25000, 300)
+(25000, 300)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a random forest to the training data, using 100 trees</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span> <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Fitting a random forest to labeled training data...&quot;</span><span class="p">)</span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> <span class="n">trainDataVecs</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="c1"># Test &amp; extract results </span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span> <span class="n">testDataVecs</span> <span class="p">)</span>
+
+<span class="c1"># Write the test results </span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;sentiment&quot;</span><span class="p">:</span><span class="n">result</span><span class="p">}</span> <span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span> <span class="s2">&quot;Word2Vec_AverageVectors.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting a random forest to labeled training data...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="c1"># Start time  23 minutes</span>
+
+<span class="c1"># Set &quot;k&quot; (num_clusters) to be 1/5th of the vocabulary size, or an</span>
+<span class="c1"># average of 5 words per cluster</span>
+
+<span class="n">num_clusters</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5</span>
+<span class="n">num_clusters</span>
+
+
+<span class="c1"># Initalize a k-means object and use it to extract centroids</span>
+<span class="n">kmeans_clustering</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_clusters</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">kmeans_clustering</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vectors</span><span class="p">)</span>
+
+<span class="c1"># Get the end time and print how long the process took</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Time taken for K Means clustering: &quot;</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="s2">&quot;seconds.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time taken for K Means clustering:  1348.733912229538 seconds.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word_centroid_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index2word</span><span class="p">,</span> <span class="n">idx</span> <span class="p">))</span>
+<span class="n">word_centroid_map</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([1841, 2447, 2345, 2643, 2508, 2157, 1191, 3208, 1212, 1191, 2050, 2157, 499, 1304, 1931, 1901, 2448, 758, 2448, 750, 376, 1017, 1523, 932, 2473, 2469, 2849, 1696, 1923, 2395, 1014, 750, 1409, 1385, 3229, 2555, 2874, 2277, 2613, 2469, 1773, 726, 2814, 3292, 1986, 1595, 570, 547, 2390, 1991, 485, 864, 2426, 932, 2140, 3009, 2381, 2657, 2449, 1046, 2050, 1913, 1472, 1785, 726, 96, 1986, 2473, 368, 750, 1212, 1873, 1576, 194, 2070, 1622, 1380, 1547, 1356, 1256, 92, 1966, 1650, 564, 151, 932, 1200, 945, 947, 800, 1278, 1191, 2731, 1241, 1434, 149, 2874, 237, 898, 1330, 2329, 2522, 1299, 237, 1542, 1068, 3121, 1879, 1472, 319, 3134, 3090, 1341, 2765, 1475, 1524, 2196, 436, 1694, 227, 501, 1749, 2454, 436, 2853, 2789, 1046, 1646, 275, 2635, 2208, 1429, 1029, 1200, 2419, 1299, 421, 371, 2849, 636, 149, 1530, 1892, 621, 2633, 2208, 973, 854, 1068, 947, 1550, 758, 3170, 146, 299, 301, 1423, 947, 2342, 1673, 1330, 1278, 2606, 726, 470, 898, 1311, 63, 2273, 547, 1239, 679, 2813, 1932, 1088, 3172, 1603, 421, 1016, 2426, 1518, 825, 2565, 2007, 904, 3095, 711, 2020, 640, 758, 3283, 3262, 692, 2561, 1299, 548, 1338, 889, 885, 2449, 720, 1537, 149, 2449, 1236, 2131, 1469, 679, 2444, 3165, 3034, 2938, 153, 1846, 322, 783, 1389, 1199, 2422, 2302, 1475, 2303, 2719, 1215, 1132, 2795, 2945, 320, 3126, 151, 2731, 1650, 811, 2449, 679, 1330, 758, 515, 664, 636, 2853, 694, 489, 423, 2444, 1815, 2393, 152, 89, 1387, 2359, 1499, 939, 1141, 1276, 426, 1240, 1940, 1311, 1299, 348, 758, 420, 2535, 1441, 1011, 1548, 2597, 275, 664, 1305, 2261, 847, 1542, 437, 1927, 1176, 1592, 2828, 142, 679, 2359, 698, 1387, 2162, 931, 1230, 153, 1978, 1618, 403, 606, 2633, 142, 1012, 1753, 640, 939, 739, 1822, 1387, 676, 539, 2623, 2393, 322, 569, 1603, 460, 932, 3075, 3133, 1735, 1068, 1583, 2910, 773, 2505, 1382, 130, 670, 564, 320, 2680, 2491, 2202, 2289, 1731, 1182, 2686, 2630, 795, 1653, 332, 2079, 1668, 1073, 571, 2100, 670, 741, 531, 801, 2167, 1377, 730, 997, 570, 692, 2837, 1156, 3169, 2491, 898, 1905, 2495, 853, 2937, 1239, 1132, 1518, 1732, 685, 3139, 2039, 2379, 2619, 1782, 664, 899, 194, 1836, 2419, 437, 2184, 356, 40, 2070, 2442, 2065, 2597, 947, 356, 438, 194, 1966, 1312, 1432, 746, 1387, 1191, 811, 92, 1256, 3075, 1729, 1380, 343, 884, 476, 647, 107, 1215, 527, 1814, 741, 92, 404, 1926, 2444, 493, 224, 3102, 543, 2597, 947, 861, 129, 853, 615, 460, 343, 1091, 1005, 2448, 3195, 591, 361, 1987, 1782, 1259, 331, 602, 489, 1879, 1429, 551, 783, 3126, 1628, 320, 2789, 3048, 745, 415, 1524, 162, 1253, 3148, 790, 2227, 277, 1355, 1398, 1584, 549, 1173, 3117, 711, 731, 2772, 1389, 1300, 2437, 2365, 1012, 615, 795, 1677, 2109, 1016, 755, 289, 40, 2505, 696, 146, 627, 289, 690, 1826, 371, 1198, 2357, 2485, 3233, 2357, 2857, 1514, 1007, 2507, 2100, 194, 1544, 2446, 572, 1524, 1603, 1852, 1913, 92, 615, 2977, 2087, 1004, 1069, 976, 324, 1058, 2979, 281, 1681, 320, 3002, 632, 361, 2857, 3244, 2390, 237, 889, 3060, 1456, 489, 679, 2442, 1299, 1698, 277, 2779, 2848, 2720, 2505, 2328, 1472, 1814, 797, 2581, 1212, 1521, 624, 1271, 2522, 3082, 600, 3126, 122, 939, 3165, 679, 2426, 2183, 640, 1271, 968, 492, 126, 2635, 2184, 726, 1117, 1138, 947, 3148, 2559, 2259, 1462, 1768, 295, 2492, 266, 2719, 1487, 1592, 640, 1679, 2979, 2100, 320, 1110, 669, 1090, 2693, 2018, 797, 511, 1220, 332, 2979, 2884, 1141, 598, 2648, 1991, 851, 2112, 1377, 569, 778, 1268, 708, 301, 714, 3081, 329, 2698, 1722, 2334, 504, 2589, 2474, 695, 706, 1344, 1295, 623, 2474, 2991, 1433, 1625, 1088, 379, 2810, 447, 1240, 2710, 89, 176, 640, 2310, 91, 2187, 740, 112, 670, 1227, 1696, 2299, 1287, 54, 1461, 493, 731, 1401, 42, 930, 394, 3020, 2549, 1220, 1337, 613, 2040, 1994, 1042, 2492, 1370, 1542, 672, 1419, 600, 2054, 1857, 2269, 2434, 1680, 2322, 548, 896, 861, 1849, 2419, 1419, 3248, 1994, 1144, 1281, 2720, 1019, 604, 2488, 94, 2436, 2331, 2225, 968, 306, 1343, 1452, 2215, 890, 2154, 1679, 2616, 1606, 357, 2862, 461, 1614, 153, 3173, 986, 798, 155, 1081, 2635, 1017, 1230, 705, 822, 694, 3099, 889, 1054, 348, 310, 1472, 2129, 1957, 1768, 825, 974, 423, 2961, 1341, 919, 2129, 1183, 1489, 566, 1369, 547, 1013, 1698, 735, 2444, 572, 2252, 107, 2777, 1089, 219, 2547, 384, 1899, 3017, 3041, 3108, 773, 130, 1230, 3222, 2422, 2946, 392, 2310, 1052, 3020, 3198, 1472, 570, 1625, 1125, 801, 483, 139, 1922, 454, 654, 14, 492, 1483, 2491, 1274, 2357, 1054, 2559, 711, 1622, 216, 1084, 2329, 2065, 2979, 2302, 135, 1300, 2469, 1214, 2603, 786, 604, 1305, 564, 1343, 2184, 2862, 825, 1258, 2454, 2719, 2853, 2430, 406, 2412, 693, 2419, 1068, 92, 402, 3183, 448, 2303, 650, 1258, 1369, 1865, 1110, 675, 172, 570, 415, 1187, 1214, 96, 371, 172, 1513, 1983, 2154, 899, 1003, 1487, 104, 991, 343, 2953, 1180, 368, 2975, 1580, 1614, 3149, 1058, 2883, 1328, 361, 78, 2742, 2461, 338, 1489, 5, 2413, 1065, 2196, 1033, 1565, 1375, 2055, 1783, 423, 776, 919, 1300, 2303, 1732, 2837, 2654, 454, 3259, 2125, 1389, 765, 2073, 569, 869, 1523, 1625, 566, 2951, 482, 2180, 357, 2890, 3062, 1215, 115, 2394, 3093, 569, 1994, 580, 862, 1549, 695, 1289, 1622, 127, 451, 366, 3218, 2162, 1631, 129, 1385, 2412, 2025, 29, 2612, 751, 1548, 2867, 1595, 681, 232, 1300, 2065, 338, 389, 277, 1157, 3287, 1442, 368, 778, 39, 1524, 501, 29, 3185, 1489, 2348, 740, 1184, 2623, 1265, 1339, 460, 663, 1679, 2168, 2505, 904, 981, 1484, 940, 1623, 311, 1227, 4, 2979, 366, 547, 1611, 755, 3002, 1055, 2741, 254, 2862, 340, 1652, 1880, 1313, 2426, 2522, 1069, 1955, 3128, 265, 790, 234, 2357, 2111, 2944, 2434, 403, 1069, 1414, 2155, 1845, 278, 1094, 656, 1065, 2689, 2299, 1924, 867, 1401, 1194, 814, 3019, 899, 2762, 2646, 2110, 598, 723, 1109, 1699, 693, 677, 413, 1391, 1525, 1504, 1593, 2468, 474, 3048, 366, 1253, 73, 766, 2590, 1058, 1372, 2312, 1575, 1008, 3172, 1523, 1211, 438, 1896, 3231, 462, 1895, 634, 1065, 317, 488, 1606, 2550, 2815, 986, 973, 850, 2002, 54, 680, 1122, 710, 2618, 447, 443, 1452, 470, 633, 402, 216, 1602, 2659, 477, 3019, 119, 1319, 2559, 2153, 883, 813, 166, 3087, 1649, 865, 773, 795, 2437, 355, 2114, 2156, 326, 2307, 23, 2444, 2059, 2414, 121, 212, 592, 3115, 151, 1035, 1481, 1297, 104, 2025, 2574, 2569, 801, 1836, 366, 1487, 2300, 1441, 1331, 907, 825, 1459, 2444, 1903, 1963, 1900, 439, 1131, 1860, 3016, 1237, 1877, 105, 1865, 2505, 386, 3046, 685, 2071, 166, 939, 2630, 1602, 873, 469, 2191, 3235, 342, 134, 2193, 1005, 2612, 1210, 3070, 92, 735, 1267, 2882, 366, 2806, 152, 607, 266, 1809, 423, 1084, 1704, 1323, 1209, 1946, 606, 1129, 2271, 976, 3200, 539, 1563, 371, 275, 1312, 2830, 647, 415, 592, 1583, 1150, 378, 875, 2411, 1259, 1399, 1969, 1504, 614, 1089, 2691, 1174, 254, 2659, 1305, 153, 2499, 1442, 723, 557, 1056, 567, 2810, 772, 689, 1016, 1369, 905, 2227, 1293, 2251, 2485, 454, 2054, 917, 355, 306, 940, 1313, 2942, 714, 653, 716, 930, 2477, 2054, 838, 2087, 693, 1299, 774, 2314, 1257, 371, 2184, 3020, 1689, 682, 694, 1605, 346, 1959, 2666, 937, 2777, 2967, 1008, 405, 175, 1022, 1973, 2294, 2864, 937, 66, 185, 624, 2292, 264, 714, 3004, 1323, 237, 2390, 5, 326, 1228, 362, 2365, 824, 971, 14, 2090, 2359, 1019, 3248, 737, 940, 1147, 634, 356, 3020, 839, 1888, 693, 1870, 1174, 1819, 2671, 890, 63, 1322, 311, 1056, 144, 488, 1204, 1092, 847, 2006, 1716, 2969, 1478, 1066, 2010, 328, 142, 414, 1677, 917, 2715, 2365, 5, 1382, 1131, 3085, 2867, 2269, 163, 2687, 249, 224, 1702, 1397, 315, 441, 275, 933, 216, 154, 1047, 2541, 484, 2870, 2294, 442, 1089, 695, 784, 289, 181, 1525, 680, 2983, 112, 2505, 751, 1756, 1318, 1661, 1033, 2913, 3081, 2441, 460, 2040, 2365, 1174, 224, 551, 2646, 363, 2157, 460, 232, 1142, 396, 931, 1781, 827, 1880, 3148, 474, 1990, 1343, 1368, 1216, 2308, 1271, 1215, 2645, 693, 2059, 1025, 52, 1044, 2707, 2505, 905, 938, 613, 40, 120, 354, 2071, 637, 740, 2489, 491, 1324, 2986, 527, 399, 398, 1767, 330, 1657, 119, 1500, 2123, 299, 1786, 670, 979, 3081, 656, 1522, 2884, 229, 1455, 237, 1432, 1434, 2246, 867, 2215, 930, 1140, 1013, 1623, 2797, 2284, 198, 1173, 837, 1078, 1050, 131, 1182, 2477, 2499, 1983, 1041, 2206, 2389, 1054, 1566, 2686, 2365, 948, 1327, 343, 821, 398, 2712, 3159, 1513, 1157, 963, 59, 1753, 693, 717, 2587, 2750, 1112, 454, 1037, 2365, 1955, 861, 1011, 1395, 1653, 1178, 1001, 2114, 415, 160, 1184, 597, 1252, 1981, 1324, 1252, 903, 147, 1380, 1823, 2085, 2365, 134, 377, 1185, 986, 143, 42, 2116, 1144, 155, 3254, 1214, 1573, 676, 328, 654, 663, 974, 471, 670, 770, 1389, 264, 205, 1087, 1704, 884, 136, 2418, 947, 375, 696, 2465, 1857, 1780, 16, 1734, 1904, 778, 3122, 1163, 853, 1959, 1567, 497, 1382, 1758, 616, 1960, 150, 2317, 404, 177, 1490, 698, 2971, 2761, 670, 1528, 2079, 1293, 2312, 1932, 2797, 884, 410, 2997, 669, 139, 945, 1451, 359, 2124, 3058, 2570, 443, 920, 2386, 328, 695, 2850, 776, 2486, 613, 3247, 3066, 42, 1316, 2312, 1925, 1593, 2006, 1486, 883, 1140, 702, 1343, 884, 1930, 1179, 1187, 2979, 2800, 4, 2136, 609, 1819, 1652, 1495, 2595, 2795, 1623, 1693, 2215, 270, 2414, 1178, 2759, 1700, 1832, 2697, 29, 2848, 470, 151, 3122, 1277, 2908, 304, 1193, 188, 813, 2616, 940, 2838, 2092, 2479, 155, 1700, 2477, 1366, 265, 1493, 659, 1998, 268, 504, 155, 632, 439, 1017, 751, 2442, 1639, 1434, 1880, 893, 1351, 2287, 1796, 1329, 1008, 2218, 79, 710, 1551, 1452, 89, 1691, 1378, 1369, 3263, 1008, 2299, 2629, 1242, 1089, 1318, 243, 356, 3030, 666, 2759, 615, 2888, 249, 1124, 1707, 2111, 817, 1367, 2241, 1317, 1951, 1054, 2805, 757, 2299, 1870, 3124, 52, 656, 150, 1575, 1544, 1267, 1072, 747, 766, 140, 1128, 187, 3002, 1300, 2822, 2461, 3170, 243, 869, 1544, 2988, 219, 2129, 236, 2822, 1190, 2412, 1566, 2461, 1246, 2352, 460, 2143, 495, 1002, 1509, 996, 1286, 70, 672, 1097, 76, 557, 2552, 531, 786, 914, 2363, 1080, 186, 904, 765, 474, 699, 1533, 1335, 115, 1933, 681, 415, 959, 2087, 2054, 2099, 2312, 364, 1915, 379, 1605, 1447, 3148, 1533, 2328, 1416, 597, 1960, 299, 602, 2026, 498, 3234, 1297, 474, 2218, 3110, 2132, 501, 358, 2424, 2101, 942, 243, 2112, 249, 1096, 2979, 2892, 2250, 1391, 2333, 1486, 2396, 1202, 2659, 402, 531, 1087, 1467, 146, 1383, 804, 525, 2979, 821, 553, 901, 177, 319, 2359, 365, 705, 3250, 1033, 737, 1411, 89, 3107, 2359, 550, 2991, 1768, 16, 634, 2723, 2662, 1379, 1697, 1454, 1656, 125, 940, 2979, 281, 2365, 392, 719, 263, 122, 661, 409, 1328, 639, 339, 326, 135, 133, 363, 1606, 1462, 2100, 63, 3295, 657, 1230, 1315, 2867, 234, 1188, 1714, 185, 1280, 1145, 2648, 1046, 650, 717, 147, 535, 833, 1915, 2260, 1317, 604, 1065, 2976, 694, 1407, 2464, 404, 243, 2343, 266, 1879, 1139, 3046, 474, 2360, 3016, 1295, 2087, 638, 566, 2148, 1297, 2446, 714, 2215, 3296, 1162, 920, 2829, 2440, 532, 1525, 842, 666, 2607, 1544, 2956, 558, 971, 247, 2453, 1622, 1108, 1410, 1166, 3279, 864, 3192, 1544, 2646, 2841, 572, 3279, 2426, 917, 1522, 996, 1868, 863, 1229, 2636, 464, 294, 328, 188, 3094, 1979, 2883, 1088, 3279, 2018, 1497, 525, 751, 2052, 2075, 1029, 1513, 1512, 1693, 1351, 2570, 388, 3081, 838, 688, 1719, 2110, 223, 1327, 461, 1578, 723, 202, 730, 837, 125, 275, 704, 974, 2015, 990, 853, 1180, 511, 185, 1852, 646, 2871, 2393, 1343, 1736, 1370, 1860, 3085, 2318, 454, 143, 2646, 801, 1866, 317, 490, 2116, 1545, 709, 454, 458, 1696, 1127, 1490, 1214, 2068, 680, 1456, 1391, 596, 1948, 1065, 2481, 939, 1589, 1279, 3202, 847, 2291, 2670, 154, 3194, 2095, 967, 628, 2312, 2315, 2196, 484, 860, 2762, 2853, 1849, 2841, 2320, 2629, 1401, 1322, 685, 591, 870, 549, 2677, 1538, 256, 2541, 181, 2979, 1880, 688, 677, 2394, 959, 2710, 2767, 1039, 982, 68, 176, 284, 1230, 354, 2928, 1486, 2057, 1896, 249, 1329, 1630, 517, 456, 94, 1287, 572, 706, 1939, 2886, 1351, 2812, 504, 1081, 112, 1249, 557, 197, 11, 1351, 1734, 1187, 1201, 3095, 46, 257, 788, 221, 1180, 2553, 1215, 2956, 2296, 671, 680, 2461, 1994, 1184, 1897, 1162, 827, 1429, 1158, 774, 1900, 1653, 2867, 67, 2282, 643, 759, 119, 148, 35, 912, 308, 65, 1603, 853, 827, 1927, 2442, 3060, 3249, 1086, 449, 1414, 404, 1823, 1275, 1775, 1138, 2036, 2025, 1960, 613, 834, 847, 1671, 1242, 415, 1369, 1698, 2015, 1249, 264, 397, 553, 2356, 687, 454, 749, 1357, 678, 404, 1087, 617, 3020, 2862, 963, 11, 813, 762, 2748, 1275, 1280, 1066, 814, 3082, 1280, 2666, 2597, 2428, 693, 986, 1360, 1431, 1140, 680, 1708, 2645, 1267, 513, 778, 852, 677, 1182, 2322, 3061, 309, 2074, 49, 801, 613, 2857, 498, 146, 587, 2962, 272, 73, 2051, 268, 644, 2837, 2139, 2004, 65, 1494, 861, 983, 2218, 1970, 1223, 1275, 368, 2822, 249, 234, 1780, 150, 628, 1295, 2218, 1958, 2848, 835, 2873, 2592, 2689, 930, 1280, 1708, 2100, 61, 1573, 342, 946, 1153, 724, 992, 1658, 2670, 1959, 599, 2743, 1089, 970, 1994, 644, 483, 958, 305, 1404, 2143, 2465, 659, 1496, 2099, 2265, 329, 1041, 784, 243, 445, 3019, 2090, 503, 2995, 2563, 445, 2244, 543, 2003, 1056, 767, 1769, 1803, 1402, 1438, 824, 2365, 322, 841, 874, 998, 394, 1284, 1279, 1272, 2144, 2328, 2979, 1894, 792, 1087, 249, 733, 671, 1749, 1617, 510, 1856, 1324, 587, 2116, 2944, 605, 781, 1729, 2959, 451, 2988, 56, 893, 3109, 2081, 1198, 2609, 1953, 1556, 176, 3279, 493, 855, 73, 2100, 1516, 1491, 1313, 3094, 825, 1209, 2441, 187, 463, 583, 2653, 2777, 173, 2079, 84, 1714, 276, 2388, 284, 1198, 860, 1930, 263, 1634, 398, 1275, 125, 1455, 2897, 1647, 1198, 1087, 687, 846, 1543, 938, 860, 459, 2732, 1131, 402, 176, 357, 272, 873, 138, 2988, 998, 2049, 1426, 2402, 477, 604, 2625, 1183, 982, 464, 2396, 249, 1676, 1653, 772, 454, 1125, 1707, 2238, 252, 1175, 448, 2466, 1503, 394, 1215, 1391, 1402, 324, 474, 1574, 1544, 959, 1101, 3182, 289, 513, 1229, 1876, 282, 2396, 241, 438, 1065, 330, 1513, 404, 549, 2396, 841, 1270, 1209, 1486, 2443, 847, 215, 2687, 616, 1602, 1641, 2376, 2284, 201, 2691, 2390, 2876, 2611, 68, 876, 2705, 2797, 1416, 1060, 2178, 690, 2123, 513, 740, 2810, 73, 1225, 2550, 462, 1117, 1752, 721, 121, 534, 2071, 2957, 2079, 319, 1849, 1943, 1088, 2901, 2396, 1878, 2928, 2239, 1970, 2081, 1865, 841, 254, 1763, 1059, 3148, 3071, 938, 3222, 1140, 1107, 3158, 2079, 1714, 1249, 2771, 407, 782, 849, 1792, 849, 2365, 994, 2063, 2149, 1991, 1252, 3166, 1920, 2394, 787, 3218, 454, 1108, 838, 1894, 1796, 980, 1879, 100, 658, 3256, 1911, 1275, 824, 2534, 604, 1391, 2019, 15, 205, 1449, 1494, 1091, 557, 603, 2054, 511, 1506, 1246, 2941, 1719, 289, 2335, 2778, 3020, 839, 2995, 3213, 3124, 305, 1352, 1118, 794, 3031, 1226, 1170, 992, 153, 2536, 511, 913, 904, 2087, 2407, 2139, 2080, 1494, 1546, 999, 88, 1656, 792, 628, 1004, 3297, 1115, 2742, 789, 2258, 798, 485, 195, 2671, 49, 880, 1003, 2736, 575, 415, 1155, 1970, 16, 35, 995, 804, 1736, 1633, 2784, 1112, 485, 2054, 466, 2737, 245, 1080, 543, 1707, 235, 23, 178, 417, 788, 1446, 27, 1501, 2346, 483, 2607, 2467, 1365, 138, 342, 904, 355, 2003, 508, 2392, 673, 2391, 2856, 663, 1179, 195, 52, 2015, 2123, 584, 2471, 2807, 181, 1967, 776, 958, 135, 1674, 206, 1153, 167, 1704, 407, 1771, 30, 265, 397, 249, 2541, 2396, 100, 751, 317, 583, 1018, 2437, 1775, 673, 548, 2010, 1751, 2861, 655, 1671, 342, 653, 714, 98, 146, 560, 2002, 1733, 991, 2229, 670, 3020, 1647, 1062, 2119, 309, 2293, 653, 1656, 2637, 289, 847, 751, 155, 2405, 466, 2886, 2838, 2443, 856, 186, 958, 2436, 299, 354, 1564, 303, 1211, 2453, 3096, 1279, 1358, 2672, 2670, 718, 2841, 892, 1300, 731, 739, 1664, 1517, 46, 2726, 2557, 992, 1630, 193, 628, 236, 1044, 1178, 2700, 3110, 683, 1065, 2937, 1366, 330, 148, 1846, 680, 2100, 2882, 26, 2350, 508, 3170, 1295, 1322, 724, 1119, 2391, 2299, 1656, 723, 2047, 415, 493, 2269, 632, 269, 1275, 1922, 1959, 2734, 2461, 1301, 694, 1852, 1187, 611, 2715, 2731, 1429, 904, 389, 398, 336, 2087, 3259, 1005, 69, 702, 2396, 1193, 1206, 2309, 1882, 363, 1705, 2441, 92, 105, 1394, 2287, 2036, 1368, 1104, 1060, 2441, 386, 624, 933, 2184, 1474, 848, 1043, 2456, 996, 2434, 914, 855, 893, 1870, 11, 536, 1240, 1924, 431, 281, 923, 1160, 2019, 124, 767, 1089, 3040, 2405, 65, 408, 1896, 87, 1052, 883, 2437, 995, 1454, 1445, 66, 754, 2710, 301, 1240, 2442, 817, 998, 369, 79, 549, 1860, 709, 819, 2804, 1289, 650, 2365, 1509, 282, 2392, 1198, 1161, 613, 2104, 689, 903, 1390, 2311, 1911, 581, 2312, 3039, 2969, 1124, 2307, 603, 2307, 265, 1783, 2334, 695, 693, 1573, 1942, 1994, 2928, 155, 445, 959, 1733, 1491, 1042, 3098, 1459, 1515, 1005, 1761, 1488, 311, 2191, 2734, 1592, 1328, 1024, 2156, 1743, 2797, 3259, 117, 2707, 193, 1215, 516, 1211, 2815, 998, 2707, 1197, 3242, 1494, 1133, 539, 1671, 535, 2998, 1160, 1678, 937, 1417, 391, 2161, 2953, 718, 1308, 1553, 2192, 1010, 1515, 1110, 2053, 269, 482, 1751, 1139, 905, 2215, 1676, 1915, 2156, 598, 2979, 379, 1, 2928, 3233, 2327, 1885, 126, 1098, 1224, 193, 1162, 391, 1122, 2141, 2016, 591, 2396, 3151, 1351, 69, 2402, 1553, 272, 528, 2154, 2388, 98, 2609, 429, 1424, 2429, 733, 2378, 920, 1763, 441, 2625, 1622, 2651, 2396, 2256, 402, 862, 493, 1004, 560, 732, 375, 2625, 476, 333, 2562, 2760, 1494, 180, 835, 37, 1470, 1481, 139, 1340, 2736, 488, 1275, 2956, 2161, 2129, 2552, 1758, 2229, 1080, 1617, 782, 2063, 1159, 1335, 909, 1071, 59, 1943, 3237, 603, 2552, 1575, 415, 2944, 1414, 1112, 586, 2068, 200, 1843, 2593, 2477, 2545, 792, 1421, 2059, 2824, 2863, 474, 390, 2329, 3159, 2339, 1321, 1230, 631, 1126, 1573, 1770, 466, 1253, 105, 1416, 986, 2303, 2260, 2815, 584, 1778, 338, 89, 1832, 2810, 91, 1865, 1174, 139, 1279, 2334, 1171, 2590, 789, 2183, 2736, 2443, 1776, 154, 1229, 1275, 873, 2355, 933, 2563, 133, 1551, 156, 1122, 209, 788, 1711, 2127, 2678, 385, 299, 765, 574, 1487, 2996, 1279, 1253, 1868, 1286, 472, 1449, 2590, 1355, 2005, 2310, 2486, 2036, 507, 1371, 1147, 1109, 1895, 1104, 264, 1222, 165, 2116, 1800, 734, 2547, 2254, 207, 2851, 603, 367, 1865, 846, 2355, 2551, 378, 379, 1590, 1250, 1275, 1556, 1052, 624, 3243, 332, 798, 2604, 794, 148, 661, 1458, 63, 1441, 1269, 1184, 139, 954, 1426, 2465, 2867, 2389, 2091, 246, 2712, 751, 1567, 541, 1371, 406, 592, 269, 1692, 2669, 212, 1275, 118, 1763, 2809, 1286, 1066, 1065, 1295, 1634, 2365, 1611, 125, 268, 3026, 1344, 185, 2183, 358, 734, 1815, 1575, 1059, 469, 1240, 1477, 79, 904, 701, 1556, 1421, 415, 2573, 763, 1907, 2299, 871, 1324, 37, 3286, 520, 396, 2301, 310, 1830, 1148, 757, 1834, 2658, 2278, 914, 994, 2671, 835, 2651, 1230, 1087, 816, 2373, 675, 1582, 843, 1559, 631, 493, 159, 516, 1771, 1202, 753, 1239, 1886, 3122, 1429, 493, 959, 999, 357, 2134, 2629, 404, 1451, 967, 488, 842, 799, 1883, 2764, 1035, 1155, 742, 1270, 586, 3266, 2184, 91, 849, 150, 979, 2230, 1532, 373, 1900, 264, 105, 2281, 1142, 653, 461, 493, 919, 435, 448, 301, 1308, 300, 2475, 2736, 107, 858, 213, 652, 2410, 508, 404, 116, 2392, 409, 269, 1414, 858, 1907, 466, 2915, 289, 478, 2394, 1689, 1315, 125, 1820, 2260, 762, 1852, 673, 2184, 1459, 286, 1179, 1362, 2693, 954, 1545, 943, 310, 1421, 2468, 970, 2748, 846, 1137, 2617, 1424, 938, 1148, 3060, 838, 1869, 2091, 1699, 1002, 352, 357, 913, 205, 644, 1096, 1040, 1295, 2873, 1676, 91, 1882, 2301, 1878, 475, 1161, 3002, 3144, 1322, 2569, 874, 1823, 557, 284, 1008, 1040, 163, 754, 1609, 733, 597, 1849, 1626, 184, 2988, 1265, 2123, 1160, 3205, 2135, 243, 2054, 2979, 357, 2097, 418, 1626, 328, 1030, 557, 836, 1920, 2396, 2294, 2746, 720, 1481, 2413, 3176, 238, 3107, 2806, 1313, 1149, 1671, 852, 1161, 1555, 243, 1474, 426, 1532, 2564, 1816, 1487, 188, 1084, 2322, 162, 2413, 1586, 3028, 474, 2455, 485, 733, 2810, 1070, 3083, 774, 2308, 2974, 1623, 1964, 737, 762, 2054, 366, 105, 2064, 236, 1943, 1360, 2403, 2873, 1863, 1206, 413, 1146, 2054, 2108, 2111, 404, 221, 2042, 1342, 3218, 2629, 328, 709, 520, 998, 1455, 529, 1477, 1962, 1065, 2946, 468, 2900, 912, 2549, 68, 2716, 382, 281, 2892, 2969, 65, 2707, 954, 460, 1852, 1303, 2592, 1107, 2467, 237, 1051, 662, 1700, 3124, 2133, 1007, 2047, 2984, 234, 480, 1215, 160, 1259, 2129, 842, 2173, 1461, 1528, 874, 694, 962, 404, 1661, 1337, 180, 494, 819, 2797, 143, 547, 3046, 146, 1494, 670, 2252, 2820, 948, 1713, 1188, 2229, 841, 1445, 493, 3295, 1924, 1574, 838, 1004, 818, 3171, 1559, 2238, 1215, 107, 1559, 653, 914, 88, 1259, 274, 13, 887, 1112, 943, 2059, 660, 1724, 234, 1428, 1438, 952, 2108, 641, 1658, 1720, 1095, 2396, 3118, 943, 568, 1546, 1820, 364, 2772, 1452, 466, 218, 2188, 583, 754, 1018, 183, 2663, 2365, 312, 2505, 1617, 195, 715, 669, 232, 576, 659, 2350, 888, 501, 3160, 325, 432, 2396, 1084, 1115, 281, 2276, 669, 605, 867, 1743, 44, 2183, 1379, 558, 1495, 2288, 205, 987, 558, 884, 875, 2979, 756, 2627, 2893, 379, 1946, 516, 1315, 493, 2630, 2435, 1494, 557, 2001, 1042, 518, 1091, 1569, 637, 147, 1040, 2358, 893, 375, 1404, 373, 693, 1944, 2647, 61, 1051, 607, 2757, 896, 2396, 445, 1765, 2876, 1249, 656, 1318, 1183, 2873, 858, 563, 2405, 3050, 443, 1041, 1752, 1768, 1360, 354, 2059, 1074, 63, 1160, 1799, 2162, 736, 687, 834, 1752, 2399, 893, 130, 2985, 3115, 172, 3279, 2732, 358, 509, 3114, 454, 1308, 107, 1314, 1958, 294, 1140, 708, 3178, 813, 579, 886, 2153, 482, 2311, 2537, 3182, 652, 672, 76, 289, 2388, 2262, 399, 1168, 1265, 1340, 3279, 289, 738, 762, 334, 482, 3021, 549, 598, 712, 1039, 2476, 2346, 1230, 959, 622, 1584, 2184, 1671, 11, 68, 1623, 2079, 236, 1579, 279, 1627, 2154, 668, 842, 1334, 354, 1430, 821, 1122, 1661, 2391, 1486, 1270, 1798, 1279, 1441, 1684, 2723, 1230, 354, 2591, 2266, 975, 2254, 2691, 3128, 2396, 2190, 10, 761, 1180, 2979, 1230, 28, 624, 541, 2380, 701, 762, 3128, 1868, 311, 835, 661, 799, 1388, 1578, 2233, 2054, 2190, 1458, 1270, 963, 143, 3046, 1589, 1486, 1698, 2624, 2295, 1283, 1395, 1237, 431, 592, 628, 1676, 1355, 2495, 1104, 530, 2873, 33, 339, 1699, 2630, 727, 2396, 1896, 1097, 475, 970, 2979, 362, 681, 618, 454, 1972, 1718, 1493, 2641, 75, 2038, 695, 354, 966, 186, 2101, 462, 765, 60, 389, 789, 138, 2156, 1733, 468, 160, 3266, 2481, 1087, 848, 605, 1359, 1486, 2867, 761, 411, 3259, 822, 2137, 1830, 991, 1606, 2380, 999, 363, 89, 1265, 1289, 1688, 1714, 991, 510, 1758, 2040, 1671, 1943, 241, 1713, 328, 973, 825, 205, 1904, 2246, 1586, 2116, 1924, 130, 1752, 268, 1155, 1760, 2251, 2063, 1354, 3118, 2573, 2112, 1950, 3081, 629, 1626, 986, 224, 1853, 576, 486, 681, 328, 259, 1515, 3295, 1608, 133, 1508, 2691, 535, 180, 1857, 2549, 938, 1861, 249, 1056, 1758, 3120, 2413, 1187, 1139, 1047, 2123, 694, 614, 2392, 268, 1359, 851, 745, 306, 1480, 1602, 992, 2472, 2646, 2279, 292, 1124, 2087, 116, 2591, 1556, 1833, 341, 2528, 420, 3188, 2489, 1608, 2897, 1650, 2202, 1321, 2580, 1187, 1395, 136, 397, 1157, 954, 356, 723, 1248, 777, 3110, 574, 358, 226, 1275, 352, 46, 2609, 728, 1513, 271, 1765, 1272, 1579, 1270, 2282, 1354, 1558, 1833, 1077, 2736, 1686, 384, 1728, 2988, 1279, 140, 2979, 2316, 175, 454, 157, 2102, 1751, 1061, 2596, 584, 491, 1495, 1044, 843, 1483, 1712, 418, 876, 708, 873, 1087, 15, 2976, 115, 737, 1373, 1641, 2988, 1124, 493, 2596, 3222, 205, 1623, 994, 2019, 1721, 345, 605, 999, 1995, 121, 1155, 143, 563, 46, 1625, 3253, 903, 2061, 1982, 468, 284, 482, 762, 794, 145, 2570, 474, 2114, 1215, 3214, 46, 1767, 519, 1644, 1679, 1898, 2013, 1775, 333, 3279, 665, 2872, 2059, 2424, 2557, 2489, 2190, 1279, 2202, 973, 777, 2590, 1188, 405, 662, 10, 1493, 1765, 215, 969, 2287, 1096, 213, 1656, 1622, 2144, 926, 1171, 1623, 275, 1426, 3124, 1880, 856, 2988, 584, 193, 110, 1690, 2563, 11, 2846, 1162, 2651, 528, 221, 2167, 2057, 873, 2441, 1763, 387, 206, 1022, 3124, 963, 822, 432, 1185, 1161, 798, 744, 1775, 1993, 228, 2192, 1697, 788, 159, 1696, 181, 175, 1168, 837, 532, 1488, 2979, 305, 1211, 1332, 212, 1556, 260, 249, 1353, 1855, 213, 1538, 1183, 628, 2036, 1718, 54, 2396, 1506, 184, 2581, 2442, 724, 1275, 1661, 2218, 1960, 11, 65, 1491, 2340, 1475, 1357, 1400, 2013, 1258, 2532, 2579, 2202, 1487, 3030, 1905, 643, 2307, 717, 2961, 2338, 510, 1758, 740, 653, 1551, 2979, 186, 2256, 1007, 2872, 2549, 733, 1084, 541, 1513, 394, 2229, 1122, 2245, 2516, 580, 1644, 1455, 1087, 2505, 2442, 1721, 1301, 2166, 1658, 822, 125, 710, 2442, 886, 547, 250, 503, 784, 1503, 3247, 1972, 542, 375, 1265, 243, 1319, 2235, 2071, 3082, 357, 2946, 279, 3056, 1605, 281, 2668, 959, 205, 91, 61, 2312, 851, 1797, 1202, 493, 2825, 3211, 214, 1743, 3006, 2479, 156, 120, 2431, 1558, 1052, 540, 2016, 2030, 2736, 379, 2326, 689, 3146, 330, 1315, 398, 2292, 894, 2810, 2521, 1414, 525, 284, 1837, 2916, 1210, 2774, 1880, 2413, 634, 28, 718, 165, 493, 2727, 407, 1282, 3124, 880, 2569, 1297, 1314, 180, 926, 680, 1983, 984, 959, 673, 215, 732, 2111, 1199, 336, 2, 212, 1859, 2038, 1890, 1076, 2672, 834, 302, 887, 2827, 1215, 312, 2271, 374, 112, 1963, 2773, 2795, 2703, 1065, 1519, 1781, 3106, 2310, 513, 807, 2918, 1148, 1494, 3072, 200, 10, 2369, 486, 356, 798, 2570, 1041, 179, 2286, 249, 319, 1065, 995, 791, 3182, 1006, 762, 1107, 2974, 798, 337, 1767, 2602, 2326, 3166, 2012, 1721, 432, 822, 1513, 187, 2282, 1131, 1237, 1865, 1225, 1123, 643, 802, 1692, 419, 647, 954, 914, 1089, 139, 1247, 2004, 230, 381, 1445, 1005, 354, 404, 286, 2385, 1556, 1367, 301, 2100, 1056, 575, 2479, 1394, 774, 386, 1187, 3020, 945, 699, 763, 1188, 1834, 1397, 58, 1245, 1626, 1064, 982, 737, 289, 2054, 1915, 697, 434, 454, 1771, 2435, 2110, 221, 674, 2353, 976, 127, 576, 3258, 1668, 339, 536, 2590, 2388, 2203, 1503, 1109, 804, 2156, 465, 3124, 1643, 144, 1699, 1160, 970, 2238, 65, 2296, 247, 3158, 1671, 1426, 1013, 1081, 150, 2442, 557, 1066, 757, 272, 3085, 462, 1612, 657, 565, 133, 567, 793, 2036, 1467, 268, 2137, 1593, 1775, 2100, 62, 869, 1257, 638, 1426, 621, 653, 205, 2129, 1162, 1589, 2139, 1496, 639, 849, 602, 1960, 668, 2158, 1204, 890, 2055, 1378, 754, 1785, 379, 3006, 243, 2052, 2087, 2621, 1095, 106, 2295, 49, 2873, 2411, 2805, 1681, 844, 687, 1519, 1945, 836, 290, 2001, 2132, 1816, 27, 1538, 1047, 2207, 1720, 384, 939, 840, 2101, 216, 1002, 2312, 653, 2156, 247, 248, 603, 641, 1743, 1307, 1121, 1086, 2549, 363, 2134, 2200, 249, 847, 3025, 549, 122, 628, 1564, 1944, 2295, 701, 118, 2979, 2552, 2979, 2670, 764, 68, 554, 254, 189, 1656, 1079, 147, 1422, 943, 1163, 1042, 636, 762, 1539, 1412, 1402, 695, 2207, 2581, 2962, 1852, 991, 1627, 1868, 158, 628, 653, 1065, 94, 1664, 2943, 2350, 732, 2046, 2441, 2974, 1044, 1043, 2292, 754, 2428, 657, 2156, 2040, 135, 2357, 2017, 386, 3279, 952, 529, 2658, 1949, 305, 2557, 299, 1571, 2746, 1984, 2856, 1474, 2661, 1162, 1865, 2526, 1376, 766, 1798, 591, 1145, 619, 2087, 236, 6, 2156, 337, 159, 2799, 1415, 1008, 2626, 3138, 1865, 794, 2762, 1410, 1335, 659, 2059, 557, 3279, 786, 2980, 2194, 959, 3036, 2036, 2686, 2085, 146, 2287, 712, 681, 2694, 1528, 1119, 2114, 174, 2604, 1319, 2294, 2134, 686, 83, 289, 3088, 702, 605, 1406, 2076, 539, 818, 247, 1098, 381, 1302, 751, 1713, 2663, 3192, 2093, 25, 542, 1578, 386, 1125, 1247, 903, 1563, 765, 1419, 205, 1007, 314, 934, 462, 2637, 2600, 1487, 2183, 2226, 1756, 992, 707, 1198, 582, 1916, 2250, 2957, 1249, 432, 1836, 938, 267, 863, 133, 820, 1741, 2927, 813, 674, 1497, 520, 126, 187, 1410, 1819, 2773, 706, 35, 2869, 735, 3070, 1699, 3295, 105, 813, 2226, 1713, 1486, 1575, 1598, 2123, 274, 3110, 338, 720, 2350, 1961, 1036, 1533, 2258, 892, 1682, 2677, 876, 2479, 2735, 191, 2800, 454, 528, 340, 2868, 127, 2848, 695, 1538, 588, 683, 2237, 422, 1137, 1282, 530, 1683, 1961, 890, 1216, 1676, 137, 1556, 1042, 746, 735, 858, 83, 159, 1270, 517, 2784, 2200, 186, 781, 520, 833, 398, 1360, 435, 382, 995, 2110, 1327, 2060, 2311, 2795, 1893, 2800, 226, 1070, 1018, 247, 2100, 1010, 1760, 520, 1874, 1181, 1677, 281, 2091, 925, 911, 1481, 2125, 1059, 197, 328, 2295, 1237, 1198, 1477, 170, 2953, 2630, 358, 1034, 430, 1315, 2694, 2967, 1500, 2276, 293, 862, 147, 891, 358, 1109, 1420, 33, 1205, 1104, 357, 1665, 1359, 1034, 100, 456, 934, 1626, 894, 1819, 2415, 497, 3045, 1656, 772, 598, 801, 2917, 657, 2872, 238, 2145, 792, 948, 474, 307, 1561, 2002, 188, 249, 432, 999, 29, 1351, 458, 528, 2026, 894, 670, 2127, 725, 1627, 2976, 2229, 411, 633, 159, 179, 860, 302, 410, 687, 1183, 1612, 718, 1626, 1994, 2670, 2061, 160, 15, 891, 999, 2486, 2061, 888, 807, 111, 3006, 443, 2596, 553, 486, 1124, 3279, 725, 2647, 243, 252, 1455, 832, 2552, 2869, 1759, 2716, 553, 2979, 1041, 214, 104, 1142, 53, 317, 1416, 223, 388, 2164, 1445, 16, 701, 2733, 900, 334, 2083, 799, 710, 925, 2793, 2967, 874, 191, 668, 88, 2409, 1882, 1494, 2276, 1710, 2315, 357, 1215, 454, 239, 379, 565, 1315, 583, 1293, 1483, 2498, 1563, 2235, 1041, 2052, 2503, 358, 2307, 352, 431, 553, 863, 2396, 1635, 2156, 1059, 529, 187, 764, 18, 469, 2486, 1170, 2646, 1141, 652, 2557, 1627, 823, 967, 216, 360, 1349, 3085, 2138, 3127, 2396, 873, 1228, 1883, 3123, 3266, 3286, 2549, 1951, 2848, 2901, 2226, 1492, 1038, 656, 715, 133, 339, 1582, 762, 687, 1559, 678, 1501, 3186, 1071, 406, 1920, 849, 448, 2241, 2378, 1459, 467, 3, 2107, 859, 1230, 408, 948, 1511, 2579, 1169, 10, 550, 1745, 480, 2884, 1109, 25, 246, 1725, 488, 1130, 365, 1018, 361, 733, 658, 607, 611, 1268, 1010, 124, 310, 204, 618, 3149, 478, 2028, 3163, 463, 268, 1677, 3276, 334, 1448, 2244, 271, 553, 3060, 1249, 1515, 2043, 1155, 1367, 471, 432, 2396, 1973, 1644, 1925, 1473, 865, 721, 2746, 1962, 1284, 481, 1233, 62, 2669, 1327, 983, 2915, 998, 123, 2351, 1656, 1159, 2015, 1751, 1038, 7, 2660, 497, 1225, 681, 2659, 2727, 1751, 159, 310, 2966, 49, 3, 241, 2434, 441, 2216, 3291, 184, 1400, 1562, 401, 1644, 1445, 2663, 536, 1279, 1624, 1590, 1865, 2322, 1109, 2396, 1301, 986, 539, 1700, 2995, 268, 1148, 762, 360, 846, 47, 1853, 1339, 2103, 2979, 379, 2784, 2004, 832, 745, 416, 128, 477, 1537, 2276, 1400, 876, 2665, 228, 580, 655, 493, 328, 1467, 561, 531, 338, 1946, 452, 837, 23, 390, 143, 14, 2717, 2623, 1961, 2396, 1681, 2036, 765, 150, 309, 2439, 1575, 53, 2405, 118, 120, 2919, 626, 1745, 571, 2363, 1624, 1939, 294, 268, 1426, 1314, 1997, 1968, 1484, 1569, 2293, 462, 105, 1289, 60, 2141, 263, 2726, 553, 805, 8, 586, 1743, 2378, 173, 1175, 1129, 1520, 1723, 3176, 2310, 79, 273, 1125, 352, 507, 1019, 2626, 519, 1397, 628, 51, 69, 2079, 184, 2838, 2052, 1108, 1360, 1317, 338, 1298, 713, 73, 1832, 1921, 46, 1161, 3279, 120, 366, 1148, 256, 1759, 1112, 2161, 352, 1558, 780, 2396, 1777, 948, 881, 328, 1314, 1237, 1338, 2121, 2211, 1861, 598, 2878, 567, 1318, 488, 1616, 2672, 3160, 1428, 2295, 2677, 2186, 1217, 236, 687, 3291, 306, 334, 751, 1279, 306, 1125, 754, 2054, 2122, 154, 676, 188, 1905, 514, 1224, 2131, 263, 1514, 749, 3007, 741, 1506, 115, 2486, 1395, 1034, 2967, 2182, 120, 999, 1259, 809, 1126, 205, 1285, 475, 2383, 796, 1578, 503, 2346, 1984, 2973, 1809, 1794, 3153, 2018, 1514, 330, 652, 2739, 1030, 1944, 2947, 1279, 295, 2775, 587, 1151, 707, 1161, 887, 2887, 483, 942, 1178, 2871, 3200, 240, 236, 2745, 3124, 1831, 842, 280, 992, 2256, 295, 533, 2202, 999, 169, 2307, 3206, 495, 683, 1279, 628, 1447, 1277, 2038, 852, 1248, 2295, 1043, 517, 1007, 188, 1494, 2282, 2787, 1070, 2087, 456, 1024, 2912, 1445, 1204, 1697, 35, 328, 945, 2572, 1933, 549, 3286, 1658, 205, 793, 2746, 37, 583, 202, 860, 2091, 1564, 1663, 1230, 875, 1249, 140, 2178, 365, 2537, 1746, 1004, 2689, 1279, 120, 755, 2502, 159, 3050, 307, 1494, 2116, 2299, 2489, 431, 525, 1279, 229, 1161, 757, 2281, 2505, 628, 2012, 561, 11, 329, 408, 1137, 166, 1005, 614, 156, 1635, 2411, 432, 3013, 1733, 2981, 112, 346, 2684, 650, 249, 2767, 1421, 503, 1601, 894, 2396, 601, 513, 2442, 2896, 306, 2432, 122, 416, 1298, 337, 832, 3291, 1849, 1400, 952, 73, 2626, 1624, 1146, 243, 890, 28, 2597, 410, 1182, 653, 619, 2122, 1088, 2340, 1776, 2607, 188, 253, 295, 460, 3119, 1510, 1421, 2068, 619, 3286, 2604, 2685, 1050, 28, 2173, 272, 2795, 2278, 311, 2116, 813, 1293, 2122, 929, 908, 448, 1119, 857, 984, 959, 786, 2878, 615, 1008, 1295, 181, 1718, 205, 2226, 234, 2043, 2723, 8, 1003, 231, 1825, 2788, 3020, 3271, 1609, 63, 3266, 2609, 1540, 3089, 959, 1861, 1404, 940, 1723, 1193, 525, 933, 1065, 467, 1838, 2571, 1468, 557, 268, 22, 1852, 2544, 1842, 3295, 2226, 1092, 467, 3265, 1586, 772, 2928, 1640, 19, 1062, 1010, 1930, 653, 2477, 187, 3088, 2666, 2022, 345, 836, 728, 2988, 756, 954, 3162, 405, 2827, 2746, 2835, 1760, 23, 693, 2207, 1527, 984, 1601, 1488, 360, 230, 1093, 138, 413, 2857, 328, 984, 628, 1680, 1784, 881, 1503, 3140, 2737, 21, 1067, 1623, 1214, 405, 1331, 396, 652, 193, 342, 1481, 1760, 394, 695, 456, 77, 1578, 914, 2673, 1765, 162, 804, 1163, 1921, 1097, 1709, 1484, 1589, 953, 1378, 1441, 302, 169, 1584, 130, 994, 329, 3020, 2016, 1644, 238, 1079, 405, 1042, 1272, 857, 69, 2049, 1760, 278, 822, 2365, 1904, 1190, 985, 474, 991, 1972, 160, 3, 1470, 411, 234, 1549, 302, 1009, 1487, 1759, 1059, 618, 352, 3112, 2956, 1852, 1758, 2321, 471, 1359, 848, 1006, 1289, 463, 966, 922, 475, 1972, 2517, 79, 1848, 1226, 540, 2365, 2552, 755, 733, 328, 3265, 563, 2151, 991, 154, 1000, 1308, 2979, 633, 238, 628, 1303, 2557, 3228, 133, 1282, 2347, 2441, 1028, 3016, 410, 611, 3124, 2353, 127, 687, 1422, 680, 1752, 2660, 941, 2245, 737, 1034, 373, 3259, 2766, 2167, 2315, 1619, 1226, 1103, 818, 993, 1696, 2036, 1049, 2058, 2980, 994, 1531, 454, 747, 329, 1275, 1467, 1186, 210, 1661, 963, 1425, 571, 462, 238, 221, 2363, 2826, 1060, 504, 2338, 1644, 3271, 970, 3243, 377, 1525, 1233, 85, 761, 1104, 1225, 1894, 125, 1378, 1282, 2195, 178, 786, 1495, 422, 1818, 1403, 337, 1102, 1831, 999, 2988, 1437, 189, 995, 1005, 179, 1635, 308, 2784, 181, 456, 925, 1155, 390, 1242, 2396, 3006, 1188, 2815, 735, 1423, 1856, 3162, 1624, 143, 1361, 3295, 999, 1776, 957, 765, 715, 701, 1064, 1270, 252, 68, 586, 970, 2059, 1893, 950, 2362, 3044, 3180, 2932, 283, 999, 2469, 3193, 3061, 840, 667, 221, 35, 2716, 1676, 1823, 1947, 686, 1760, 1446, 3119, 809, 1244, 1061, 2276, 1320, 2016, 1209, 234, 3020, 1325, 255, 1105, 37, 1655, 543, 1320, 875, 1941, 2003, 2523, 3276, 2252, 1656, 999, 1230, 281, 2184, 154, 861, 1335, 2046, 653, 1466, 2944, 1071, 13, 551, 1315, 180, 1003, 792, 1309, 683, 934, 198, 2711, 619, 872, 290, 1327, 2412, 389, 1933, 1661, 1259, 181, 2865, 1327, 1378, 147, 197, 2137, 605, 677, 214, 214, 2374, 232, 522, 3291, 1613, 311, 3247, 227, 1441, 79, 2304, 1905, 1098, 1359, 328, 193, 999, 1503, 592, 1433, 1528, 2284, 605, 3089, 23, 1327, 474, 1531, 268, 2889, 2369, 880, 415, 2350, 94, 1894, 2087, 1688, 619, 1959, 2061, 472, 1136, 1713, 1520, 1115, 1626, 638, 1697, 1237, 2451, 2681, 1123, 1541, 98, 628, 1477, 37, 238, 2166, 1503, 959, 56, 1197, 230, 1943, 1752, 1316, 1769, 3124, 929, 56, 2378, 1379, 475, 3144, 1088, 1734, 999, 2931, 984, 2306, 959, 2094, 169, 2066, 2839, 695, 3180, 614, 246, 731, 169, 415, 154, 2111, 373, 1430, 1498, 145, 1849, 262, 155, 1163, 1681, 2396, 3275, 686, 988, 76, 2373, 431, 2089, 1760, 55, 1397, 1123, 195, 1222, 738, 1948, 894, 657, 715, 1188, 2179, 772, 760, 1151, 1164, 30, 586, 2138, 1616, 633, 628, 46, 1151, 1367, 1246, 1155, 1227, 481, 3184, 2455, 2872, 191, 147, 461, 472, 2556, 633, 2852, 295, 409, 1529, 240, 1561, 988, 1963, 328, 848, 1020, 415, 2291, 2304, 1543, 1020, 1656, 2378, 1279, 1137, 406, 105, 1359, 999, 2976, 2161, 449, 1403, 2306, 352, 2529, 1148, 1596, 2267, 169, 628, 603, 295, 914, 1010, 588, 357, 2324, 1013, 1289, 1620, 427, 2333, 3118, 482, 2479, 1214, 475, 1552, 2042, 2961, 1697, 1292, 386, 1624, 1590, 581, 2392, 1777, 2976, 2556, 2783, 2399, 390, 1146, 3122, 710, 3118, 1004, 516, 1202, 238, 1199, 197, 2435, 1270, 1275, 2110, 1411, 2899, 2405, 1301, 49, 891, 1608, 58, 1170, 1968, 852, 1165, 367, 1696, 494, 374, 112, 1275, 114, 3004, 484, 2815, 520, 1156, 2167, 1362, 342, 999, 986, 463, 328, 556, 891, 1480, 1059, 653, 3118, 1358, 4, 300, 855, 221, 35, 182, 302, 547, 1494, 2867, 145, 1884, 689, 923, 3085, 1416, 933, 218, 228, 78, 1157, 1230, 2107, 1149, 2693, 1162, 901, 1636, 1455, 133, 1634, 774, 1205, 1161, 1616, 3174, 2108, 1756, 2479, 2051, 1840, 1158, 3230, 328, 16, 458, 266, 424, 736, 206, 178, 2433, 848, 2960, 108, 388, 406, 87, 1541, 496, 1381, 79, 713, 999, 2056, 1473, 268, 2137, 835, 2694, 1233, 1503, 1854, 1569, 890, 1933, 749, 405, 2695, 1404, 1431, 53, 1810, 681, 1522, 1352, 2207, 345, 713, 2967, 3124, 2279, 474, 1172, 934, 674, 2297, 475, 1100, 295, 140, 1073, 46, 2785, 1030, 2735, 2145, 1467, 994, 104, 15, 442, 461, 52, 1775, 2944, 1213, 264, 1798, 883, 2901, 2143, 1408, 1279, 1317, 214, 411, 3204, 1713, 766, 1637, 2590, 1869, 815, 2116, 240, 1760, 1822, 430, 1329, 658, 1969, 160, 959, 865, 1664, 751, 868, 869, 289, 189, 2928, 390, 949, 1556, 529, 503, 363, 1136, 459, 2297, 841, 1275, 3242, 799, 1760, 2827, 3154, 2148, 1121, 2274, 133, 302, 2255, 37, 377, 521, 410, 5, 990, 3239, 557, 2256, 407, 724, 1509, 950, 1188, 1590, 966, 329, 713, 2881, 2366, 1209, 1626, 1457, 1245, 1644, 2285, 2238, 482, 1275, 299, 2294, 701, 2004, 802, 1083, 581, 1703, 256, 3296, 2638, 2256, 1998, 490, 850, 3122, 763, 385, 1301, 1749, 818, 2944, 2385, 2751, 594, 1031, 2543, 2199, 571, 15, 660, 1774, 3056, 1667, 1004, 370, 1754, 1022, 617, 327, 1865, 3046, 365, 1225, 1184, 588, 1573, 2818, 98, 3157, 1395, 222, 157, 482, 918, 999, 704, 2396, 1908, 186, 965, 1558, 328, 2479, 653, 1004, 462, 3109, 1061, 416, 1707, 1327, 470, 842, 216, 168, 1254, 2317, 2777, 359, 900, 221, 1514, 474, 177, 195, 30, 2110, 3202, 894, 3040, 801, 2552, 1526, 2407, 2683, 246, 445, 1098, 236, 138, 2982, 230, 461, 2001, 175, 1850, 3146, 661, 127, 1639, 539, 245, 2440, 888, 2976, 1160, 2207, 85, 1742, 1963, 959, 657, 2700, 2136, 269, 480, 139, 683, 2879, 1247, 2094, 2393, 187, 1293, 2909, 155, 454, 707, 2314, 213, 2224, 824, 628, 1769, 1494, 2408, 713, 2669, 1259, 3111, 836, 2507, 2694, 1503, 2257, 2827, 473, 3144, 1171, 2110, 1332, 738, 1109, 843, 103, 2974, 216, 1823, 553, 1799, 2142, 2522, 2479, 2746, 255, 1484, 590, 713, 653, 474, 1378, 986, 1804, 1113, 2541, 2953, 647, 813, 2061, 2475, 135, 1114, 628, 1447, 1030, 2110, 188, 1682, 1064, 3270, 1751, 2256, 448, 1445, 555, 474, 41, 1129, 1844, 2844, 1742, 1342, 462, 1129, 2069, 3056, 1858, 1403, 186, 454, 3260, 1466, 2226, 398, 1246, 1060, 1946, 128, 270, 2666, 611, 196, 193, 733, 2099, 113, 53, 2054, 1250, 523, 272, 1487, 1636, 1279, 2552, 425, 1274, 3035, 733, 618, 1556, 1815, 3109, 788, 1064, 256, 3258, 751, 570, 1737, 2987, 1169, 1329, 1317, 1809, 1445, 3124, 2116, 966, 3, 127, 344, 1128, 1531, 2207, 3212, 2800, 168, 1114, 419, 3076, 2976, 2003, 1013, 1064, 523, 2486, 702, 131, 2684, 710, 1237, 646, 915, 2038, 1950, 2172, 987, 859, 516, 949, 840, 523, 658, 3074, 2517, 1426, 3091, 2316, 1095, 328, 2446, 538, 2292, 812, 2193, 411, 353, 388, 2295, 2651, 903, 1649, 611, 2150, 319, 2456, 3181, 3155, 1325, 175, 580, 1751, 912, 2609, 48, 407, 2467, 1597, 2340, 1297, 159, 216, 1047, 652, 2588, 2067, 1315, 383, 49, 1568, 2132, 254, 309, 2084, 804, 2988, 792, 3124, 2056, 113, 1140, 1106, 2892, 138, 2268, 2476, 63, 207, 863, 658, 1958, 1301, 33, 3110, 984, 2295, 892, 1958, 751, 2979, 653, 1760, 999, 622, 2282, 1486, 359, 2005, 1538, 2979, 2378, 188, 1947, 2979, 37, 1126, 1996, 255, 288, 72, 1958, 1360, 804, 480, 2063, 839, 516, 2490, 350, 1531, 687, 1195, 2021, 415, 2900, 1943, 3123, 999, 988, 1599, 1244, 1745, 168, 2338, 1664, 1370, 675, 517, 2979, 3205, 762, 1176, 275, 547, 1488, 1865, 1161, 929, 2122, 1947, 1121, 611, 2767, 2350, 2459, 1632, 2646, 1188, 482, 1083, 622, 1534, 1326, 777, 759, 2872, 1942, 568, 1608, 628, 1788, 1980, 735, 890, 223, 2743, 843, 1343, 2867, 1532, 2790, 3202, 2133, 1089, 462, 1059, 23, 372, 1631, 2294, 155, 2307, 2322, 1064, 3013, 549, 1736, 221, 3124, 2701, 1229, 3162, 920, 628, 3261, 1945, 1094, 2489, 1720, 588, 803, 1226, 158, 1418, 482, 863, 3039, 188, 187, 1808, 801, 552, 289, 246, 158, 1204, 1857, 1415, 3238, 1125, 2023, 472, 573, 1052, 521, 448, 167, 2042, 936, 4, 1059, 1825, 3279, 440, 1064, 2716, 193, 222, 286, 712, 383, 328, 1455, 1896, 525, 2985, 2872, 223, 3162, 146, 327, 3166, 2366, 268, 1064, 1552, 60, 1044, 911, 1265, 891, 2684, 377, 425, 891, 651, 1936, 1656, 695, 628, 841, 16, 1270, 200, 2979, 373, 137, 1259, 272, 959, 2201, 3186, 823, 1613, 2835, 644, 628, 1043, 389, 875, 2396, 1468, 2366, 1354, 884, 256, 3081, 3245, 1967, 1202, 669, 2353, 1981, 1233, 2993, 80, 2272, 328, 2333, 628, 1904, 1807, 185, 2674, 2681, 751, 1973, 1581, 1416, 183, 1730, 2895, 2526, 238, 2309, 1515, 873, 1109, 2517, 479, 79, 1758, 1699, 2590, 2872, 2515, 561, 2133, 1488, 3218, 2844, 2590, 2869, 419, 54, 1307, 276, 1113, 816, 454, 143, 1119, 756, 1635, 154, 5, 3129, 1028, 805, 333, 3218, 1203, 1282, 120, 2751, 628, 159, 2823, 1755, 1624, 1327, 245, 1634, 120, 411, 1746, 2038, 309, 1677, 1116, 2288, 1365, 88, 629, 3123, 35, 902, 58, 1589, 1151, 608, 405, 951, 498, 1223, 1129, 999, 631, 329, 2752, 1292, 87, 2609, 2554, 922, 2466, 3155, 944, 397, 218, 1494, 262, 1215, 1070, 384, 1816, 1106, 2226, 1658, 1436, 275, 3119, 1704, 238, 1314, 391, 798, 2580, 159, 2881, 2877, 214, 3053, 2151, 530, 1171, 1972, 432, 1671, 653, 2038, 2406, 1077, 3007, 424, 2147, 1648, 1320, 213, 49, 334, 2641, 1295, 97, 168, 2305, 479, 2368, 1010, 938, 2570, 842, 2306, 2900, 762, 904, 563, 2722, 268, 611, 337, 2292, 1160, 1865, 3072, 1972, 2346, 912, 11, 2029, 1884, 234, 999, 2338, 1961, 3050, 441, 2292, 1961, 2043, 999, 374, 2252, 2320, 927, 1302, 358, 1145, 255, 250, 2486, 2191, 1807, 1921, 387, 1795, 1253, 2709, 147, 2676, 1416, 1827, 478, 3258, 1752, 2702, 699, 1154, 2015, 984, 1223, 77, 16, 1430, 948, 206, 1949, 865, 444, 329, 1657, 88, 502, 272, 3122, 244, 780, 1941, 781, 2337, 1563, 561, 299, 2158, 2039, 381, 350, 3148, 221, 513, 699, 3110, 1397, 1170, 1064, 56, 1905, 2609, 2071, 567, 1124, 282, 487, 1556, 1671, 488, 72, 1359, 1237, 1162, 147, 76, 1921, 2648, 181, 875, 2031, 670, 965, 2651, 585, 109, 853, 216, 959, 563, 1956, 593, 140, 972, 1745, 2150, 2684, 612, 2087, 2435, 338, 628, 788, 770, 1681, 612, 2321, 951, 1557, 2787, 2768, 628, 2252, 2281, 2107, 1494, 2564, 1671, 2147, 1061, 124, 215, 2015, 2495, 210, 1360, 2696, 85, 2191, 887, 786, 1315, 1059, 2407, 2038, 126, 670, 2590, 1496, 1578, 1030, 8, 659, 628, 612, 1192, 5, 78, 2872, 1724, 400, 575, 1663, 3148, 440, 1198, 2409, 1037, 210, 2396, 2238, 1633, 1470, 1328, 379, 657, 883, 2671, 2486, 254, 1494, 1431, 23, 653, 2096, 192, 1251, 383, 1505, 657, 279, 1904, 1724, 1445, 1145, 1416, 1983, 1063, 1301, 1232, 412, 927, 1875, 49, 1053, 2871, 2865, 2515, 76, 1651, 1161, 454, 2604, 833, 270, 2363, 960, 2001, 680, 2919, 3160, 1112, 2061, 2872, 1320, 950, 1982, 549, 230, 249, 1395, 2710, 2423, 342, 735, 1563, 176, 274, 1391, 1697, 1307, 2629, 1758, 372, 1554, 2232, 1275, 110, 628, 279, 1588, 632, 1088, 2350, 1275, 386, 2431, 1008, 335, 122, 2417, 441, 3186, 1378, 410, 44, 103, 45, 2479, 230, 346, 770, 2052, 1918, 2668, 83, 236, 2293, 1984, 1606, 2479, 2039, 255, 328, 1581, 1509, 2009, 2725, 549, 251, 120, 1947, 1536, 770, 466, 2808, 1087, 3072, 2060, 1557, 2799, 754, 1421, 1856, 94, 2401, 1065, 2397, 132, 891, 147, 1416, 197, 11, 2715, 1552, 2183, 1207, 311, 2116, 1221, 47, 545, 2062, 443, 179, 2366, 1658, 725, 237, 411, 2665, 334, 652, 1206, 292, 1974, 2865, 3277, 2878, 3243, 3072, 2165, 2878, 1751, 2275, 154, 377, 2346, 2322, 71, 1050, 2067, 2660, 3182, 360, 1496, 916, 22, 482, 16, 134, 1178, 2079, 3007, 3054, 522, 1568, 2060, 895, 2257, 3149, 221, 334, 246, 743, 1449, 228, 1921, 2590, 748, 2921, 588, 786, 2672, 1420, 429, 941, 3292, 1065, 2928, 2075, 405, 329, 929, 1248, 337, 2191, 897, 332, 2346, 964, 2591, 125, 1064, 2173, 2630, 1451, 1713, 211, 959, 2435, 1327, 1450, 524, 54, 191, 900, 1249, 1334, 1847, 2827, 1339, 113, 1137, 766, 697, 3140, 681, 2284, 3257, 1219, 959, 638, 388, 1262, 674, 577, 509, 1743, 1275, 1213, 678, 912, 3286, 64, 39, 175, 1840, 1433, 1503, 354, 2465, 604, 333, 2762, 805, 945, 1484, 1106, 1652, 855, 1692, 1445, 2570, 1575, 2343, 1752, 1755, 586, 1010, 545, 757, 970, 1643, 1445, 1405, 1115, 984, 2640, 965, 78, 203, 3152, 586, 2286, 689, 2711, 462, 1426, 310, 742, 657, 3123, 749, 2972, 1215, 1949, 2971, 1518, 108, 1724, 298, 2290, 238, 2371, 2892, 2928, 1259, 2495, 1445, 1208, 595, 1079, 2132, 2459, 1233, 352, 2304, 1154, 934, 3007, 1095, 1286, 1559, 535, 2275, 1426, 2767, 171, 520, 407, 216, 258, 1450, 401, 1117, 2069, 506, 1158, 2191, 2794, 113, 1052, 462, 334, 131, 352, 1659, 380, 1774, 1724, 1009, 2672, 2084, 2479, 2927, 1473, 890, 317, 1794, 863, 506, 405, 305, 23, 823, 1906, 896, 2732, 1165, 2043, 1198, 333, 1474, 3124, 1064, 1082, 137, 2461, 328, 1161, 1247, 2866, 339, 1784, 2646, 1180, 2000, 1247, 271, 813, 482, 865, 1558, 2015, 658, 583, 2262, 2336, 1736, 2378, 629, 697, 1984, 2988, 2191, 1897, 1420, 1342, 2889, 2039, 428, 2852, 937, 908, 1639, 1031, 120, 895, 428, 1013, 26, 2396, 1024, 238, 203, 828, 2486, 1347, 1310, 1466, 2142, 1066, 458, 984, 2669, 1509, 2567, 498, 563, 233, 240, 2134, 896, 1945, 76, 3279, 354, 1240, 1909, 427, 177, 516, 1426, 225, 2479, 2099, 627, 1118, 1720, 444, 51, 2596, 1154, 1013, 3055, 1272, 1501, 1055, 450, 1748, 655, 697, 1145, 493, 458, 188, 353, 781, 1591, 625, 175, 1788, 1588, 2247, 98, 1445, 777, 877, 2834, 516, 203, 173, 782, 432, 1629, 516, 2865, 370, 995, 751, 1800, 2288, 2675, 573, 2218, 159, 1137, 2049, 1467, 2384, 1415, 605, 982, 753, 1430, 1620, 2880, 397, 431, 733, 1568, 240, 1719, 977, 1793, 840, 2196, 445, 2096, 2457, 1916, 3279, 2052, 1101, 228, 1233, 2402, 138, 218, 1102, 2256, 2331, 1457, 1473, 1317, 1699, 270, 3128, 1440, 999, 523, 1463, 2237, 236, 2388, 2976, 1967, 1552, 1494, 223, 959, 546, 612, 1968, 1947, 1052, 2591, 2903, 1842, 1636, 856, 927, 999, 999, 1233, 281, 1218, 1619, 1186, 3010, 804, 1070, 1533, 200, 1010, 943, 1474, 1050, 1556, 192, 2236, 681, 2177, 2700, 1430, 1199, 951, 1346, 2819, 628, 658, 1527, 1279, 1843, 280, 435, 1575, 1104, 47, 218, 2378, 579, 394, 2584, 2838, 555, 628, 2366, 638, 1403, 713, 815, 230, 435, 1701, 310, 2023, 2009, 429, 635, 1406, 953, 903, 605, 579, 83, 677, 977, 2602, 360, 1321, 308, 2284, 385, 76, 520, 491, 1805, 624, 2810, 2994, 557, 3062, 520, 213, 233, 2218, 60, 1233, 419, 2178, 1973, 904, 17, 910, 52, 2569, 488, 843, 1812, 1240, 274, 279, 360, 349, 2980, 3241, 2142, 2401, 1554, 1288, 2696, 789, 428, 1338, 605, 1671, 2801, 829, 2543, 80, 1467, 292, 970, 337, 873, 936, 3124, 27, 2475, 2723, 1448, 141, 2799, 998, 981, 2334, 2038, 1487, 51, 999, 1654, 1048, 668, 737, 1683, 2551, 1161, 2016, 916, 1524, 645, 37, 1207, 847, 250, 2003, 628, 2340, 1041, 1064, 279, 1265, 835, 391, 2056, 328, 1853, 479, 2217, 1506, 2260, 3219, 1400, 454, 373, 2690, 272, 2013, 710, 339, 1279, 836, 396, 297, 2596, 2630, 959, 2479, 2329, 1486, 2276, 2604, 2086, 160, 2059, 757, 414, 1507, 681, 3049, 999, 845, 2916, 1327, 110, 2384, 2881, 1772, 1143, 2416, 652, 2688, 2004, 611, 73, 3174, 1882, 292, 652, 1067, 496, 2370, 927, 1448, 1430, 1422, 1598, 156, 2229, 1443, 1971, 1501, 448, 2669, 1898, 2856, 1676, 1233, 1738, 1134, 181, 3108, 1467, 677, 712, 1661, 411, 1856, 2927, 950, 2346, 448, 254, 128, 1023, 98, 184, 256, 11, 462, 2295, 2049, 2125, 2365, 280, 1275, 1451, 1578, 942, 2979, 324, 1074, 1123, 699, 1317, 3086, 2402, 446, 1246, 358, 1486, 412, 517, 2900, 279, 1109, 673, 1099, 699, 252, 233, 1170, 979, 1697, 3224, 1459, 1142, 223, 1658, 216, 647, 387, 5, 628, 1031, 2590, 493, 365, 559, 976, 1501, 1507, 1246, 1481, 839, 751, 910, 2992, 35, 117, 973, 537, 256, 1818, 1130, 799, 245, 1001, 3020, 459, 589, 76, 2483, 1743, 1064, 2518, 1958, 200, 1447, 2505, 2366, 1626, 401, 113, 1099, 891, 579, 936, 2596, 1626, 2766, 280, 1904, 1232, 1088, 1445, 386, 2015, 961, 852, 2072, 1790, 751, 2817, 542, 308, 1043, 2868, 1852, 1445, 504, 1422, 337, 1447, 1107, 1326, 1713, 2767, 1115, 788, 713, 739, 1275, 213, 579, 2443, 1275, 823, 289, 1868, 37, 4, 2317, 1856, 1446, 245, 1501, 2651, 272, 2684, 1181, 115, 605, 2551, 396, 256, 1221, 586, 2122, 959, 1129, 990, 853, 2739, 517, 463, 3028, 1511, 169, 2588, 1534, 538, 1104, 651, 1275, 425, 986, 697, 1485, 1723, 2802, 1751, 546, 357, 746, 1031, 1760, 114, 2295, 2294, 799, 1681, 235, 628, 2812, 622, 2921, 3052, 1912, 1290, 2376, 2427, 2840, 737, 522, 1329, 1902, 951, 1948, 762, 632, 1916, 422, 812, 2068, 2033, 11, 1757, 1540, 351, 1723, 2629, 2350, 1532, 2304, 2636, 961, 1348, 1533, 1455, 1959, 2038, 53, 610, 2292, 1778, 1450, 1852, 144, 3186, 977, 674, 834, 1070, 2061, 507, 877, 1845, 557, 2083, 292, 2056, 2243, 314, 2514, 3255, 1856, 1065, 1608, 1644, 971, 2207, 1875, 984, 158, 789, 373, 687, 558, 774, 1842, 2486, 291, 663, 1127, 294, 2043, 268, 98, 1776, 628, 144, 462, 2758, 2156, 628, 1092, 1451, 473, 1977, 370, 799, 2646, 1929, 1388, 2323, 1064, 1198, 835, 308, 2684, 755, 209, 186, 2286, 202, 1426, 2312, 1513, 1538, 1315, 1654, 1957, 577, 1087, 2043, 2340, 186, 49, 2683, 1596, 1364, 710, 2373, 959, 2486, 1552, 3162, 1546, 3286, 1998, 1170, 2322, 401, 1829, 121, 1494, 1477, 954, 208, 1229, 1856, 722, 400, 1010, 2152, 1479, 474, 1546, 279, 2723, 1295, 1051, 3159, 965, 214, 334, 373, 2286, 553, 341, 2928, 806, 1661, 273, 833, 744, 203, 23, 203, 474, 483, 172, 474, 363, 1363, 810, 1282, 2872, 2347, 2628, 818, 1043, 1280, 818, 1064, 3006, 852, 3261, 3078, 802, 1155, 2042, 60, 852, 2396, 159, 1020, 1724, 3110, 602, 1129, 614, 405, 694, 1505, 186, 2120, 1233, 1998, 207, 1390, 246, 1672, 1626, 68, 1303, 2655, 2252, 1842, 188, 2522, 2333, 272, 1976, 530, 844, 1488, 207, 3277, 462, 1402, 3181, 134, 203, 2101, 591, 984, 1161, 1201, 1344, 37, 2111, 769, 3124, 401, 328, 1510, 2060, 83, 1078, 2723, 826, 1654, 441, 1608, 1113, 883, 1538, 312, 2944, 1169, 742, 328, 213, 2443, 3230, 2235, 2229, 2551, 1896, 2687, 723, 1010, 2709, 2543, 406, 942, 2100, 139, 1620, 1905, 1807, 2129, 2038, 1076, 410, 2556, 524, 2799, 337, 2003, 2672, 1215, 216, 1724, 716, 943, 1552, 2686, 2107, 1968, 98, 231, 1295, 2184, 734, 2286, 2515, 2038, 635, 72, 2770, 1374, 2435, 1494, 2490, 994, 1095, 328, 2384, 409, 2867, 2979, 965, 1041, 1569, 14, 1063, 2295, 873, 3118, 342, 260, 154, 704, 507, 470, 102, 2452, 1842, 2472, 1418, 2019, 586, 1275, 1388, 1608, 504, 2116, 769, 1053, 1020, 1308, 520, 1440, 769, 2697, 1342, 1279, 488, 638, 1302, 2366, 2257, 1247, 652, 286, 1984, 30, 379, 2732, 2740, 213, 1676, 915, 1810, 1320, 334, 2650, 2067, 2315, 772, 3007, 46, 2262, 999, 1416, 1887, 1403, 992, 1533, 2295, 383, 80, 1220, 642, 1170, 205, 488, 516, 1037, 1233, 1976, 23, 92, 1602, 524, 531, 2663, 1843, 1056, 1681, 1447, 145, 410, 517, 21, 493, 2424, 1327, 11, 249, 386, 652, 1949, 446, 1529, 113, 1846, 3186, 528, 1279, 15, 405, 1102, 1310, 833, 3015, 289, 321, 14, 1430, 176, 1189, 1032, 463, 406, 1737, 82, 1275, 1918, 147, 131, 3271, 334, 935, 1667, 2396, 1314, 1635, 3253, 2079, 401, 3119, 610, 1636, 1181, 2407, 2590, 736, 73, 2435, 143, 3012, 268, 76, 2130, 890, 181, 1064, 667, 1230, 1064, 1556, 2322, 1123, 1669, 1593, 528, 847, 268, 2663, 1418, 1374, 2632, 1818, 695, 170, 799, 1247, 3146, 3200, 785, 984, 1070, 2377, 17, 2286, 1533, 198, 2523, 959, 1481, 3223, 535, 1156, 656, 605, 1334, 2228, 401, 2087, 1064, 1124, 1416, 102, 25, 1815, 2846, 2340, 2604, 1538, 1840, 2953, 446, 11, 1555, 959, 1234, 1616, 78, 1910, 1798, 2914, 2478, 908, 480, 1912, 962, 64, 1334, 537, 2156, 405, 3170, 255, 212, 1373, 74, 689, 10, 362, 1701, 1671, 1042, 1272, 2295, 1272, 1398, 2404, 406, 36, 927, 334, 446, 2063, 504, 921, 1865, 1071, 2346, 999, 19, 2061, 1574, 61, 2872, 1723, 528, 1787, 605, 738, 2056, 2676, 762, 1316, 2538, 2115, 2214, 2681, 687, 1307, 1223, 2900, 1324, 1182, 188, 2583, 2558, 885, 707, 1338, 1088, 1295, 1560, 197, 3230, 1137, 1064, 913, 819, 928, 823, 2011, 1070, 3124, 3267, 2591, 728, 1974, 2184, 2111, 2726, 1744, 3280, 1961, 1279, 1953, 1095, 834, 2607, 2728, 193, 396, 1202, 2714, 986, 192, 1685, 1503, 337, 635, 2684, 3048, 1866, 243, 484, 167, 1230, 223, 2776, 253, 369, 2676, 2269, 539, 2015, 218, 1503, 690, 2115, 928, 1050, 2311, 49, 2712, 607, 722, 250, 2479, 965, 1400, 249, 2086, 2403, 410, 214, 76, 2142, 453, 328, 3144, 386, 3128, 2003, 1557, 1135, 992, 1123, 656, 459, 1204, 422, 916, 887, 682, 1467, 2494, 713, 25, 243, 2980, 1087, 254, 358, 2350, 2060, 1342, 202, 721, 296, 614, 312, 891, 3151, 2091, 2784, 1556, 886, 544, 433, 625, 529, 2322, 33, 1598, 829, 915, 360, 49, 108, 141, 1852, 1009, 170, 35, 1225, 1935, 2307, 1059, 1020, 1446, 2330, 2604, 1451, 786, 128, 1034, 3217, 657, 2867, 390, 633, 1718, 2288, 2506, 1064, 1282, 1822, 97, 1635, 2295, 196, 216, 1402, 1218, 357, 1581, 2472, 984, 1506, 605, 2056, 1123, 1010, 397, 268, 477, 140, 1275, 1503, 432, 1130, 3078, 841, 2039, 233, 1247, 456, 924, 984, 2475, 818, 984, 3084, 1719, 1129, 2894, 2215, 827, 927, 2795, 568, 1064, 616, 433, 605, 703, 2852, 413, 534, 1320, 1798, 155, 804, 1301, 2346, 358, 3089, 411, 2268, 174, 2061, 2183, 2049, 530, 334, 971, 916, 429, 325, 1938, 512, 273, 845, 1406, 186, 346, 137, 441, 1894, 2609, 1552, 2827, 8, 914, 2043, 1416, 233, 51, 2976, 147, 949, 524, 2466, 117, 583, 381, 2915, 1713, 1233, 1181, 207, 290, 629, 749, 448, 246, 1127, 30, 2263, 1898, 1446, 2405, 1756, 2867, 97, 2898, 382, 1161, 556, 337, 2263, 289, 580, 955, 9, 881, 117, 143, 2106, 628, 1484, 804, 68, 1912, 380, 1364, 520, 512, 1307, 2979, 1687, 1376, 459, 680, 1656, 764, 2266, 169, 635, 3105, 1760, 385, 2022, 2403, 1540, 2733, 841, 816, 1228, 233, 255, 3023, 1059, 2620, 247, 549, 866, 1506, 623, 227, 2295, 244, 2217, 2812, 406, 949, 352, 945, 908, 2663, 1026, 1697, 588, 368, 2952, 538, 586, 2344, 1421, 2705, 2143, 1405, 2852, 1559, 2184, 628, 460, 222, 1562, 101, 2527, 873, 409, 223, 1854, 2489, 3017, 2042, 836, 2122, 2005, 228, 373, 3122, 2608, 419, 638, 3210, 1998, 959, 1503, 984, 411, 2590, 238, 647, 2943, 85, 2919, 839, 820, 1507, 1790, 3109, 131, 1234, 3240, 193, 2438, 3279, 2913, 612, 1877, 1597, 2466, 2294, 1426, 829, 2006, 1960, 410, 148, 3023, 901, 2256, 959, 939, 3076, 1943, 1850, 318, 274, 207, 903, 995, 2717, 1043, 626, 817, 1233, 174, 2852, 1584, 1554, 1662, 3083, 619, 432, 2563, 2304, 1881, 2191, 2396, 316, 1586, 2139, 993, 2594, 1948, 1335, 804, 59, 380, 986, 429, 563, 1608, 56, 356, 2791, 350, 1041, 2630, 1578, 2192, 101, 1363, 928, 2567, 1572, 240, 2301, 1842, 1396, 290, 2494, 3118, 668, 1552, 1920, 2835, 1137, 2295, 1533, 117, 879, 1161, 1426, 1314, 111, 1435, 3167, 447, 2137, 537, 628, 2988, 2993, 781, 1712, 891, 1890, 2295, 1759, 803, 3124, 883, 314, 415, 628, 2039, 751, 1015, 390, 279, 1034, 2127, 2604, 816, 1507, 2709, 73, 959, 563, 822, 1648, 1675, 2119, 1507, 841, 763, 1386, 147, 568, 2346, 279, 179, 404, 1558, 1747, 2870, 2692, 1075, 953, 1790, 2274, 350, 831, 826, 1436, 1972, 2, 3103, 812, 2188, 143, 1795, 1000, 1660, 1361, 522, 214, 2524, 2270, 999, 2014, 2068, 11, 2299, 78, 186, 2486, 3028, 1396, 888, 2337, 2122, 713, 534, 1235, 120, 111, 3018, 984, 366, 2375, 406, 203, 638, 1503, 603, 953, 337, 334, 2223, 3157, 286, 1288, 852, 1659, 516, 207, 1233, 781, 3028, 80, 657, 1776, 1761, 1360, 803, 2893, 137, 1736, 127, 272, 2286, 23, 1998, 2136, 1036, 487, 1120, 1793, 2781, 611, 131, 187, 329, 1488, 2923, 2744, 2055, 817, 1052, 1247, 1949, 2274, 10, 1486, 1552, 1030, 251, 2344, 23, 2876, 2546, 3135, 2403, 786, 1569, 2903, 1318, 434, 1406, 2994, 2252, 3110, 1468, 316, 82, 638, 493, 93, 1807, 487, 999, 810, 549, 997, 736, 1594, 891, 1272, 668, 1972, 2961, 1334, 817, 786, 1811, 1914, 385, 82, 657, 3291, 2867, 535, 699, 3140, 1788, 1536, 1972, 701, 13, 254, 1123, 1962, 1290, 1929, 314, 823, 172, 2620, 101, 316, 1145, 293, 3033, 367, 2417, 256, 3083, 537, 1120, 418, 719, 1091, 1581, 2346, 2563, 2604, 156, 1327, 916, 459, 2426, 842, 1790, 819, 809, 2248, 280, 1082, 1408, 1727, 1165, 1129, 324, 407, 2653, 3117, 380, 482, 49, 1564, 1508, 2322, 1034, 1216, 210, 2402, 984, 1715, 335, 1978, 18, 3279, 1752, 868, 868, 397, 1498, 307, 651, 1937, 1128, 2346, 1445, 1533, 1757, 131, 2704, 422, 660, 780, 1173, 3285, 2242, 1963, 2590, 1065, 2417, 5, 599, 1292, 1980, 99, 11, 2483, 1155, 78, 2708, 2739, 1233, 355, 1051, 210, 727, 1170, 2056, 2186, 295, 968, 291, 80, 955, 2966, 2893, 1486, 1875, 653, 951, 1070, 852, 401, 1480, 3148, 2061, 886, 738, 76, 41, 635, 768, 346, 1616, 1443, 2042, 717, 2858, 1883, 1321, 6, 2403, 2314, 411, 2590, 628, 2838, 2952, 558, 154, 1648, 1514, 3271, 857, 1446, 3146, 1476, 1671, 452, 354, 1625, 697, 1455, 2292, 2038, 530, 1306, 3029, 1103, 532, 1758, 1612, 941, 3006, 1167, 831, 815, 1052, 1902, 953, 159, 3118, 2962, 2176, 295, 1809, 563, 249, 2100, 1948, 804, 862, 735, 955, 2373, 1972, 667, 2038, 1203, 383, 802, 2266, 378, 143, 654, 1145, 1494, 530, 2596, 2563, 2099, 205, 922, 1612, 358, 1057, 2151, 813, 736, 328, 3091, 868, 2684, 3192, 1578, 172, 231, 2435, 1551, 2867, 1326, 2900, 2479, 1573, 1889, 381, 1685, 1098, 2405, 2212, 2558, 2142, 2489, 3081, 1307, 3009, 1084, 2882, 2138, 1166, 728, 1964, 657, 181, 324, 988, 253, 1727, 56, 549, 1408, 1177, 263, 2912, 1494, 475, 161, 211, 1714, 1790, 226, 2799, 159, 393, 668, 292, 1291, 645, 1064, 1758, 1842, 347, 2490, 946, 286, 653, 239, 933, 3271, 2049, 360, 2256, 73, 2144, 2879, 981, 2486, 984, 2361, 903, 924, 823, 2517, 841, 1802, 448, 992, 1533, 140, 1013, 334, 59, 642, 1997, 913, 1153, 388, 2111, 2226, 2341, 1331, 175, 2839, 984, 2943, 1351, 579, 1916, 829, 2903, 1751, 712, 1492, 1648, 2525, 2282, 2161, 3124, 710, 2306, 580, 1279, 628, 3110, 68, 520, 328, 645, 1962, 2775, 272, 3153, 563, 863, 1113, 1378, 2554, 1947, 203, 2338, 1218, 2570, 3077, 140, 2340, 1155, 2617, 1445, 333, 2388, 1678, 191, 715, 831, 154, 2722, 2116, 146, 804, 788, 189, 213, 483, 2191, 2413, 3083, 1321, 876, 1155, 2803, 2347, 970, 56, 520, 2660, 1594, 2375, 2821, 2694, 446, 2142, 2627, 2964, 1744, 629, 1578, 1156, 1642, 626, 3278, 2063, 2211, 2557, 247, 493, 1170, 1129, 1129, 3279, 1856, 390, 198, 1071, 914, 1692, 265, 680, 169, 215, 2596, 528, 756, 1292, 624, 179, 488, 1927, 168, 1874, 170, 358, 1848, 73, 1446, 999, 1569, 1026, 842, 290, 1621, 220, 484, 2009, 700, 189, 297, 1445, 1258, 373, 1882, 2024, 2604, 793, 2245, 927, 2170, 2145, 565, 1388, 959, 687, 1294, 897, 1334, 1326, 3186, 844, 1658, 1430, 916, 1224, 2052, 642, 925, 1161, 1203, 2126, 2617, 2301, 514, 2905, 2252, 2746, 2515, 2960, 1507, 1699, 366, 941, 972, 2038, 831, 2155, 382, 1405, 531, 1261, 2953, 1102, 984, 1208, 3186, 1585, 1352, 1027, 484, 2038, 23, 845, 1165, 842, 258, 2396, 238, 358, 1426, 47, 727, 2043, 213, 1822, 2872, 1143, 2894, 1887, 1795, 411, 485, 1334, 747, 2705, 1070, 1978, 804, 2116, 1984, 635, 1023, 1301, 388, 2441, 2732, 2949, 383, 38, 2059, 1393, 1552, 1293, 2490, 775, 495, 1887, 506, 1930, 1102, 1061, 896, 2403, 459, 2094, 809, 1582, 1718, 1938, 1494, 1329, 3221, 1006, 518, 577, 922, 1717, 1473, 734, 733, 530, 3264, 2056, 1113, 1967, 1064, 999, 1073, 1594, 999, 2177, 770, 169, 1038, 2043, 2364, 1697, 680, 1154, 3146, 1503, 1302, 1040, 1494, 1210, 2687, 167, 2029, 790, 895, 1706, 1508, 2031, 355, 2453, 906, 2402, 1043, 2642, 629, 1061, 201, 1443, 216, 1129, 1968, 1641, 1145, 2151, 462, 1203, 2709, 2400, 76, 1720, 30, 2111, 1249, 1581, 2476, 2234, 523, 2985, 1210, 3279, 295, 780, 618, 936, 994, 999, 999, 53, 449, 2095, 285, 2294, 769, 1973, 1606, 2373, 2842, 615, 3084, 321, 138, 518, 1396, 1109, 735, 62, 2435, 216, 628, 611, 2817, 2928, 2876, 1624, 3136, 2416, 1157, 214, 2396, 1030, 336, 804, 296, 2410, 2398, 2294, 1243, 1315, 2374, 2276, 524, 849, 1728, 1400, 118, 1845, 1455, 2016, 1334, 2588, 2881, 2087, 51, 1827, 3116, 561, 346, 1275, 2967, 846, 2653, 809, 956, 1021, 1588, 1264, 2067, 240, 1935, 1807, 1727, 1400, 1065, 966, 2304, 314, 630, 433, 2038, 2463, 562, 581, 2479, 645, 2990, 2123, 2432, 78, 842, 2008, 2316, 1549, 433, 1166, 2543, 2314, 145, 2987, 1050, 1874, 537, 334, 2000, 1100, 74, 1751, 1359, 188, 1426, 358, 951, 546, 897, 1551, 1124, 916, 1320, 1064, 246, 1644, 3168, 1259, 816, 662, 2794, 2986, 1053, 859, 2376, 1644, 2889, 2257, 1663, 949, 1345, 2191, 737, 787, 2876, 1697, 1713, 2340, 1890, 581, 1229, 1202, 428, 383, 472, 213, 637, 1063, 1294, 2205, 230, 1233, 1154, 130, 1501, 494, 405, 1626, 161, 770, 1085, 638, 164, 411, 1146, 1696, 2117, 716, 739, 707, 465, 907, 1941, 3286, 2459, 1593, 83, 671, 754, 966, 1817, 1573, 999, 1349, 1667, 2134, 295, 2726, 835, 308, 951, 355, 856, 1057, 751, 2306, 334, 1447, 233, 631, 1736, 824, 1935, 1334, 2060, 1165, 262, 628, 397, 618, 1086, 298, 358, 1154, 1538, 984, 984, 1490, 1104, 457, 2894, 2301, 2952, 1379, 1709, 1620, 577, 290, 203, 418, 2304, 3226, 1851, 2161, 1360, 181, 468, 590, 3080, 1663, 1403, 422, 378, 2038, 411, 955, 1366, 746, 1378, 2440, 1632, 813, 1396, 390, 1249, 1275, 2872, 1919, 228, 2881, 2944, 337, 2681, 1755, 1146, 13, 222, 1170, 1317, 1681, 1219, 321, 3136, 1884, 591, 843, 269, 8, 1384, 597, 628, 630, 2092, 553, 1077, 887, 335, 1463, 1010, 1378, 309, 1396, 1109, 2015, 2634, 543, 628, 2590, 238, 755, 179, 551, 1315, 2396, 270, 1224, 2252, 952, 2325, 429, 3127, 2835, 620, 314, 1255, 988, 648, 846, 2346, 769, 3072, 1531, 929, 3026, 1232, 1001, 1948, 1249, 2760, 841, 479, 1018, 324, 207, 809, 2872, 1825, 1199, 184, 70, 1209, 921, 1079, 422, 2596, 43, 1938, 200, 2226, 372, 1887, 239, 2292, 951, 1638, 2252, 187, 165, 252, 2013, 892, 1041, 3100, 2994, 1206, 890, 2746, 2402, 887, 285, 3186, 1909, 619, 1671, 2402, 894, 76, 2753, 1129, 27, 429, 562, 2974, 223, 2732, 2570, 2490, 727, 1701, 108, 950, 406, 1737, 1842, 2396, 1408, 1277, 568, 817, 837, 1164, 2543, 1161, 1494, 895, 552, 3142, 3085, 1113, 2282, 2123, 1040, 53, 1222, 2132, 1488, 2952, 311, 520, 86, 1586, 754, 1723, 891, 458, 169, 393, 3027, 2340, 1776, 1060, 951, 110, 111, 1247, 516, 2191, 3285, 2982, 245, 80, 1520, 1107, 1230, 1629, 2631, 1405, 1015, 154, 3006, 2232, 1129, 2459, 1178, 1568, 1430, 903, 422, 999, 1992, 2182, 557, 1476, 2520, 2591, 243, 608, 2852, 2362, 1781, 390, 294, 1639, 749, 1061, 1777, 167, 1671, 1918, 1468, 427, 188, 780, 1155, 2402, 3215, 2539, 2482, 198, 25, 1198, 2808, 2033, 2001, 2323, 649, 1776, 1293, 713, 478, 1533, 207, 126, 665, 2056, 1181, 707, 3124, 2566, 120, 1839, 2420, 2777, 419, 39, 494, 1121, 203, 2515, 2989, 689, 2459, 1778, 602, 1526, 77, 2723, 433, 633, 520, 733, 1331, 2137, 419, 410, 593, 1028, 2655, 405, 393, 2728, 3017, 145, 223, 1189, 2435, 2060, 465, 2088, 2952, 461, 999, 762, 1282, 2903, 3157, 2490, 1561, 438, 390, 432, 2927, 81, 389, 844, 1087, 768, 2876, 538, 72, 170, 520, 1777, 425, 1367, 1889, 203, 258, 950, 429, 3, 673, 769, 1327, 341, 3286, 2188, 2728, 2515, 2054, 2362, 2387, 32, 891, 987, 1766, 1743, 3042, 1171, 78, 2634, 1582, 1083, 1233, 1981, 787, 687, 2038, 191, 534, 546, 1724, 2826, 707, 736, 2340, 3023, 2897, 1792, 1038, 743, 3122, 2371, 2928, 666, 1412, 944, 1541, 282, 733, 184, 2709, 1100, 2292, 2930, 263, 691, 629, 1554, 916, 2974, 1390, 2292, 213, 1161, 1962, 815, 1233, 554, 355, 2306, 1449, 2523, 2443, 689, 2056, 1949, 365, 1662, 167, 11, 2100, 120, 2670, 1884, 1700, 2276, 1285, 137, 2501, 207, 735, 2710, 1492, 461, 2139, 1621, 808, 186, 586, 597, 1807, 3294, 169, 1981, 3277, 11, 256, 2444, 1130, 1947, 205, 710, 462, 108, 609, 828, 1950, 2256, 757, 3140, 97, 2049, 785, 657, 1552, 830, 648, 174, 1836, 2557, 1334, 707, 2990, 1730, 653, 1801, 1447, 2314, 1327, 3109, 1696, 1928, 1450, 279, 651, 2881, 1334, 2038, 1327, 2202, 1426, 1494, 1984, 419, 2276, 424, 1560, 465, 2479, 1007, 472, 2264, 1321, 1968, 1317, 168, 278, 1943, 2151, 1538, 1964, 1259, 3072, 2872, 1802, 754, 1835, 873, 1558, 203, 1968, 628, 2515, 281, 2617, 550, 562, 1727, 302, 448, 1094, 2974, 1464, 295, 1959, 2812, 346, 2139, 1815, 557, 999, 2087, 820, 395, 1410, 1714, 1339, 3188, 1631, 991, 191, 452, 2160, 388, 841, 482, 1371, 847, 1756, 2442, 2438, 3118, 887, 1620, 2287, 1610, 2557, 1983, 1253, 487, 456, 2838, 1285, 1713, 362, 2475, 2056, 959, 1396, 1906, 1285, 2063, 3261, 2872, 2367, 3023, 1443, 299, 373, 568, 2839, 2661, 380, 1083, 2735, 2620, 2827, 1730, 462, 290, 1440, 1247, 337, 849, 1620, 124, 818, 432, 2219, 1852, 72, 374, 1207, 935, 2944, 168, 49, 1740, 657, 1053, 645, 1626, 1161, 2558, 641, 658, 1474, 2142, 968, 374, 1842, 1752, 2844, 843, 1788, 1909, 372, 901, 1412, 780, 522, 1426, 787, 3108, 522, 3108, 53, 1959, 2762, 2886, 1444, 346, 405, 999, 1978, 3081, 842, 707, 2100, 2119, 2881, 1162, 2105, 465, 1526, 1916, 495, 346, 1507, 1326, 1171, 1064, 1455, 223, 1034, 177, 780, 2043, 2560, 2088, 35, 1290, 1331, 1593, 314, 707, 419, 2158, 1843, 3124, 2872, 220, 196, 1536, 2989, 2573, 905, 1445, 337, 1910, 1064, 1421, 200, 1381, 192, 2690, 829, 81, 886, 1237, 1978, 83, 1692, 295, 619, 774, 1272, 1161, 2912, 407, 804, 3017, 73, 1961, 2867, 191, 1981, 756, 240, 2557, 1737, 2346, 295, 148, 999, 2220, 770, 1211, 815, 1552, 1948, 2339, 1275, 1285, 2232, 415, 64, 976, 405, 858, 1477, 2063, 597, 325, 697, 961, 2852, 2147, 2009, 1797, 1473, 137, 2409, 346, 871, 3073, 2043, 779, 2415, 3166, 2872, 2872, 521, 526, 99, 479, 444, 1272, 862, 1240, 1919, 382, 77, 2382, 2630, 2027, 2649, 1078, 2004, 2307, 120, 702, 856, 2852, 890, 76, 441, 1588, 1400, 2021, 309, 2781, 1002, 287, 2632, 908, 984, 3052, 1209, 199, 2684, 907, 2792, 210, 1235, 1129, 2994, 618, 1965, 817, 203, 1172, 281, 78, 323, 719, 2315, 780, 2653, 2902, 1056, 1315, 48, 2609, 175, 354, 2347, 1447, 1663, 1516, 1528, 965, 2346, 769, 1284, 1214, 3066, 868, 383, 2900, 697, 882, 3261, 102, 1538, 1764, 1272, 2556, 895, 63, 1270, 314, 1727, 2466, 1815, 1949, 2159, 2077, 2257, 2987, 419, 1503, 2929, 844, 950, 328, 992, 346, 207, 978, 507, 1993, 452, 1307, 1569, 274, 411, 2392, 832, 1834, 2924, 1538, 959, 769, 2655, 959, 1237, 2199, 244, 203, 2784, 290, 1329, 197, 1246, 2061, 928, 430, 2252, 124, 700, 190, 2068, 459, 485, 2376, 890, 2443, 382, 2976, 2974, 2056, 231, 1329, 1315, 1724, 446, 1916, 841, 256, 1620, 203, 43, 2219, 1447, 2483, 628, 291, 959, 1349, 347, 2475, 833, 2232, 186, 555, 1919, 3128, 290, 984, 2775, 684, 363, 1312, 967, 1010, 3197, 171, 3124, 768, 1554, 2026, 1805, 2563, 2459, 90, 802, 218, 1113, 2538, 279, 484, 327, 357, 824, 953, 599, 1091, 1980, 904, 2510, 316, 1484, 1765, 733, 1443, 2032, 942, 463, 2728, 510, 701, 2033, 141, 1737, 1156, 1552, 2038, 2872, 478, 302, 510, 891, 1015, 2035, 2479, 2092, 2378, 820, 683, 1437, 262, 1751, 1999, 254, 477, 1528, 873, 804, 1586, 164, 2557, 2475, 2961, 707, 502, 1704, 1813, 3062, 1961, 2322, 2329, 367, 286, 1331, 235, 147, 1121, 1082, 192, 1517, 1619, 1234, 31, 197, 1972, 1302, 775, 2156, 697, 2512, 1031, 2609, 1091, 595, 1758, 628, 291, 689, 249, 205, 819, 1829, 236, 648, 555, 2060, 191, 2163, 282, 98, 2194, 295, 1309, 891, 2295, 382, 2605, 1612, 1162, 1415, 221, 2307, 781, 1629, 1552, 532, 2292, 2487, 3016, 2256, 916, 1059, 2045, 2319, 2038, 1847, 655, 2755, 240, 45, 1713, 1862, 365, 239, 2207, 2403, 390, 240, 1952, 329, 891, 1275, 1302, 1247, 2584, 2416, 1608, 710, 1123, 1644, 2640, 576, 2684, 474, 2280, 760, 74, 281, 406, 1315, 24, 619, 1266, 1342, 346, 2015, 485, 713, 1391, 2416, 2026, 1234, 2108, 355, 2340, 2968, 3006, 141, 1875, 1266, 49, 831, 223, 2038, 984, 2338, 2127, 721, 1215, 2257, 1307, 268, 959, 2615, 579, 388, 191, 1468, 30, 1798, 1552, 1374, 951, 2781, 610, 310, 530, 1685, 959, 2268, 844, 976, 551, 270, 1156, 1455, 1670, 2026, 1403, 1195, 1373, 3240, 2648, 2056, 2387, 2987, 1327, 2952, 1875, 1430, 1240, 1362, 2758, 2855, 128, 855, 3181, 334, 2038, 2610, 503, 2738, 1526, 780, 2150, 382, 3258, 2988, 2885, 1441, 2257, 2226, 1160, 631, 3135, 1084, 2366, 1842, 896, 2300, 3206, 2258, 383, 1528, 1393, 1801, 951, 244, 2237, 1916, 1728, 916, 374, 1225, 2543, 1505, 2199, 460, 818, 2114, 906, 1701, 57, 3130, 1918, 806, 3130, 179, 2286, 1488, 602, 262, 256, 746, 1588, 2014, 2252, 2583, 358, 2237, 984, 1597, 13, 2252, 1791, 459, 862, 1771, 630, 255, 2706, 428, 1067, 2462, 673, 47, 474, 2976, 3203, 1503, 407, 916, 984, 257, 1671, 1064, 2479, 1720, 2827, 2018, 2848, 56, 2350, 390, 2378, 1822, 304, 916, 586, 2196, 2936, 1480, 1943, 2176, 879, 1118, 1217, 1342, 1364, 1079, 466, 631, 1290, 2900, 2340, 2340, 571, 1494, 2043, 534, 216, 1430, 390, 822, 841, 242, 598, 1426, 954, 1251, 553, 3050, 3236, 2207, 49, 3083, 681, 927, 2181, 213, 1121, 477, 808, 1692, 1015, 2284, 2675, 2475, 938, 2044, 2803, 743, 335, 951, 2484, 2994, 950, 2156, 903, 432, 198, 2088, 1342, 98, 2185, 136, 472, 410, 2889, 374, 2988, 2014, 1189, 2590, 2043, 2467, 1594, 2489, 1181, 2100, 1661, 401, 1669, 3273, 993, 2490, 2009, 2694, 2714, 2640, 780, 3288, 2848, 3155, 316, 9, 48, 2825, 2696, 1972, 441, 411, 1327, 391, 1421, 2347, 653, 164, 2879, 214, 979, 1713, 2038, 2717, 1533, 691, 30, 156, 1683, 1071, 411, 111, 1935, 1396, 188, 141, 999, 211, 1510, 3119, 818, 1943, 2232, 1713, 789, 1412, 1607, 1816, 785, 473, 1508, 1397, 1152, 710, 2604, 2257, 1096, 2260, 1137, 144, 292, 11, 2425, 231, 2868, 2275, 769, 2666, 2588, 310, 556, 10, 2848, 959, 206, 1473, 2690, 1222, 1730, 422, 895, 2406, 22, 3032, 2061, 2207, 2346, 418, 1756, 2609, 2145, 3138, 2479, 236, 1270, 25, 1378, 2852, 3127, 410, 2285, 1166, 1396, 256, 2347, 2056, 3072, 2121, 473, 0, 1788, 2858, 368, 1140, 2626, 2894, 210, 1336, 1120, 995, 2590, 678, 2183, 1285, 1949, 2145, 803, 1245, 302, 689, 1006, 187, 1384, 2294, 804, 1087, 2838, 128, 262, 657, 3291, 959, 1230, 1327, 729, 993, 3131, 2907, 390, 1030, 243, 493, 105, 3143, 2188, 1161, 1412, 727, 313, 832, 130, 482, 802, 1426, 1050, 1759, 918, 281, 2979, 80, 2306, 3020, 3187, 1972, 174, 2009, 2225, 334, 2052, 1624, 2653, 141, 2060, 2852, 523, 3097, 1921, 806, 1508, 2590, 196, 1336, 1257, 276, 2375, 51, 1169, 2376, 2038, 3068, 1157, 942, 1028, 2905, 2670, 668, 1912, 1919, 735, 2486, 99, 2334, 473, 1038, 1409, 1006, 1233, 2933, 1430, 1558, 279, 2161, 1225, 1661, 1447, 482, 474, 308, 385, 2750, 1585, 2786, 1447, 1886, 350, 565, 577, 121, 725, 174, 291, 298, 3071, 1738, 707, 2060, 729, 3207, 188, 2009, 1965, 677, 389, 610, 1161, 622, 663, 929, 2151, 1906, 3177, 969, 233, 262, 191, 1426, 1064, 249, 1756, 209, 3241, 552, 1005, 743, 2038, 951, 334, 1713, 399, 2852, 455, 2798, 3157, 10, 3251, 202, 787, 520, 1535, 1108, 638, 1871, 214, 81, 580, 1102, 2928, 2061, 56, 1582, 1961, 167, 486, 777, 189, 2548, 2042, 1232, 223, 385, 3168, 2346, 2470, 1376, 159, 2176, 2202, 1883, 2732, 815, 2808, 328, 541, 953, 452, 697, 2142, 982, 2867, 2715, 1573, 1486, 482, 2415, 1719, 2735, 2758, 1947, 1285, 1563, 563, 2060, 959, 244, 334, 169, 2183, 126, 1364, 1484, 962, 1412, 1400, 2826, 970, 1310, 1060, 712, 106, 3155, 272, 44, 2285, 254, 1400, 2604, 56, 787, 2723, 1447, 2061, 494, 2257, 1167, 754, 1573, 789, 2145, 503, 2915, 388, 3026, 2694, 2145, 1397, 2294, 1426, 1451, 1290, 2356, 2378, 2256, 1425, 1145, 694, 1874, 727, 1381, 54, 882, 479, 1396, 1972, 295, 1709, 2803, 538, 2141, 235, 2524, 2401, 999, 846, 1048, 2366, 714, 1152, 1581, 472, 563, 1031, 2060, 2145, 41, 1825, 1290, 2403, 1371, 891, 2979, 1528, 2952, 3129, 787, 2368, 382, 1778, 1292, 855, 764, 158, 1165, 771, 3146, 526, 533, 1170, 1451, 684, 3284, 373, 1111, 290, 205, 34, 2375, 3236, 1342, 2803, 41, 1360, 846, 1984, 337, 2283, 1486, 373, 1010, 2575, 230, 2694, 727, 2008, 140, 2965, 635, 703, 1279, 2252, 2787, 984, 482, 290, 252, 955, 422, 1396, 1063, 128, 2500, 191, 145, 1083, 472, 1405, 2185, 1669, 2144, 48, 192, 1502, 628, 799, 832, 81, 1586, 1680, 2980, 1720, 2775, 210, 220, 2812, 1965, 107, 2934, 2052, 48, 385, 316, 3017, 467, 1847, 2232, 1616, 780, 1416, 1342, 2596, 1408, 434, 643, 844, 1124, 729, 1728, 1589, 1709, 520, 1476, 2900, 1290, 1961, 256, 2681, 1050, 514, 3288, 223, 2022, 601, 619, 2286, 2458, 1315, 845, 64, 1641, 3189, 2416, 482, 2057, 1980, 429, 1728, 847, 0, 493, 1606, 1364, 3197, 780, 268, 1912, 645, 989, 1713, 1484, 276, 531, 1739, 1333, 2831, 1816, 32, 683, 2816, 2239, 755, 614, 2642, 440, 1616, 1245, 1083, 2519, 789, 2824, 914, 729, 2415, 1752, 1675, 830, 799, 1724, 2354, 143, 2578, 3246, 1956, 272, 78, 2142, 138, 2366, 769, 1984, 1626, 1021, 37, 188, 189, 830, 3155, 425, 1581, 1290, 3285, 62, 233, 736, 388, 3017, 1829, 433, 8, 1818, 308, 557, 818, 1137, 1408, 922, 638, 1041, 2056, 1607, 210, 1906, 1051, 482, 428, 522, 1118, 1508, 2056, 1557, 1290, 1751, 629, 1728, 3155, 388, 3008, 120, 2038, 2068, 949, 108, 1447, 453, 2489, 1395, 2524, 2634, 407, 382, 1570, 191, 3184, 780, 2804, 579, 1225, 1559, 3110, 1854, 1496, 1865, 53, 292, 1947, 1166, 1170, 154, 786, 2435, 1563, 1556, 214, 351, 389, 373, 1661, 2234, 1451, 168, 1723, 3145, 1360, 2914, 1477, 1085, 289, 2676, 735, 1421, 2496, 478, 410, 2489, 697, 2994, 1516, 292, 1494, 2151, 1890, 102, 1606, 23, 2239, 1976, 1459, 193, 2900, 984, 217, 822, 1972, 346, 1569, 81, 1357, 2543, 1150, 1150, 1856, 2868, 271, 479, 2368, 1723, 2368, 984, 802, 251, 986, 1706, 601, 727, 1667, 988, 10, 1950, 1520, 2, 605, 2350, 903, 2684, 691, 3081, 1985, 1134, 1473, 1096, 1978, 697, 888, 857, 1231, 2060, 97, 1417, 1129, 2489, 3022, 1249, 2926, 383, 295, 598, 2062, 1457, 1302, 3101, 1021, 410, 2156, 1554, 1444, 2483, 1078, 2061, 1965, 3246, 71, 959, 2101, 1071, 120, 233, 351, 394, 1581, 1050, 255, 1874, 167, 1022, 218, 2835, 2137, 1741, 411, 2517, 2442, 3083, 1938, 1247, 540, 1858, 697, 1626, 37, 1473, 609, 354, 295, 1030, 1852, 1333, 3252, 2253, 2113, 1756, 465, 181, 2990, 1170, 1013, 165, 1145, 1616, 1176, 341, 540, 2251, 2274, 2556, 526, 2266, 754, 3127, 1978, 1231, 2249, 503, 2030, 2601, 3286, 1968, 2747, 545, 605, 1357, 2361, 869, 1113, 2599, 2684, 2056, 35, 810, 2056, 988, 1477, 3141, 186, 1473, 984, 1329, 409, 101, 1102, 2858, 1329, 993, 1070, 543, 90, 638, 267, 3083, 162, 1203, 534, 1720, 138, 274, 2416, 2993, 1232, 2936, 2852, 1620, 16, 691, 2808, 1950, 561, 2297, 2519, 1973, 233, 1706, 75, 945, 2378, 2836, 3026, 1408, 613, 1935, 927, 383, 2596, 386, 318, 1672, 645, 1010, 425, 327, 537, 223, 169, 749, 3047, 1041, 772, 537, 891, 1445, 895, 808, 2912, 2928, 1778, 752, 349, 845, 1748, 610, 1906, 90, 579, 2169, 992, 1373, 2271, 3000, 1597, 1181, 1030, 2634, 2266, 577, 847, 2278, 1358, 2733, 863, 2061, 536, 2060, 1667, 38, 2812, 2191, 1315, 544, 828, 2114, 2184, 384, 891, 3122, 802, 1977, 742, 1952, 1577, 170, 316, 895, 545, 2191, 2182, 1852, 868, 71, 2044, 2105, 240, 2728, 1540, 216, 310, 205, 1536, 334, 841, 383, 10, 891, 2317, 936, 472, 1921, 2881, 3144, 3288, 1967, 999, 1247, 1728, 1624, 3271, 1052, 2699, 281, 3175, 991, 3255, 960, 3150, 1209, 2026, 1334, 831, 803, 1581, 1778, 646, 3065, 733, 297, 2925, 191, 1676, 3017, 2344, 1586, 473, 1405, 3170, 2252, 586, 1153, 261, 422, 2655, 1697, 562, 3191, 535, 2075, 903, 1868, 694, 2941, 2976, 1295, 1211, 236, 2210, 943, 628, 1743, 2609, 1938, 2013, 895, 2062, 2721, 1079, 1364, 473, 2903, 1373, 2835, 1778, 2304, 71, 156, 897, 2416, 2049, 1286, 413, 420, 3218, 667, 3062, 2034, 187, 1744, 2591, 2232, 1030, 2213, 927, 645, 469, 2435, 2534, 433, 759, 1852, 1829, 364, 419, 980, 1984, 628, 1743, 602, 859, 1554, 1203, 411, 1667, 2442, 148, 3144, 3291, 906, 98, 1225, 1621, 3079, 2459, 1696, 2009, 674, 1112, 1947, 145, 357, 56, 1085, 191, 780, 628, 799, 1559, 2199, 759, 171, 976, 2925, 1225, 2900, 390, 857, 72, 938, 102, 2852, 1015, 643, 433, 242, 1626, 2676, 1207, 189, 2416, 935, 1161, 988, 236, 638, 1124, 406, 83, 2622, 3278, 2366, 911, 410, 474, 2, 425, 1430, 531, 174, 1232, 883, 1393, 2852, 2346, 30, 1373, 86, 1279, 984, 2781, 1230, 1534, 2506, 2615, 1290, 1113, 2337, 2964, 1914, 1364, 2146, 1858, 1552, 2375, 522, 1379, 2885, 2257, 627, 2128, 395, 1416, 856, 2476, 1342, 504, 1946, 735, 936, 3155, 2557, 1701, 318, 2015, 202, 966, 2781, 2486, 2132, 2714, 1486, 2753, 1820, 298, 1031, 1064, 1124, 1764, 1233, 936, 440, 753, 1030, 1815, 168, 1805, 374, 2374, 140, 1654, 1584, 2948, 1400, 656, 1554, 994, 2180, 365, 789, 1502, 2531, 3072, 1482, 1226, 1198, 47, 1463, 1100, 1208, 302, 446, 323, 2872, 1315, 1720, 3003, 2620, 1921, 1225, 3038, 12, 31, 2936, 131, 984, 1348, 2307, 2723, 496, 458, 324, 1148, 1880, 2743, 995, 1235, 168, 1552, 999, 1660, 1660, 798, 1364, 2676, 233, 978, 321, 2139, 505, 334, 1549, 1636, 878, 319, 321, 50, 1882, 1161, 2515, 2295, 3159, 1847, 736, 2038, 189, 456, 68, 2780, 1396, 1336, 520, 458, 1277, 1414, 20, 2979, 891, 1113, 1937, 1314, 586, 196, 2151, 687, 2732, 787, 1351, 647, 1285, 893, 37, 537, 1568, 3216, 192, 428, 1948, 885, 3236, 2147, 2683, 255, 2537, 474, 2027, 1327, 626, 298, 1026, 344, 2669, 849, 1430, 108, 691, 2270, 1063, 565, 2100, 1965, 174, 493, 1640, 360, 1552, 738, 2440, 823, 713, 2879, 2538, 703, 630, 2268, 1856, 2976, 806, 1678, 2038, 2284, 769, 1882, 1692, 1852, 1034, 425, 2252, 2620, 203, 1621, 2313, 598, 3050, 254, 850, 1043, 1107, 1645, 3249, 2089, 2091, 1506, 1412, 2515, 1373, 1464, 1064, 1165, 1318, 609, 1616, 605, 1967, 1728, 522, 1041, 78, 1658, 308, 755, 1314, 993, 425, 80, 2204, 1315, 2038, 988, 2604, 1233, 2598, 286, 384, 843, 2590, 76, 2362, 13, 1588, 2240, 132, 169, 99, 2928, 3125, 992, 2781, 2416, 168, 1203, 136, 1634, 2004, 196, 586, 383, 691, 419, 916, 1314, 897, 1594, 2009, 405, 999, 2728, 198, 1557, 2320, 474, 2264, 1961, 494, 3157, 2781, 891, 2346, 218, 3005, 2596, 16, 1998, 581, 2138, 1235, 2511, 1310, 1902, 33, 1373, 20, 181, 796, 386, 2346, 1612, 478, 2077, 1467, 223, 286, 806, 1135, 970, 1266, 1245, 3051, 4, 1255, 3201, 173, 2852, 612, 213, 1267, 347, 538, 2872, 1961, 3281, 419, 1446, 374, 2325, 900, 2352, 411, 834, 841, 411, 290, 2883, 2976, 215, 2033, 953, 1232, 725, 493, 848, 999, 1083, 287, 189, 3243, 552, 1637, 1209, 1743, 327, 75, 2136, 25, 1279, 2166, 1787, 188, 1010, 2535, 733, 2756, 1520, 531, 956, 97, 1449, 2879, 3178, 1443, 2056, 1260, 3072, 841, 1291, 211, 984, 520, 768, 3080, 390, 1245, 122, 165, 3162, 2170, 1010, 1378, 2963, 824, 1203, 38, 1701, 1082, 190, 780, 1626, 2787, 2089, 2252, 1798, 462, 2292, 267, 2812, 274, 482, 1393, 565, 1963, 1918, 2665, 2003, 959, 1405, 2852, 1302, 1234, 895, 2879, 2171, 1553, 948, 1573, 2666, 520, 233, 970, 687, 2198, 2614, 1233, 2724, 2800, 2835, 969, 2669, 90, 376, 1890, 2131, 1290, 1651, 2111, 3112, 227, 359, 2221, 804, 3071, 313, 2375, 1837, 1320, 1912, 1430, 98, 2708, 1310, 1927, 308, 83, 544, 295, 2702, 159, 1961, 1816, 373, 2373, 1956, 1972, 2652, 616, 230, 916, 2781, 2676, 1149, 99, 1979, 2033, 1963, 2015, 190, 697, 1373, 1170, 2872, 645, 2609, 1777, 2106, 1685, 472, 1494, 3142, 1569, 1443, 2954, 323, 1929, 707, 168, 1507, 1203, 272, 2067, 1852, 1331, 1804, 1828, 1070, 249, 213, 1648, 1744, 23, 38, 432, 347, 628, 1667, 2049, 3146, 2732, 1627, 2235, 630, 2885, 520, 1709, 255, 10, 1065, 3258, 2524, 2257, 1233, 1061, 1756, 1538, 3063, 2226, 1654, 3249, 2183, 2865, 2732, 254, 1556, 845, 774, 989, 1507, 478, 697, 553, 2066, 1938, 2557, 2770, 382, 635, 1131, 3069, 2557, 2231, 605, 1552, 2639, 2061, 41, 253, 1549, 2515, 1807, 1929, 2542, 665, 544, 2520, 2366, 2169, 1327, 170, 557, 1030, 747, 1383, 1083, 1672, 2284, 2100, 949, 2290, 3232, 1634, 968, 1887, 3067, 1840, 2038, 1471, 428, 168, 230, 1681, 3145, 448, 2881, 2684, 458, 38, 2970, 1099, 2306, 1856, 2054, 903, 922, 2781, 2145, 2315, 189, 903, 2710, 849, 1010, 1030, 98, 630, 2604, 249, 928, 2651, 993, 380, 233, 316, 848, 1232, 1079, 355, 1482, 300, 2038, 1421, 1972, 1308, 409, 425, 3083, 3000, 789, 2629, 1728, 1015, 733, 1594, 475, 1972, 327, 3288, 2237, 2089, 1856, 1447, 1588, 1056, 1950, 3279, 2530, 101, 2188, 2578, 1929, 3278, 230, 2775, 2409, 1167, 292, 459, 2591, 1556, 2407, 760, 173, 598, 695, 1834, 3001, 857, 1126, 520, 108, 544, 2219, 102, 145, 1706, 2060, 2630, 993, 848, 116, 1540, 145, 2515, 101, 1874, 2175, 1778, 1582, 1594, 359, 257, 832, 1010, 1528, 337, 334, 835, 170, 961, 520, 71, 1495, 128, 1692, 799, 407, 781, 2556, 1696, 2576, 2585, 1667, 1496, 422, 335, 3291, 2852, 1306, 1015, 2684, 393, 262, 198, 1621, 1692, 1661, 2979, 804, 1181, 249, 2378, 3127, 1667, 2235, 2891, 1965, 1477, 71, 1445, 1064, 2903, 1345, 417, 648, 2416, 2022, 472, 2728, 240, 3199, 2290, 671, 105, 771, 1950, 247, 115, 900, 2126, 198, 240, 3186, 2087, 2854, 2242, 256, 2758, 57, 1413, 1577, 626, 2636, 727, 2234, 684, 2221, 2283, 1043, 657, 428, 253, 590, 466, 2286, 857, 475, 299, 225, 2234, 2942, 295, 479, 2441, 1315, 383, 1681, 192, 1798, 254, 808, 3274, 999, 707, 1233, 2602, 696, 1751, 857, 1616, 2222, 390, 448, 1752, 354, 984, 1713, 169, 3145, 86, 1162, 1373, 719, 141, 1919, 895, 2479, 2682, 1145, 2906, 20, 1031, 187, 763, 997, 2737, 1720, 2483, 390, 169, 769, 1026, 1654, 673, 653, 864, 1308, 2098, 528, 1105, 1666, 540, 113, 2479, 500, 514, 1129, 2144, 279, 1577, 1203, 2210, 2201, 918, 218, 1541, 1149, 1315, 657, 2435, 3083, 11, 334, 9, 233, 191, 1484, 2211, 1246, 1064, 537, 240, 2442, 1203, 768, 1604, 1789, 304, 2515, 1310, 1608, 288, 376, 768, 1874, 208, 1034, 2533, 169, 1233, 578, 1856, 665, 936, 1681, 206, 472, 269, 370, 411, 2421, 1741, 1310, 927, 2347, 556, 233, 2056, 279, 2952, 2156, 2708, 1476, 123, 984, 1989, 1588, 579, 1321, 32, 124, 632, 595, 2935, 97, 2072, 2060, 1529, 1730, 202, 86, 2630, 335, 267, 1320, 2268, 2827, 2922, 1408, 1034, 796, 90, 1737, 2268, 2728, 401, 411, 2189, 2142, 2952, 2569, 76, 1594, 799, 897, 41, 984, 1798, 934, 1784, 2758, 813, 390, 422, 2952, 2217, 123, 2066, 522, 3048, 697, 1875, 2852, 3019, 191, 2651, 382, 2517, 1961, 2264, 2952, 845, 1378, 804, 1720, 1071, 998, 1998, 979, 2486, 1685, 999, 81, 743, 1315, 3078, 1290, 170, 208, 3157, 17, 169, 1301, 1552, 1494, 215, 610, 90, 751, 166, 50, 787, 2054, 1443, 2209, 216, 831, 1396, 393, 736, 2651, 415, 832, 507, 1034, 187, 1061, 1342, 155, 2280, 618, 446, 1724, 2976, 433, 1501, 1121, 1853, 1554, 1181, 106, 1748, 772, 1921, 2257, 635, 2059, 2540, 880, 1382, 2435, 2570, 3085, 290, 440, 352, 1964, 2979, 268, 1980, 2811, 3285, 3059, 1988, 728, 2378, 2366, 2875, 537, 433, 2338, 1329, 2037, 2061, 3112, 1588, 167, 2252, 1988, 2987, 1912, 482, 643, 383, 434, 522, 2088, 3064, 1085, 1071, 2003, 124, 1203, 817, 1728, 949, 422, 1998, 951, 2763, 2976, 787, 697, 870, 2207, 24, 1327, 1329, 409, 2286, 829, 1460, 2554, 2684, 1701, 1904, 1137, 2361, 1430, 1315, 3096, 2140, 1285, 804, 168, 1719, 1706, 2416, 1342, 2137, 3295, 1342, 407, 3209, 568, 1008, 2679, 2723, 2039, 2404, 3230, 1916, 2590, 1577, 3179, 537, 938, 1102, 1816, 131, 465, 2852, 2958, 1912, 78, 388, 2835, 203, 514, 545, 2462, 95, 2366, 3053, 1912, 387, 3009, 1584, 1376, 1373, 722, 270, 1594, 2744, 2068, 848, 823, 2718, 390, 2668, 334, 2417, 2232, 1492, 3258, 124, 2285, 1972, 164, 390, 793, 1118, 1020, 2061, 815, 382, 1365, 2607, 3131, 1205, 1755, 1048, 1988, 3286, 347, 2340, 727, 462, 76, 3028, 1937, 802, 1232, 1060, 313, 2186, 999, 177, 1288, 123, 1626, 673, 82, 233, 886, 1724, 1398, 941, 2881, 796, 2368, 2056, 2475, 1891, 1891, 2313, 951, 832, 912, 860, 1581, 1728, 1315, 2852, 233, 1528, 334, 425, 95, 2183, 2038, 2684, 410, 1392, 334, 2169, 1536, 2669, 2523, 1010, 1015, 23, 3124, 561, 3272, 2325, 3175, 1373, 1662, 2136, 953, 524, 897, 1480, 1031, 1993, 1331, 1813, 93, 389, 1744, 327, 826, 334, 1065, 3159, 938, 1225, 522, 2847, 1627, 757, 1342, 422, 537, 2026, 1477, 80, 1730, 1443, 554, 488, 2995, 1594, 1778, 2694, 1396, 2137, 77, 609, 2041, 270, 2392, 411, 1858, 3037, 148, 377, 401, 1443, 1577, 1727, 798, 2443, 2640, 563, 2609, 632, 1581, 921, 929, 283, 1963, 128, 0, 2859, 2035, 143, 128, 2835, 704, 208, 2684, 81, 2156, 951, 651, 1247, 16, 1581, 411, 2999, 346, 3186, 3058, 2920, 1558, 230, 1272, 1338, 169, 1805, 1552, 589, 2530, 941, 251, 1815, 866, 209, 713, 1363, 3059, 3271, 102, 543, 556, 2232, 233, 2186, 1085, 2332, 959, 246, 2709, 1156, 547, 1968, 2229, 879, 904, 2978, 2219, 2940, 1207, 1170, 522, 2450, 984, 350, 2367, 360, 953, 2172, 916, 3083, 98, 3069, 255, 1430, 1447, 41, 1041, 936, 2952, 357, 341, 1760, 1582, 520, 1326, 1064, 410, 959, 1627, 1528, 2337, 1430, 752, 1920, 1427, 167, 1779, 3092, 743, 514, 1203, 116, 784, 358, 2728, 577, 156, 419, 86, 295, 866, 1364, 1538, 1178, 831, 2056, 3083, 1815, 1848, 2592, 1507, 198, 1167, 1557, 1307, 216, 2371, 966, 2905, 1834, 2078, 2844, 1396, 2827, 3122, 23, 2844, 3118, 1417, 209, 147, 2868, 3154, 128, 1805, 1109, 1947, 432, 2480, 474, 1327, 1468, 213, 448, 1290, 520, 521, 1109, 1998, 1681, 1447, 208, 1778, 41, 1091, 1581, 1421, 802, 372, 2160, 1109, 3164, 686, 318, 605, 1954, 140, 2976, 3132, 1985, 1829, 420, 2182, 211, 2894, 949, 2416, 482, 3162, 635, 3280, 316, 102, 2994, 2304, 743, 697, 2066, 597, 3261, 2347, 168, 1750, 543, 2038, 2939, 779, 282, 1430, 2490, 2538, 2197, 1806, 1426, 396, 2417, 1917, 1195, 199, 102, 252, 1549, 2644, 554, 1935, 2136, 810, 822, 842, 2838, 188, 562, 635, 3110, 380, 1824, 2515, 1192, 2728, 120, 3108, 1882, 1507, 1122, 1949, 1805, 376, 279, 3137, 444, 2479, 1392, 684, 20, 1963, 1252, 822, 2629, 233, 233, 411, 1725, 2061, 393, 651, 488, 1725, 64, 2584, 293, 2852, 1703, 562, 1615, 3144, 1329, 223, 641, 1713, 2338, 1443, 1477, 1779, 2476, 2823, 1230, 1594, 1327, 2781, 2286, 1285, 914, 419, 643, 2239, 2198, 561, 628, 3110, 86, 989, 192, 1041, 2445, 2832, 1801, 2773, 169, 2060, 168, 631, 2346, 111, 282, 1685, 1669, 2952, 2039, 638, 2387, 131, 405, 1875, 1465, 496, 1233, 472, 214, 916, 573, 629, 290, 377, 1557, 262, 433, 1043, 1098, 2271, 868, 980, 2028, 503, 270, 420, 2211, 458, 1965, 202, 1310, 2604, 1242, 285, 286, 2979, 271, 559, 780, 88, 608, 2122, 390, 1719, 2180, 1291, 2538, 78, 3220, 1233, 337, 446, 1594, 2952, 49, 1082, 1713, 169, 2914, 1815, 2435, 1788, 1460, 1591, 677, 1825, 1683, 2401, 490, 2781, 1306, 947, 2340, 2479, 2781, 64, 75, 872, 3083, 75, 240, 254, 1692, 2004, 1263, 573, 3162, 207, 285, 321, 2297, 2368, 780, 916, 2568, 743, 1061, 785, 2151, 365, 1123, 1037, 41, 857, 3143, 523, 1127, 2952, 832, 28, 90, 312, 26, 334, 707, 936, 953, 3290, 305, 1552, 786, 1624, 2852, 1956, 2038, 1912, 2234, 1807, 999, 1863, 2525, 780, 1949, 11, 2139, 1009, 1918, 1113, 2728, 2372, 2845, 2548, 2063, 2961, 279, 631, 1921, 1961, 630, 1723, 2250, 493, 1445, 76, 25, 180, 632, 334, 272, 118, 2972, 3014, 181, 1558, 168, 1307, 3136, 1175, 1271, 310, 1064, 1526, 2684, 2775, 2031, 159, 2588, 1085, 37, 2060, 411, 2936, 2656, 2979, 16, 1001, 441, 2104, 1535, 164, 909, 707, 1934, 411, 407, 2515, 563, 1569, 625, 199, 433, 713, 536, 2667, 2366, 2097, 1203, 1408, 416, 3147, 449, 2586, 1277, 1843, 568, 211, 845, 2839, 1984, 1447, 868, 697, 871, 1964, 2232, 182, 1064, 73, 88, 98, 646, 272, 933, 1163, 25, 477, 2347, 1520, 106, 704, 1587, 1439, 80, 1695, 1724, 1621, 1096, 2346, 80, 244, 410, 802, 2796, 823, 238, 1333, 1123, 131, 1148, 412, 2286, 1028, 316, 314, 1041, 178, 1805, 80, 295, 1162, 2905, 2435, 2904, 411, 1616, 2740, 1129, 645, 1525, 2327, 2174, 586, 297, 1594, 657, 1249, 1581, 1030, 2234, 1549, 2746, 733, 916, 507, 2142, 2781, 179, 145, 2852, 478, 30, 1203, 235, 763, 2728, 1920, 2092, 2523, 684, 188, 1483, 1233, 95, 1416, 1600, 2295, 1045, 1919, 297, 2490, 1701, 1207, 2838, 1540, 2145, 298, 1839, 1842, 316, 2207, 1448, 984, 1912, 831, 789, 520, 2027, 1350, 22, 830, 635, 90, 334, 1690, 1949, 2833, 200, 841, 845, 2596, 2852, 743, 2393, 1854, 1586, 2490, 1948, 295, 1801, 191, 233, 1125, 1145, 1772, 1443, 1079, 1588, 2891, 1327, 2952, 1396, 2490, 1726, 174, 1400, 2275, 3177, 3125, 3261, 1588, 1807, 1445, 1031, 2524, 627, 3020, 1301, 1437, 1051, 1503, 390, 3224, 1134, 1620, 568, 1246, 1864, 153, 831, 2159, 2936, 429, 1001, 922, 1973, 1166, 1496, 3177, 1378, 936, 815, 2852, 1709, 1455, 1507, 158, 41, 638, 984, 1943, 1010, 174, 757, 1852, 3006, 477, 1346, 2038, 302, 2557, 360, 628, 383, 1815, 2328, 293, 2332, 1329, 1374, 296, 1656, 612, 474, 455, 391, 3124, 478, 1713, 3217, 1203, 1272, 2790, 1030, 76, 81, 722, 2509, 941, 953, 1594, 2834, 197, 81, 240, 334, 1808, 1725, 1585, 280, 197, 254, 2843, 518, 929, 2497, 1181, 1620, 986, 1010, 1804, 925, 101, 3024, 1724, 2994, 1813, 1874, 2513, 270, 206, 629, 2378, 2538, 904, 1568, 992, 969, 1840, 168, 3181, 1158, 1554, 1954, 108, 272, 1293, 1935, 1483, 550, 350, 1806, 1588, 2015, 2313, 432, 1654, 2781, 374, 3289, 399, 1973, 465, 653, 1589, 422, 425, 2487, 441, 305, 107, 700, 1669, 236, 68, 2749, 20, 1686, 524, 2728, 2252, 2265, 1720, 482, 1492, 729, 1247, 2557, 2699, 1245, 1529, 1291, 915, 1422, 382, 132, 411, 562, 1950, 1306, 2735, 2367, 1373, 1863, 1529, 189, 1552, 2088, 1620, 1648, 2728, 2333, 1327, 2068, 2257, 1121, 829, 191, 2730, 346, 328, 857, 938, 848, 479, 3069, 123, 1984, 1594, 1559, 2125, 936, 349, 2313, 774, 76, 895, 98, 3083, 1336, 1502, 2088, 918, 2304, 382, 748, 2038, 645, 579, 1701, 2599, 2609, 1070, 429, 1949, 697, 993, 1146, 215, 1701, 1882, 653, 579, 1048, 1307, 1238, 388, 1692, 56, 1467, 120, 657, 145, 2042, 1957, 2362, 1030, 1503, 2536, 192, 2844, 1134, 3049, 573, 124, 2493, 2031, 145, 346, 2651, 2525, 31, 155, 2038, 729, 24, 1807, 2234, 208, 238, 388, 1788, 334, 769, 352, 1143, 2852, 1028, 71, 192, 358, 2122, 728, 1314, 193, 1240, 2483, 2199, 138, 22, 459, 2586, 2651, 316, 1031, 2699, 3083, 1520, 199, 1443, 2398, 925, 635, 1237, 2609, 2041, 1588, 1043, 769, 378, 411, 1350, 2250, 785, 1038, 2524, 628, 728, 1556, 2775, 20, 953, 1181, 2756, 852, 198, 653, 2038, 1312, 1993, 1196, 1774, 540, 230, 81, 1342, 358, 416, 641, 1713, 1685, 520, 1751, 1233, 56, 1082, 2775, 1709, 3280, 520, 1872, 1858, 2313, 1445, 1064, 2868, 1002, 2195, 2236, 1279, 1113, 2615, 240, 1842, 81, 1082, 192, 2015, 1507, 352, 799, 168, 2396, 23, 1085, 167, 1400, 916, 387, 803, 516, 2280, 1326, 1331, 993, 173, 1975, 2602, 3072, 1852, 735, 2147, 33, 1063, 2403, 2976, 2234, 2803, 2257, 2676, 1916, 631, 856, 173, 481, 1709, 462, 667, 628, 1106, 3011, 2105, 419, 1391, 456, 577, 2292, 363, 2504, 1552, 1813, 2106, 1874, 2362, 1815, 1061, 1508, 1010, 430, 563, 1129, 2142, 984, 388, 1787, 1008, 1584, 1963, 1326, 205, 57, 1762, 86, 298, 818, 2723, 895, 727, 1083, 390, 2371, 1821, 999, 2048, 700, 1715, 1848, 1175, 455, 2089, 2056, 841, 1685, 1874, 388, 1327, 1506, 203, 3156, 2987, 523, 785, 802, 256, 2118, 3028, 1697, 618, 3040, 810, 467, 388, 419, 1315, 1912, 2015, 754, 377, 2577, 290, 1400, 99, 2684, 992, 1520, 432, 1528, 611, 1030, 3290, 298, 2781, 819, 780, 334, 199, 1616, 2232, 863, 1543, 76, 1203, 1316, 2827, 3261, 3144, 2782, 2955, 360, 756, 562, 1626, 327, 2732, 81, 871, 68, 1396, 461, 802, 553, 2060, 2362, 2952, 1484, 1793, 2881, 1624, 2881, 608, 1199, 334, 1085, 563, 1588, 41, 2199, 2713, 2387, 1290, 373, 2466, 1015, 2247, 86, 891, 2669, 785, 2361, 1593, 1290, 1536, 1594, 1232, 3293, 1145, 1875, 1552, 1813, 314, 81, 422, 713, 102, 625, 1554, 589, 2994, 412, 1030, 309, 1378, 1045, 938, 2728, 1098, 330, 2596, 2384, 2367, 1949, 1130, 1161, 1943, 240, 2202, 1974, 845, 122, 2852, 3175, 1636, 432, 106, 2038, 2082, 2362, 1061, 918, 3083, 2728, 1554, 2754, 298, 1502, 1203, 2952, 846, 487, 1233, 1400, 374, 2347, 1762, 1736, 1301, 933, 472, 3083, 2994, 645, 903, 1314, 1852, 815, 1805, 229, 101, 1455, 1129, 2521, 516, 128, 496, 2060, 1028, 2950, 299, 1961, 213, 943, 1396, 1181, 441, 1222, 380, 3104, 482, 3269, 71, 562, 390, 2979, 2952, 903, 2207, 1667, 295, 789, 1327, 1102, 3118, 1426, 90, 141, 2247, 503, 1976, 2718, 2360, 2781, 2257, 1669, 1416, 953, 2362, 1085, 209, 3113, 1306, 1764, 2995, 2003, 843, 970, 1233, 1064, 2538, 940, 323, 1834, 733, 558, 635, 2167, 935, 2972, 503, 2182, 1376, 59, 2325, 1635, 857, 38, 34, 359, 165, 1965, 2142, 764, 1965, 47, 841, 283, 2060, 521, 1588, 830, 123, 1818, 334, 184, 1667, 141, 2642, 768, 1064, 2347, 1435, 1421, 697, 455, 2021, 952, 2043, 17, 1433, 808, 1262, 2769, 1445, 494, 346, 207, 1199, 381, 1243, 1451, 906, 1552, 1181, 841, 543, 1540, 520, 2014, 364, 334, 3268, 373, 951, 422, 1554, 2524, 1396, 396, 334, 933, 422, 2631, 823, 1668, 1267, 80, 2881, 3123, 382, 1842, 2367, 893, 1290, 328, 2728, 1413, 1559, 3282, 2728, 2427, 3103, 2242, 2435, 1307, 531, 691, 246, 1597, 697, 1554, 1671, 422, 1703, 2911, 1984, 1051, 2827, 391, 2142, 1776, 208, 80, 2515, 2972, 780, 407, 2664, 3027, 806, 856, 2803, 1473, 2077, 1839, 1554, 2653, 2034, 422, 328, 999, 769, 792, 137, 233, 815, 1744, 815, 2900, 2056, 1717, 700, 334, 2729, 337, 28, 1453, 1724, 1842, 2219, 743, 2023, 1247, 419, 3057, 35, 3227, 2478, 3110, 84, 334, 20, 2231, 2582, 1192, 1507, 1224, 3043, 2669, 1728, 425, 925, 520, 895, 991, 1949, 1467, 976, 1538, 1373, 897, 563, 99, 16, 132, 2860, 891, 1520, 3186, 2286, 2349, 1273, 422, 1588, 57, 1296, 1109, 953, 1397, 2266, 334, 831, 137, 1315, 2062, 26, 3161, 2066, 88, 1875, 1815, 1692, 989, 785, 1120, 2460, 168, 230, 2723, 1733, 1107, 2610, 32, 3124, 2420, 286, 639, 700, 689, 936, 346, 1427, 280, 295, 31, 395, 531, 419, 1594, 22, 779, 1010, 390, 2038, 2057, 1996, 290, 746, 1446, 789, 1145, 780, 81, 841, 520, 2867, 173, 3281, 2590, 3196, 3190, 446, 2900, 1788, 846, 936, 2075, 2609, 2340, 999, 1581, 2758, 1372, 1867, 3225, 1237, 1877, 815, 1828, 1610, 562, 545, 2728, 2298, 1233, 1318, 1875, 145, 1764, 2404, 1396, 1588, 136, 251, 1245, 1916, 624, 1275, 1558, 22, 1839, 2615, 1134, 30, 2114, 1203, 2524, 2060, 479, 571, 1825, 3243, 290, 557, 2169, 1396, 752, 2868, 1290, 2403])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For the first 10 clusters</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="c1"># Print the cluster number  </span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Cluster </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cluster</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># Find all of the words for that cluster number, and print them out</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">word_centroid_map</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">keys</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">word_centroid_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">word_centroid_map</span><span class="o">.</span><span class="n">values</span><span class="p">())):</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster</span> <span class="p">):</span>
+            <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster 0
+[&#39;callous&#39;, &#39;disrespectful&#39;, &#39;mocked&#39;]
+
+Cluster 1
+[&#39;duke&#39;]
+
+Cluster 2
+[&#39;resulting&#39;, &#39;culminating&#39;, &#39;culminates&#39;, &#39;lunacy&#39;]
+
+Cluster 3
+[&#39;hears&#39;, &#39;mentions&#39;, &#39;insists&#39;, &#39;notices&#39;, &#39;listens&#39;]
+
+Cluster 4
+[&#39;island&#39;, &#39;area&#39;, &#39;located&#39;, &#39;palm&#39;, &#39;luxury&#39;, &#39;situated&#39;]
+
+Cluster 5
+[&#39;atmosphere&#39;, &#39;tone&#39;, &#39;mood&#39;, &#39;flavor&#39;, &#39;aura&#39;, &#39;vibe&#39;, &#39;ambiance&#39;, &#39;creepiness&#39;]
+
+Cluster 6
+[&#39;fought&#39;, &#39;civilian&#39;]
+
+Cluster 7
+[&#39;branagh&#39;]
+
+Cluster 8
+[&#39;hopelessly&#39;, &#39;lifeless&#39;, &#39;drab&#39;, &#39;dreadfully&#39;, &#39;awkwardly&#39;, &#39;listless&#39;]
+
+Cluster 9
+[&#39;washing&#39;, &#39;lifting&#39;, &#39;rubbing&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_bag_of_centroids</span><span class="p">(</span> <span class="n">wordlist</span><span class="p">,</span> <span class="n">word_centroid_map</span> <span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="c1"># The number of clusters is equal to the highest cluster index</span>
+    <span class="c1"># in the word / centroid map</span>
+    <span class="n">num_centroids</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span> <span class="n">word_centroid_map</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1">#</span>
+    <span class="c1"># Pre-allocate the bag of centroids vector (for speed)</span>
+    <span class="n">bag_of_centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="n">num_centroids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span> <span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># Loop over the words in the review. If the word is in the vocabulary,</span>
+    <span class="c1"># find which cluster it belongs to, and increment that cluster count </span>
+    <span class="c1"># by one</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_centroid_map</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">word_centroid_map</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+            <span class="n">bag_of_centroids</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1">#</span>
+    <span class="c1"># Return the &quot;bag of centroids&quot;</span>
+    <span class="k">return</span> <span class="n">bag_of_centroids</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pre-allocate an array for the training set bags of centroids (for speed)</span>
+<span class="n">train_centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_clusters</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+<span class="c1"># Transform the training set reviews into bags of centroids</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">clean_train_reviews</span><span class="p">:</span>
+    <span class="n">train_centroids</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_bag_of_centroids</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">word_centroid_map</span> <span class="p">)</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25000, 3298)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Repeat for test reviews </span>
+<span class="n">test_centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_clusters</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span> <span class="p">)</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">clean_test_reviews</span><span class="p">:</span>
+    <span class="n">test_centroids</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_bag_of_centroids</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">word_centroid_map</span> <span class="p">)</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a random forest and extract predictions </span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fitting the forest may take a few minutes</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Fitting a random forest to labeled training data...&quot;</span><span class="p">)</span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_centroids</span><span class="p">,</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_centroids</span><span class="p">)</span>
+
+<span class="c1"># Write the test results </span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;sentiment&quot;</span><span class="p">:</span><span class="n">result</span><span class="p">})</span>
+<span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span> <span class="s2">&quot;BagOfCentroids.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting a random forest to labeled training data...
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\NLP\corrections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

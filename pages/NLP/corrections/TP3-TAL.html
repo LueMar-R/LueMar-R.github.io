@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyse des sentiments: Word2vec &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/pages/NLP/corrections/TP3-TAL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/NLP/corrections/TP3-TAL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importation-des-donnees">
+   Importation des données
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="analyse-des-sentiments-word2vec">
+<h1>Analyse des sentiments:  Word2vec<a class="headerlink" href="#analyse-des-sentiments-word2vec" title="Permalink to this headline">¶</a></h1>
+<p><br> <br></p>
+<div class="section" id="importation-des-donnees">
+<h2>Importation des données<a class="headerlink" href="#importation-des-donnees" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Read data from files </span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s2">&quot;labeledTrainData.tsv&quot;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s2">&quot;testData.tsv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+<span class="n">unlabeled_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s2">&quot;unlabeledTrainData.tsv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span>
+
+<span class="c1"># Verify the number of reviews that were read (100,000 in total)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Read </span><span class="si">%d</span><span class="s2"> labeled train reviews, </span><span class="si">%d</span><span class="s2"> labeled test reviews, and </span><span class="si">%d</span><span class="s2"> unlabeled reviews</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">unlabeled_train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="p">))</span>
+
+
+<span class="n">unlabeled_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Read 25000 labeled train reviews, 25000 labeled test reviews, and 50000 unlabeled reviews
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>"9999_0"</td>
+      <td>"Watching Time Chasers, it obvious that it was...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>"45057_0"</td>
+      <td>"I saw this film about 20 years ago and rememb...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>"15561_0"</td>
+      <td>"Minor Spoilers&lt;br /&gt;&lt;br /&gt;In New York, Joan B...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>"7161_0"</td>
+      <td>"I went to see this film with a great deal of ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>"43971_0"</td>
+      <td>"Yes, I agree with everyone on this site this ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">unlabeled_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25000, 3)
+(50000, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import various modules for string cleaning</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+
+<span class="k">def</span> <span class="nf">review_to_wordlist</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">remove_stopwords</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+    <span class="c1"># Function to convert a document to a sequence of words,</span>
+    <span class="c1"># optionally removing stop words.  Returns a list of words.</span>
+    <span class="c1">#</span>
+    <span class="c1"># 1. Remove HTML</span>
+    <span class="n">review_text</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">review</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+    <span class="c1">#  </span>
+    <span class="c1"># 2. Remove non-letters</span>
+    <span class="n">review_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[^a-zA-Z]&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">review_text</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># 3. Convert words to lower case and split them</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">review_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="c1">#</span>
+    <span class="c1"># 4. Optionally remove stop words (false by default)</span>
+    <span class="k">if</span> <span class="n">remove_stopwords</span><span class="p">:</span>
+        <span class="n">stops</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="c1"># 5. Return a list of words</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the punkt tokenizer for sentence splitting</span>
+<span class="kn">import</span> <span class="nn">nltk.data</span>
+<span class="c1"># nltk.download()   </span>
+
+<span class="c1"># Load the punkt tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tokenizers/punkt/english.pickle&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define a function to split a review into parsed sentences</span>
+<span class="k">def</span> <span class="nf">review_to_sentences</span><span class="p">(</span> <span class="n">review</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">remove_stopwords</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+    <span class="c1"># Function to split a review into parsed sentences. Returns a </span>
+    <span class="c1"># list of sentences, where each sentence is a list of words</span>
+    <span class="c1">#</span>
+    <span class="c1"># 1. Use the NLTK tokenizer to split the paragraph into sentences</span>
+    <span class="n">raw_sentences</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">review</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="c1">#</span>
+    <span class="c1"># 2. Loop over each sentence</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">raw_sentence</span> <span class="ow">in</span> <span class="n">raw_sentences</span><span class="p">:</span>
+        <span class="c1"># If a sentence is empty, skip it</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_sentence</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Otherwise, call review_to_wordlist to get a list of words</span>
+            <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">review_to_wordlist</span><span class="p">(</span> <span class="n">raw_sentence</span><span class="p">,</span> \
+              <span class="n">remove_stopwords</span> <span class="p">))</span>
+    <span class="c1">#</span>
+    <span class="c1"># Return the list of sentences (each sentence is a list of words,</span>
+    <span class="c1"># so this returns a list of lists</span>
+    <span class="k">return</span> <span class="n">sentences</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Initialize an empty list of sentences</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Parsing sentences from training set&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]:</span>
+    <span class="n">sentences</span> <span class="o">+=</span> <span class="n">review_to_sentences</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    
+    
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Parsing sentences from unlabeled set&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">unlabeled_train</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">]:</span>
+    <span class="n">sentences</span> <span class="o">+=</span> <span class="n">review_to_sentences</span><span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">elapsed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parsing sentences from training set
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;.&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;...&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://www.happierabroad.com&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parsing sentences from unlabeled set
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://www.archive.org/details/LovefromaStranger&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://www.loosechangeguide.com/LooseChangeGuide.html&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;... ...&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;....&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://www.msnbc.msn.com/id/4972055/site/newsweek/&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;..&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://www.youtube.com/watch?v=a0KSqelmgN8&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:333: MarkupResemblesLocatorWarning: &quot;.. .&quot; looks like a filename, not markup. You should probably open this file and pass the filehandle into Beautiful Soup.
+  MarkupResemblesLocatorWarning
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\bs4\__init__.py:421: MarkupResemblesLocatorWarning: &quot;http://jake-weird.blogspot.com/2007/08/beneath.html&quot;&quot; looks like a URL. Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+  MarkupResemblesLocatorWarning
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>146.39674830436707
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>795538
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;with&#39;, &#39;all&#39;, &#39;this&#39;, &#39;stuff&#39;, &#39;going&#39;, &#39;down&#39;, &#39;at&#39;, &#39;the&#39;, &#39;moment&#39;, &#39;with&#39;, &#39;mj&#39;, &#39;i&#39;, &#39;ve&#39;, &#39;started&#39;, &#39;listening&#39;, &#39;to&#39;, &#39;his&#39;, &#39;music&#39;, &#39;watching&#39;, &#39;the&#39;, &#39;odd&#39;, &#39;documentary&#39;, &#39;here&#39;, &#39;and&#39;, &#39;there&#39;, &#39;watched&#39;, &#39;the&#39;, &#39;wiz&#39;, &#39;and&#39;, &#39;watched&#39;, &#39;moonwalker&#39;, &#39;again&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;maybe&#39;, &#39;i&#39;, &#39;just&#39;, &#39;want&#39;, &#39;to&#39;, &#39;get&#39;, &#39;a&#39;, &#39;certain&#39;, &#39;insight&#39;, &#39;into&#39;, &#39;this&#39;, &#39;guy&#39;, &#39;who&#39;, &#39;i&#39;, &#39;thought&#39;, &#39;was&#39;, &#39;really&#39;, &#39;cool&#39;, &#39;in&#39;, &#39;the&#39;, &#39;eighties&#39;, &#39;just&#39;, &#39;to&#39;, &#39;maybe&#39;, &#39;make&#39;, &#39;up&#39;, &#39;my&#39;, &#39;mind&#39;, &#39;whether&#39;, &#39;he&#39;, &#39;is&#39;, &#39;guilty&#39;, &#39;or&#39;, &#39;innocent&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set values for various parameters</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Word vector dimensionality                      </span>
+<span class="n">min_word_count</span> <span class="o">=</span> <span class="mi">40</span>   <span class="c1"># Minimum word count                        </span>
+<span class="n">num_workers</span> <span class="o">=</span> <span class="mi">4</span>       <span class="c1"># Number of threads to run in parallel</span>
+<span class="n">context</span> <span class="o">=</span> <span class="mi">10</span>          <span class="c1"># Context window size                                                                                    </span>
+<span class="n">downsampling</span> <span class="o">=</span> <span class="mf">1e-3</span>   <span class="c1"># Downsample setting for frequent words</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and train the model (this will take some time)</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">word2vec</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Training model...&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">word2vec</span><span class="o">.</span><span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_features</span><span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="n">min_word_count</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="n">context</span><span class="p">,</span> <span class="n">sample</span> <span class="o">=</span> <span class="n">downsampling</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:08:16,884 : INFO : collecting all words and their counts
+2021-03-03 11:08:16,888 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2021-03-03 11:08:16,932 : INFO : PROGRESS: at sentence #10000, processed 225803 words, keeping 17776 word types
+2021-03-03 11:08:16,978 : INFO : PROGRESS: at sentence #20000, processed 451892 words, keeping 24948 word types
+2021-03-03 11:08:17,019 : INFO : PROGRESS: at sentence #30000, processed 671315 words, keeping 30034 word types
+2021-03-03 11:08:17,060 : INFO : PROGRESS: at sentence #40000, processed 897815 words, keeping 34348 word types
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training model...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:08:17,103 : INFO : PROGRESS: at sentence #50000, processed 1116963 words, keeping 37761 word types
+2021-03-03 11:08:17,149 : INFO : PROGRESS: at sentence #60000, processed 1338404 words, keeping 40723 word types
+2021-03-03 11:08:17,192 : INFO : PROGRESS: at sentence #70000, processed 1561580 words, keeping 43333 word types
+2021-03-03 11:08:17,235 : INFO : PROGRESS: at sentence #80000, processed 1780887 words, keeping 45714 word types
+2021-03-03 11:08:17,276 : INFO : PROGRESS: at sentence #90000, processed 2004996 words, keeping 48135 word types
+2021-03-03 11:08:17,321 : INFO : PROGRESS: at sentence #100000, processed 2226966 words, keeping 50207 word types
+2021-03-03 11:08:17,363 : INFO : PROGRESS: at sentence #110000, processed 2446580 words, keeping 52081 word types
+2021-03-03 11:08:17,405 : INFO : PROGRESS: at sentence #120000, processed 2668775 words, keeping 54119 word types
+2021-03-03 11:08:17,446 : INFO : PROGRESS: at sentence #130000, processed 2894303 words, keeping 55847 word types
+2021-03-03 11:08:17,488 : INFO : PROGRESS: at sentence #140000, processed 3107005 words, keeping 57346 word types
+2021-03-03 11:08:17,532 : INFO : PROGRESS: at sentence #150000, processed 3332627 words, keeping 59055 word types
+2021-03-03 11:08:17,573 : INFO : PROGRESS: at sentence #160000, processed 3555315 words, keeping 60617 word types
+2021-03-03 11:08:17,613 : INFO : PROGRESS: at sentence #170000, processed 3778655 words, keeping 62077 word types
+2021-03-03 11:08:17,653 : INFO : PROGRESS: at sentence #180000, processed 3999236 words, keeping 63496 word types
+2021-03-03 11:08:17,705 : INFO : PROGRESS: at sentence #190000, processed 4224449 words, keeping 64794 word types
+2021-03-03 11:08:17,754 : INFO : PROGRESS: at sentence #200000, processed 4448603 words, keeping 66087 word types
+2021-03-03 11:08:17,798 : INFO : PROGRESS: at sentence #210000, processed 4669967 words, keeping 67390 word types
+2021-03-03 11:08:17,842 : INFO : PROGRESS: at sentence #220000, processed 4894968 words, keeping 68697 word types
+2021-03-03 11:08:17,881 : INFO : PROGRESS: at sentence #230000, processed 5117545 words, keeping 69958 word types
+2021-03-03 11:08:17,927 : INFO : PROGRESS: at sentence #240000, processed 5345050 words, keeping 71167 word types
+2021-03-03 11:08:17,967 : INFO : PROGRESS: at sentence #250000, processed 5559165 words, keeping 72351 word types
+2021-03-03 11:08:18,009 : INFO : PROGRESS: at sentence #260000, processed 5779146 words, keeping 73478 word types
+2021-03-03 11:08:18,048 : INFO : PROGRESS: at sentence #270000, processed 6000435 words, keeping 74767 word types
+2021-03-03 11:08:18,105 : INFO : PROGRESS: at sentence #280000, processed 6226314 words, keeping 76369 word types
+2021-03-03 11:08:18,156 : INFO : PROGRESS: at sentence #290000, processed 6449474 words, keeping 77839 word types
+2021-03-03 11:08:18,210 : INFO : PROGRESS: at sentence #300000, processed 6674077 words, keeping 79171 word types
+2021-03-03 11:08:18,254 : INFO : PROGRESS: at sentence #310000, processed 6899391 words, keeping 80480 word types
+2021-03-03 11:08:18,298 : INFO : PROGRESS: at sentence #320000, processed 7124278 words, keeping 81808 word types
+2021-03-03 11:08:18,343 : INFO : PROGRESS: at sentence #330000, processed 7346021 words, keeping 83030 word types
+2021-03-03 11:08:18,386 : INFO : PROGRESS: at sentence #340000, processed 7575533 words, keeping 84280 word types
+2021-03-03 11:08:18,429 : INFO : PROGRESS: at sentence #350000, processed 7798803 words, keeping 85425 word types
+2021-03-03 11:08:18,471 : INFO : PROGRESS: at sentence #360000, processed 8019427 words, keeping 86596 word types
+2021-03-03 11:08:18,522 : INFO : PROGRESS: at sentence #370000, processed 8246619 words, keeping 87708 word types
+2021-03-03 11:08:18,565 : INFO : PROGRESS: at sentence #380000, processed 8471766 words, keeping 88878 word types
+2021-03-03 11:08:18,609 : INFO : PROGRESS: at sentence #390000, processed 8701497 words, keeping 89907 word types
+2021-03-03 11:08:18,657 : INFO : PROGRESS: at sentence #400000, processed 8924446 words, keeping 90916 word types
+2021-03-03 11:08:18,707 : INFO : PROGRESS: at sentence #410000, processed 9145796 words, keeping 91880 word types
+2021-03-03 11:08:18,760 : INFO : PROGRESS: at sentence #420000, processed 9366876 words, keeping 92912 word types
+2021-03-03 11:08:18,815 : INFO : PROGRESS: at sentence #430000, processed 9594413 words, keeping 93932 word types
+2021-03-03 11:08:18,864 : INFO : PROGRESS: at sentence #440000, processed 9821166 words, keeping 94906 word types
+2021-03-03 11:08:18,910 : INFO : PROGRESS: at sentence #450000, processed 10044928 words, keeping 96036 word types
+2021-03-03 11:08:18,953 : INFO : PROGRESS: at sentence #460000, processed 10277688 words, keeping 97088 word types
+2021-03-03 11:08:18,997 : INFO : PROGRESS: at sentence #470000, processed 10505613 words, keeping 97933 word types
+2021-03-03 11:08:19,041 : INFO : PROGRESS: at sentence #480000, processed 10725997 words, keeping 98862 word types
+2021-03-03 11:08:19,086 : INFO : PROGRESS: at sentence #490000, processed 10952741 words, keeping 99871 word types
+2021-03-03 11:08:19,127 : INFO : PROGRESS: at sentence #500000, processed 11174397 words, keeping 100765 word types
+2021-03-03 11:08:19,170 : INFO : PROGRESS: at sentence #510000, processed 11399672 words, keeping 101699 word types
+2021-03-03 11:08:19,216 : INFO : PROGRESS: at sentence #520000, processed 11623020 words, keeping 102598 word types
+2021-03-03 11:08:19,258 : INFO : PROGRESS: at sentence #530000, processed 11847418 words, keeping 103400 word types
+2021-03-03 11:08:19,307 : INFO : PROGRESS: at sentence #540000, processed 12072033 words, keeping 104265 word types
+2021-03-03 11:08:19,357 : INFO : PROGRESS: at sentence #550000, processed 12297571 words, keeping 105133 word types
+2021-03-03 11:08:19,408 : INFO : PROGRESS: at sentence #560000, processed 12518861 words, keeping 105997 word types
+2021-03-03 11:08:19,458 : INFO : PROGRESS: at sentence #570000, processed 12747916 words, keeping 106787 word types
+2021-03-03 11:08:19,503 : INFO : PROGRESS: at sentence #580000, processed 12969412 words, keeping 107665 word types
+2021-03-03 11:08:19,547 : INFO : PROGRESS: at sentence #590000, processed 13194937 words, keeping 108501 word types
+2021-03-03 11:08:19,590 : INFO : PROGRESS: at sentence #600000, processed 13417135 words, keeping 109218 word types
+2021-03-03 11:08:19,630 : INFO : PROGRESS: at sentence #610000, processed 13638158 words, keeping 110092 word types
+2021-03-03 11:08:19,674 : INFO : PROGRESS: at sentence #620000, processed 13864483 words, keeping 110837 word types
+2021-03-03 11:08:19,720 : INFO : PROGRESS: at sentence #630000, processed 14088769 words, keeping 111610 word types
+2021-03-03 11:08:19,765 : INFO : PROGRESS: at sentence #640000, processed 14309552 words, keeping 112416 word types
+2021-03-03 11:08:19,805 : INFO : PROGRESS: at sentence #650000, processed 14535308 words, keeping 113196 word types
+2021-03-03 11:08:19,849 : INFO : PROGRESS: at sentence #660000, processed 14758098 words, keeping 113945 word types
+2021-03-03 11:08:19,896 : INFO : PROGRESS: at sentence #670000, processed 14981482 words, keeping 114643 word types
+2021-03-03 11:08:19,947 : INFO : PROGRESS: at sentence #680000, processed 15206314 words, keeping 115354 word types
+2021-03-03 11:08:19,995 : INFO : PROGRESS: at sentence #690000, processed 15428507 words, keeping 116131 word types
+2021-03-03 11:08:20,074 : INFO : PROGRESS: at sentence #700000, processed 15657213 words, keeping 116943 word types
+2021-03-03 11:08:20,145 : INFO : PROGRESS: at sentence #710000, processed 15880202 words, keeping 117596 word types
+2021-03-03 11:08:20,189 : INFO : PROGRESS: at sentence #720000, processed 16105489 words, keeping 118221 word types
+2021-03-03 11:08:20,233 : INFO : PROGRESS: at sentence #730000, processed 16331870 words, keeping 118954 word types
+2021-03-03 11:08:20,284 : INFO : PROGRESS: at sentence #740000, processed 16552903 words, keeping 119668 word types
+2021-03-03 11:08:20,336 : INFO : PROGRESS: at sentence #750000, processed 16771230 words, keeping 120295 word types
+2021-03-03 11:08:20,384 : INFO : PROGRESS: at sentence #760000, processed 16990622 words, keeping 120930 word types
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:08:20,433 : INFO : PROGRESS: at sentence #770000, processed 17217759 words, keeping 121703 word types
+2021-03-03 11:08:20,480 : INFO : PROGRESS: at sentence #780000, processed 17447905 words, keeping 122402 word types
+2021-03-03 11:08:20,524 : INFO : PROGRESS: at sentence #790000, processed 17674981 words, keeping 123066 word types
+2021-03-03 11:08:20,548 : INFO : collected 123504 word types from a corpus of 17798082 raw words and 795538 sentences
+2021-03-03 11:08:20,549 : INFO : Loading a fresh vocabulary
+2021-03-03 11:08:20,615 : INFO : effective_min_count=40 retains 16490 unique words (13% of original 123504, drops 107014)
+2021-03-03 11:08:20,616 : INFO : effective_min_count=40 leaves 17238940 word corpus (96% of original 17798082, drops 559142)
+2021-03-03 11:08:20,673 : INFO : deleting the raw counts dictionary of 123504 items
+2021-03-03 11:08:20,676 : INFO : sample=0.001 downsamples 48 most-common words
+2021-03-03 11:08:20,677 : INFO : downsampling leaves estimated 12749658 word corpus (74.0% of prior 17238940)
+2021-03-03 11:08:20,726 : INFO : estimated required memory for 16490 words and 300 dimensions: 47821000 bytes
+2021-03-03 11:08:20,726 : INFO : resetting layer weights
+2021-03-03 11:08:23,938 : INFO : training model with 4 workers on 16490 vocabulary and 300 features, using sg=0 hs=0 sample=0.001 negative=5 window=10
+2021-03-03 11:08:24,947 : INFO : EPOCH 1 - PROGRESS: at 7.66% examples, 971782 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:25,950 : INFO : EPOCH 1 - PROGRESS: at 14.11% examples, 892287 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:26,952 : INFO : EPOCH 1 - PROGRESS: at 19.44% examples, 818776 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:27,958 : INFO : EPOCH 1 - PROGRESS: at 27.09% examples, 855670 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:28,965 : INFO : EPOCH 1 - PROGRESS: at 35.73% examples, 901492 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:29,969 : INFO : EPOCH 1 - PROGRESS: at 44.27% examples, 932835 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:30,971 : INFO : EPOCH 1 - PROGRESS: at 52.67% examples, 952551 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:31,980 : INFO : EPOCH 1 - PROGRESS: at 61.18% examples, 969765 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:32,987 : INFO : EPOCH 1 - PROGRESS: at 69.70% examples, 981919 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:33,993 : INFO : EPOCH 1 - PROGRESS: at 78.26% examples, 992647 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:35,000 : INFO : EPOCH 1 - PROGRESS: at 86.25% examples, 994072 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:36,005 : INFO : EPOCH 1 - PROGRESS: at 93.06% examples, 983590 words/s, in_qsize 8, out_qsize 1
+2021-03-03 11:08:37,013 : INFO : EPOCH 1 - PROGRESS: at 99.44% examples, 970138 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:37,062 : INFO : worker thread finished; awaiting finish of 3 more threads
+2021-03-03 11:08:37,065 : INFO : worker thread finished; awaiting finish of 2 more threads
+2021-03-03 11:08:37,072 : INFO : worker thread finished; awaiting finish of 1 more threads
+2021-03-03 11:08:37,085 : INFO : worker thread finished; awaiting finish of 0 more threads
+2021-03-03 11:08:37,086 : INFO : EPOCH - 1 : training on 17798082 raw words (12747651 effective words) took 13.1s, 970157 effective words/s
+2021-03-03 11:08:38,095 : INFO : EPOCH 2 - PROGRESS: at 8.44% examples, 1070913 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:39,097 : INFO : EPOCH 2 - PROGRESS: at 17.12% examples, 1081515 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:40,100 : INFO : EPOCH 2 - PROGRESS: at 25.75% examples, 1084480 words/s, in_qsize 7, out_qsize 1
+2021-03-03 11:08:41,108 : INFO : EPOCH 2 - PROGRESS: at 34.33% examples, 1082721 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:42,118 : INFO : EPOCH 2 - PROGRESS: at 42.92% examples, 1084256 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:43,123 : INFO : EPOCH 2 - PROGRESS: at 49.77% examples, 1049377 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:44,129 : INFO : EPOCH 2 - PROGRESS: at 56.71% examples, 1025359 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:45,138 : INFO : EPOCH 2 - PROGRESS: at 62.25% examples, 985635 words/s, in_qsize 6, out_qsize 1
+2021-03-03 11:08:46,139 : INFO : EPOCH 2 - PROGRESS: at 68.61% examples, 965828 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:47,148 : INFO : EPOCH 2 - PROGRESS: at 75.59% examples, 957977 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:48,149 : INFO : EPOCH 2 - PROGRESS: at 83.28% examples, 959779 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:49,153 : INFO : EPOCH 2 - PROGRESS: at 91.20% examples, 964019 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:50,156 : INFO : EPOCH 2 - PROGRESS: at 98.11% examples, 957358 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:50,419 : INFO : worker thread finished; awaiting finish of 3 more threads
+2021-03-03 11:08:50,427 : INFO : worker thread finished; awaiting finish of 2 more threads
+2021-03-03 11:08:50,443 : INFO : worker thread finished; awaiting finish of 1 more threads
+2021-03-03 11:08:50,447 : INFO : worker thread finished; awaiting finish of 0 more threads
+2021-03-03 11:08:50,448 : INFO : EPOCH - 2 : training on 17798082 raw words (12749823 effective words) took 13.4s, 954690 effective words/s
+2021-03-03 11:08:51,485 : INFO : EPOCH 3 - PROGRESS: at 5.81% examples, 725649 words/s, in_qsize 7, out_qsize 2
+2021-03-03 11:08:52,495 : INFO : EPOCH 3 - PROGRESS: at 11.32% examples, 706416 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:53,499 : INFO : EPOCH 3 - PROGRESS: at 17.75% examples, 739239 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:54,512 : INFO : EPOCH 3 - PROGRESS: at 25.16% examples, 787185 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:55,543 : INFO : EPOCH 3 - PROGRESS: at 32.19% examples, 801630 words/s, in_qsize 7, out_qsize 2
+2021-03-03 11:08:56,551 : INFO : EPOCH 3 - PROGRESS: at 38.57% examples, 802761 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:08:57,560 : INFO : EPOCH 3 - PROGRESS: at 45.40% examples, 811581 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:58,564 : INFO : EPOCH 3 - PROGRESS: at 51.81% examples, 812432 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:08:59,570 : INFO : EPOCH 3 - PROGRESS: at 58.40% examples, 816028 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:00,571 : INFO : EPOCH 3 - PROGRESS: at 66.85% examples, 842132 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:01,574 : INFO : EPOCH 3 - PROGRESS: at 74.18% examples, 850456 words/s, in_qsize 6, out_qsize 1
+2021-03-03 11:09:02,576 : INFO : EPOCH 3 - PROGRESS: at 79.29% examples, 833760 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:03,578 : INFO : EPOCH 3 - PROGRESS: at 86.86% examples, 843712 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:04,578 : INFO : EPOCH 3 - PROGRESS: at 95.24% examples, 859404 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:05,452 : INFO : worker thread finished; awaiting finish of 3 more threads
+2021-03-03 11:09:05,475 : INFO : worker thread finished; awaiting finish of 2 more threads
+2021-03-03 11:09:05,479 : INFO : worker thread finished; awaiting finish of 1 more threads
+2021-03-03 11:09:05,486 : INFO : worker thread finished; awaiting finish of 0 more threads
+2021-03-03 11:09:05,488 : INFO : EPOCH - 3 : training on 17798082 raw words (12747328 effective words) took 15.0s, 848261 effective words/s
+2021-03-03 11:09:06,514 : INFO : EPOCH 4 - PROGRESS: at 4.59% examples, 585359 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:07,520 : INFO : EPOCH 4 - PROGRESS: at 12.68% examples, 801213 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:08,523 : INFO : EPOCH 4 - PROGRESS: at 21.35% examples, 898070 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:09,523 : INFO : EPOCH 4 - PROGRESS: at 29.93% examples, 946615 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:10,524 : INFO : EPOCH 4 - PROGRESS: at 38.51% examples, 974189 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:11,532 : INFO : EPOCH 4 - PROGRESS: at 46.83% examples, 988195 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:12,536 : INFO : EPOCH 4 - PROGRESS: at 55.22% examples, 999518 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:13,538 : INFO : EPOCH 4 - PROGRESS: at 63.78% examples, 1011912 words/s, in_qsize 7, out_qsize 0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:09:14,540 : INFO : EPOCH 4 - PROGRESS: at 72.20% examples, 1019326 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:15,544 : INFO : EPOCH 4 - PROGRESS: at 80.70% examples, 1024962 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:16,547 : INFO : EPOCH 4 - PROGRESS: at 89.26% examples, 1030927 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:17,549 : INFO : EPOCH 4 - PROGRESS: at 97.84% examples, 1036115 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:17,779 : INFO : worker thread finished; awaiting finish of 3 more threads
+2021-03-03 11:09:17,783 : INFO : worker thread finished; awaiting finish of 2 more threads
+2021-03-03 11:09:17,795 : INFO : worker thread finished; awaiting finish of 1 more threads
+2021-03-03 11:09:17,797 : INFO : worker thread finished; awaiting finish of 0 more threads
+2021-03-03 11:09:17,798 : INFO : EPOCH - 4 : training on 17798082 raw words (12749846 effective words) took 12.3s, 1037778 effective words/s
+2021-03-03 11:09:18,808 : INFO : EPOCH 5 - PROGRESS: at 8.39% examples, 1061966 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:19,815 : INFO : EPOCH 5 - PROGRESS: at 17.07% examples, 1075020 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:20,816 : INFO : EPOCH 5 - PROGRESS: at 25.69% examples, 1081198 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:21,817 : INFO : EPOCH 5 - PROGRESS: at 34.33% examples, 1083693 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:22,818 : INFO : EPOCH 5 - PROGRESS: at 42.86% examples, 1085631 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:23,825 : INFO : EPOCH 5 - PROGRESS: at 51.36% examples, 1084560 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:24,831 : INFO : EPOCH 5 - PROGRESS: at 59.95% examples, 1086891 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:25,842 : INFO : EPOCH 5 - PROGRESS: at 68.50% examples, 1085386 words/s, in_qsize 8, out_qsize 0
+2021-03-03 11:09:26,847 : INFO : EPOCH 5 - PROGRESS: at 77.10% examples, 1086682 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:27,847 : INFO : EPOCH 5 - PROGRESS: at 85.68% examples, 1087454 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:28,849 : INFO : EPOCH 5 - PROGRESS: at 94.21% examples, 1087149 words/s, in_qsize 7, out_qsize 0
+2021-03-03 11:09:29,503 : INFO : worker thread finished; awaiting finish of 3 more threads
+2021-03-03 11:09:29,510 : INFO : worker thread finished; awaiting finish of 2 more threads
+2021-03-03 11:09:29,513 : INFO : worker thread finished; awaiting finish of 1 more threads
+2021-03-03 11:09:29,516 : INFO : worker thread finished; awaiting finish of 0 more threads
+2021-03-03 11:09:29,517 : INFO : EPOCH - 5 : training on 17798082 raw words (12749995 effective words) took 11.7s, 1088695 effective words/s
+2021-03-03 11:09:29,518 : INFO : training on a 88990410 raw words (63744643 effective words) took 65.6s, 972018 effective words/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vectors</span><span class="o">.</span><span class="n">shape</span>
+<span class="c1"># If you don&#39;t plan to train the model any further, calling </span>
+<span class="c1"># init_sims will make the model much more memory-efficient.</span>
+
+
+
+<span class="n">model</span><span class="o">.</span><span class="n">init_sims</span><span class="p">(</span><span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># model.wv.vectors.shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:09:29,523 : INFO : precomputing L2-norms of word weight vectors
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It can be helpful to create a meaningful model name and </span>
+<span class="c1"># save the model for later use. You can load it later using Word2Vec.load()</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;300features_40minwords_10context&quot;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-03-03 11:09:29,550 : INFO : saving Word2Vec object under 300features_40minwords_10context, separately None
+2021-03-03 11:09:29,551 : INFO : not storing attribute vectors_norm
+2021-03-03 11:09:29,553 : INFO : not storing attribute cum_table
+2021-03-03 11:09:29,996 : INFO : saved 300features_40minwords_10context
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s2">&quot;man woman child kitchen&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `doesnt_match` (Method will be removed in 4.0.0, use self.wv.doesnt_match() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\gensim\models\keyedvectors.py:877: FutureWarning: arrays to stack must be passed as a &quot;sequence&quot; type such as list or tuple. Support for non-sequence iterables such as generators is deprecated as of NumPy 1.16 and will raise an error in the future.
+  vectors = vstack(self.word_vec(word, use_norm=True) for word in used_words).astype(REAL)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;kitchen&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s2">&quot;france england germany berlin&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `doesnt_match` (Method will be removed in 4.0.0, use self.wv.doesnt_match() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;berlin&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s2">&quot;paris berlin london austria&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `doesnt_match` (Method will be removed in 4.0.0, use self.wv.doesnt_match() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;paris&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s2">&quot;student class football&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `doesnt_match` (Method will be removed in 4.0.0, use self.wv.doesnt_match() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;football&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;man&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `most_similar` (Method will be removed in 4.0.0, use self.wv.most_similar() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;woman&#39;, 0.6316787600517273),
+ (&#39;lady&#39;, 0.608655571937561),
+ (&#39;lad&#39;, 0.5949080586433411),
+ (&#39;monk&#39;, 0.5401543378829956),
+ (&#39;men&#39;, 0.522362470626831),
+ (&#39;soldier&#39;, 0.5187960267066956),
+ (&#39;guy&#39;, 0.5120124816894531),
+ (&#39;businessman&#39;, 0.5078914165496826),
+ (&#39;widower&#39;, 0.5051696300506592),
+ (&#39;person&#39;, 0.5014494061470032)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;queen&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `most_similar` (Method will be removed in 4.0.0, use self.wv.most_similar() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;princess&#39;, 0.6423197388648987),
+ (&#39;victoria&#39;, 0.5989068746566772),
+ (&#39;belle&#39;, 0.5979125499725342),
+ (&#39;mistress&#39;, 0.5961900949478149),
+ (&#39;fatale&#39;, 0.5859649777412415),
+ (&#39;goddess&#39;, 0.5856938362121582),
+ (&#39;eva&#39;, 0.5772184133529663),
+ (&#39;dietrich&#39;, 0.5742065906524658),
+ (&#39;showgirl&#39;, 0.5738022923469543),
+ (&#39;brunette&#39;, 0.5721030235290527)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;terrible&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `most_similar` (Method will be removed in 4.0.0, use self.wv.most_similar() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;horrible&#39;, 0.8949517011642456),
+ (&#39;atrocious&#39;, 0.7961905002593994),
+ (&#39;horrid&#39;, 0.7942651510238647),
+ (&#39;awful&#39;, 0.7811115980148315),
+ (&#39;dreadful&#39;, 0.771559476852417),
+ (&#39;horrendous&#39;, 0.767728865146637),
+ (&#39;lousy&#39;, 0.7277492880821228),
+ (&#39;abysmal&#39;, 0.7001221776008606),
+ (&#39;appalling&#39;, 0.6833157539367676),
+ (&#39;bad&#39;, 0.6715594530105591)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\NLP\corrections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

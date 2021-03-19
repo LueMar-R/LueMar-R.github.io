@@ -1,0 +1,1558 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consommer une WEB API avec Python &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/pages/WEBAPI_pour_PYTHON-Ludivine.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/WEBAPI_pour_PYTHON-Ludivine.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requeter-la-web-api">
+   Requêter la WEB API
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="consommer-une-web-api-avec-python">
+<h1>Consommer une WEB API avec Python<a class="headerlink" href="#consommer-une-web-api-avec-python" title="Permalink to this headline">¶</a></h1>
+<p>Dans ce TP, vous allez utiliser Python pour afficher un graphique sur des températures. Les données à exploiter sont obtenues à partir d’une WEB API.</p>
+<div class="section" id="requeter-la-web-api">
+<h2>Requêter la WEB API<a class="headerlink" href="#requeter-la-web-api" title="Permalink to this headline">¶</a></h2>
+<p>Voici le code pour requêter la WEB API d’ <a class="reference external" href="https://openweathermap.org/">OpenWeather</a>. La bibliothèque <code class="docutils literal notranslate"><span class="pre">Request</span></code>permet de générer une requête HTTP et d’en récupérer la réponse. La bibliothèque <code class="docutils literal notranslate"><span class="pre">json</span></code>de traiter ce type de fichier, qui est donné dans la réponse de la WEB API.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+
+<span class="n">owm_url</span> <span class="o">=</span> <span class="s2">&quot;https://samples.openweathermap.org/data/2.5/forecast?lat=0&amp;lon=0&amp;appid=xxx&quot;</span>
+<span class="n">reponse</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">owm_url</span><span class="p">)</span>
+<span class="n">contenu</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">reponse</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">contenu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;city&#39;: {&#39;coord&#39;: {&#39;lat&#39;: 35.0164, &#39;lon&#39;: 139.0077},
+          &#39;country&#39;: &#39;none&#39;,
+          &#39;id&#39;: 1907296,
+          &#39;name&#39;: &#39;Tawarano&#39;},
+ &#39;cnt&#39;: 40,
+ &#39;cod&#39;: &#39;200&#39;,
+ &#39;list&#39;: [{&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485799200,
+           &#39;dt_txt&#39;: &#39;2017-01-30 18:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1017.24,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1017.24,
+                    &#39;sea_level&#39;: 1026.83,
+                    &#39;temp&#39;: 283.76,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.761,
+                    &#39;temp_min&#39;: 283.76},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 15.0048, &#39;speed&#39;: 7.27}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485810000,
+           &#39;dt_txt&#39;: &#39;2017-01-30 21:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1020.06,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1020.06,
+                    &#39;sea_level&#39;: 1029.63,
+                    &#39;temp&#39;: 282.56,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.563,
+                    &#39;temp_min&#39;: 282.56},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 31.5035, &#39;speed&#39;: 6.21}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485820800,
+           &#39;dt_txt&#39;: &#39;2017-01-31 00:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1022.71,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1022.71,
+                    &#39;sea_level&#39;: 1032.27,
+                    &#39;temp&#39;: 282.3,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.3,
+                    &#39;temp_min&#39;: 282.296},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 51.0002, &#39;speed&#39;: 6.71}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485831600,
+           &#39;dt_txt&#39;: &#39;2017-01-31 03:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1023.68,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1023.68,
+                    &#39;sea_level&#39;: 1033.16,
+                    &#39;temp&#39;: 282.27,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.27,
+                    &#39;temp_min&#39;: 282.265},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 65.5, &#39;speed&#39;: 5.46}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485842400,
+           &#39;dt_txt&#39;: &#39;2017-01-31 06:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1023.75,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1023.75,
+                    &#39;sea_level&#39;: 1033.22,
+                    &#39;temp&#39;: 282.656,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.656,
+                    &#39;temp_min&#39;: 282.656},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 84.0055, &#39;speed&#39;: 4.11}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485853200,
+           &#39;dt_txt&#39;: &#39;2017-01-31 09:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1024.91,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1024.91,
+                    &#39;sea_level&#39;: 1034.46,
+                    &#39;temp&#39;: 282.783,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.783,
+                    &#39;temp_min&#39;: 282.783},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 89.0062, &#39;speed&#39;: 3.6}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 68},
+           &#39;dt&#39;: 1485864000,
+           &#39;dt_txt&#39;: &#39;2017-01-31 12:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1025.21,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1025.21,
+                    &#39;sea_level&#39;: 1034.83,
+                    &#39;temp&#39;: 283.335,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.335,
+                    &#39;temp_min&#39;: 283.335},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;broken clouds&#39;,
+                        &#39;icon&#39;: &#39;04n&#39;,
+                        &#39;id&#39;: 803,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 115, &#39;speed&#39;: 3.37}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 36},
+           &#39;dt&#39;: 1485874800,
+           &#39;dt_txt&#39;: &#39;2017-01-31 15:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1023.65,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1023.65,
+                    &#39;sea_level&#39;: 1033.43,
+                    &#39;temp&#39;: 284.657,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.657,
+                    &#39;temp_min&#39;: 284.657},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;scattered clouds&#39;,
+                        &#39;icon&#39;: &#39;03n&#39;,
+                        &#39;id&#39;: 802,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 177.501, &#39;speed&#39;: 3.32}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 8},
+           &#39;dt&#39;: 1485885600,
+           &#39;dt_txt&#39;: &#39;2017-01-31 18:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1022.05,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1022.05,
+                    &#39;sea_level&#39;: 1031.79,
+                    &#39;temp&#39;: 284.095,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.095,
+                    &#39;temp_min&#39;: 284.095},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;02n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 254.003, &#39;speed&#39;: 4.26}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485896400,
+           &#39;dt_txt&#39;: &#39;2017-01-31 21:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1021.33,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1021.33,
+                    &#39;sea_level&#39;: 1031.06,
+                    &#39;temp&#39;: 283.211,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.211,
+                    &#39;temp_min&#39;: 283.211},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 271.5, &#39;speed&#39;: 4.32}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 20},
+           &#39;dt&#39;: 1485907200,
+           &#39;dt_txt&#39;: &#39;2017-02-01 00:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1020.57,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1020.57,
+                    &#39;sea_level&#39;: 1030.28,
+                    &#39;temp&#39;: 284.179,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.179,
+                    &#39;temp_min&#39;: 284.179},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;few clouds&#39;,
+                        &#39;icon&#39;: &#39;02d&#39;,
+                        &#39;id&#39;: 801,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 256.504, &#39;speed&#39;: 10.16}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 8},
+           &#39;dt&#39;: 1485918000,
+           &#39;dt_txt&#39;: &#39;2017-02-01 03:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1017.39,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1017.39,
+                    &#39;sea_level&#39;: 1027.23,
+                    &#39;temp&#39;: 284.829,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.829,
+                    &#39;temp_min&#39;: 284.829},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;02d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 259.502, &#39;speed&#39;: 13.76}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 12},
+           &#39;dt&#39;: 1485928800,
+           &#39;dt_txt&#39;: &#39;2017-02-01 06:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1014.64,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1014.64,
+                    &#39;sea_level&#39;: 1024.23,
+                    &#39;temp&#39;: 285.702,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.702,
+                    &#39;temp_min&#39;: 285.702},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;few clouds&#39;,
+                        &#39;icon&#39;: &#39;02d&#39;,
+                        &#39;id&#39;: 801,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 264.001, &#39;speed&#39;: 12.75}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485939600,
+           &#39;dt_txt&#39;: &#39;2017-02-01 09:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1014.1,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1014.1,
+                    &#39;sea_level&#39;: 1023.71,
+                    &#39;temp&#39;: 285.494,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.494,
+                    &#39;temp_min&#39;: 285.494},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 271.5, &#39;speed&#39;: 12.33}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485950400,
+           &#39;dt_txt&#39;: &#39;2017-02-01 12:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1014.54,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1014.54,
+                    &#39;sea_level&#39;: 1024.27,
+                    &#39;temp&#39;: 285.16,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.16,
+                    &#39;temp_min&#39;: 285.16},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 278.504, &#39;speed&#39;: 12.21}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485961200,
+           &#39;dt_txt&#39;: &#39;2017-02-01 15:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1016.13,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1016.13,
+                    &#39;sea_level&#39;: 1025.81,
+                    &#39;temp&#39;: 284.161,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.161,
+                    &#39;temp_min&#39;: 284.161},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 281, &#39;speed&#39;: 12.21}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485972000,
+           &#39;dt_txt&#39;: &#39;2017-02-01 18:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1017.33,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1017.33,
+                    &#39;sea_level&#39;: 1027,
+                    &#39;temp&#39;: 282.63,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 282.63,
+                    &#39;temp_min&#39;: 282.63},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 297.001, &#39;speed&#39;: 9.3}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485982800,
+           &#39;dt_txt&#39;: &#39;2017-02-01 21:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.51,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.51,
+                    &#39;sea_level&#39;: 1028.24,
+                    &#39;temp&#39;: 281.856,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 281.856,
+                    &#39;temp_min&#39;: 281.856},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 288, &#39;speed&#39;: 8.91}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1485993600,
+           &#39;dt_txt&#39;: &#39;2017-02-02 00:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.22,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.22,
+                    &#39;sea_level&#39;: 1028.89,
+                    &#39;temp&#39;: 281.978,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 281.978,
+                    &#39;temp_min&#39;: 281.978},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 286.504, &#39;speed&#39;: 9.15}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486004400,
+           &#39;dt_txt&#39;: &#39;2017-02-02 03:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1017.36,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1017.36,
+                    &#39;sea_level&#39;: 1026.99,
+                    &#39;temp&#39;: 283.706,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.706,
+                    &#39;temp_min&#39;: 283.706},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 288.003, &#39;speed&#39;: 8.95}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486015200,
+           &#39;dt_txt&#39;: &#39;2017-02-02 06:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1016.41,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1016.41,
+                    &#39;sea_level&#39;: 1026.05,
+                    &#39;temp&#39;: 285.125,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.125,
+                    &#39;temp_min&#39;: 285.125},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 294.002, &#39;speed&#39;: 7.56}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486026000,
+           &#39;dt_txt&#39;: &#39;2017-02-02 09:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.18,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.18,
+                    &#39;sea_level&#39;: 1027.75,
+                    &#39;temp&#39;: 284.755,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.755,
+                    &#39;temp_min&#39;: 284.755},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 290.504, &#39;speed&#39;: 8.31}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486036800,
+           &#39;dt_txt&#39;: &#39;2017-02-02 12:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.04,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.04,
+                    &#39;sea_level&#39;: 1028.51,
+                    &#39;temp&#39;: 283.765,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.765,
+                    &#39;temp_min&#39;: 283.765},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 283.001, &#39;speed&#39;: 8.87}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486047600,
+           &#39;dt_txt&#39;: &#39;2017-02-02 15:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.6,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.6,
+                    &#39;sea_level&#39;: 1028.26,
+                    &#39;temp&#39;: 283.809,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.809,
+                    &#39;temp_min&#39;: 283.809},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 281.001, &#39;speed&#39;: 8.73}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486058400,
+           &#39;dt_txt&#39;: &#39;2017-02-02 18:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.68,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.68,
+                    &#39;sea_level&#39;: 1028.33,
+                    &#39;temp&#39;: 283.788,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.788,
+                    &#39;temp_min&#39;: 283.788},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 281.503, &#39;speed&#39;: 7.8}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486069200,
+           &#39;dt_txt&#39;: &#39;2017-02-02 21:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.28,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.28,
+                    &#39;sea_level&#39;: 1028.92,
+                    &#39;temp&#39;: 283.569,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.569,
+                    &#39;temp_min&#39;: 283.569},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 284.002, &#39;speed&#39;: 5.92}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486080000,
+           &#39;dt_txt&#39;: &#39;2017-02-03 00:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1020.75,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1020.75,
+                    &#39;sea_level&#39;: 1030.35,
+                    &#39;temp&#39;: 284.11,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 284.11,
+                    &#39;temp_min&#39;: 284.11},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 284.506, &#39;speed&#39;: 1.83}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486090800,
+           &#39;dt_txt&#39;: &#39;2017-02-03 03:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1020.08,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1020.08,
+                    &#39;sea_level&#39;: 1029.7,
+                    &#39;temp&#39;: 285.034,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.034,
+                    &#39;temp_min&#39;: 285.034},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 172.002, &#39;speed&#39;: 1.01}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486101600,
+           &#39;dt_txt&#39;: &#39;2017-02-03 06:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.77,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.77,
+                    &#39;sea_level&#39;: 1028.39,
+                    &#39;temp&#39;: 286.158,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 286.158,
+                    &#39;temp_min&#39;: 286.158},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 181.009, &#39;speed&#39;: 0.71}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486112400,
+           &#39;dt_txt&#39;: &#39;2017-02-03 09:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.17,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.17,
+                    &#39;sea_level&#39;: 1028.73,
+                    &#39;temp&#39;: 286.138,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 286.138,
+                    &#39;temp_min&#39;: 286.138},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 85.0026, &#39;speed&#39;: 1.51}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486123200,
+           &#39;dt_txt&#39;: &#39;2017-02-03 12:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.74,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.74,
+                    &#39;sea_level&#39;: 1029.36,
+                    &#39;temp&#39;: 285.952,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.952,
+                    &#39;temp_min&#39;: 285.952},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 76.5032, &#39;speed&#39;: 3.68}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486134000,
+           &#39;dt_txt&#39;: &#39;2017-02-03 15:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.23,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.23,
+                    &#39;sea_level&#39;: 1029.02,
+                    &#39;temp&#39;: 285.828,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.828,
+                    &#39;temp_min&#39;: 285.828},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 98.0014, &#39;speed&#39;: 3.36}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486144800,
+           &#39;dt_txt&#39;: &#39;2017-02-03 18:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.15,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.15,
+                    &#39;sea_level&#39;: 1027.96,
+                    &#39;temp&#39;: 285.168,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.168,
+                    &#39;temp_min&#39;: 285.168},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 333.002, &#39;speed&#39;: 1.66}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486155600,
+           &#39;dt_txt&#39;: &#39;2017-02-03 21:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.65,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.65,
+                    &#39;sea_level&#39;: 1028.36,
+                    &#39;temp&#39;: 283.818,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.818,
+                    &#39;temp_min&#39;: 283.818},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01n&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 359.001, &#39;speed&#39;: 3.77}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486166400,
+           &#39;dt_txt&#39;: &#39;2017-02-04 00:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1019.84,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1019.84,
+                    &#39;sea_level&#39;: 1029.41,
+                    &#39;temp&#39;: 283.157,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.157,
+                    &#39;temp_min&#39;: 283.157},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 18.5013, &#39;speed&#39;: 2.91}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486177200,
+           &#39;dt_txt&#39;: &#39;2017-02-04 03:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1018.56,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1018.56,
+                    &#39;sea_level&#39;: 1028.13,
+                    &#39;temp&#39;: 283.494,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 283.494,
+                    &#39;temp_min&#39;: 283.494},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 280.501, &#39;speed&#39;: 0.22}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 0},
+           &#39;dt&#39;: 1486188000,
+           &#39;dt_txt&#39;: &#39;2017-02-04 06:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1016.77,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1016.77,
+                    &#39;sea_level&#39;: 1026.41,
+                    &#39;temp&#39;: 285.263,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.263,
+                    &#39;temp_min&#39;: 285.263},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;d&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;clear sky&#39;,
+                        &#39;icon&#39;: &#39;01d&#39;,
+                        &#39;id&#39;: 800,
+                        &#39;main&#39;: &#39;Clear&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 273.501, &#39;speed&#39;: 1.88}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 12},
+           &#39;dt&#39;: 1486198800,
+           &#39;dt_txt&#39;: &#39;2017-02-04 09:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1017.03,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1017.03,
+                    &#39;sea_level&#39;: 1026.52,
+                    &#39;temp&#39;: 285.927,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.927,
+                    &#39;temp_min&#39;: 285.927},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;few clouds&#39;,
+                        &#39;icon&#39;: &#39;02n&#39;,
+                        &#39;id&#39;: 801,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 269.505, &#39;speed&#39;: 3.02}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 44},
+           &#39;dt&#39;: 1486209600,
+           &#39;dt_txt&#39;: &#39;2017-02-04 12:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1016.93,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1016.93,
+                    &#39;sea_level&#39;: 1026.64,
+                    &#39;temp&#39;: 285.906,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.906,
+                    &#39;temp_min&#39;: 285.906},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;scattered clouds&#39;,
+                        &#39;icon&#39;: &#39;03n&#39;,
+                        &#39;id&#39;: 802,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 261.501, &#39;speed&#39;: 3.77}},
+          {&#39;clouds&#39;: {&#39;all&#39;: 44},
+           &#39;dt&#39;: 1486220400,
+           &#39;dt_txt&#39;: &#39;2017-02-04 15:00:00&#39;,
+           &#39;main&#39;: {&#39;grnd_level&#39;: 1016.46,
+                    &#39;humidity&#39;: 100,
+                    &#39;pressure&#39;: 1016.46,
+                    &#39;sea_level&#39;: 1026.16,
+                    &#39;temp&#39;: 285.51,
+                    &#39;temp_kf&#39;: 0,
+                    &#39;temp_max&#39;: 285.51,
+                    &#39;temp_min&#39;: 285.51},
+           &#39;rain&#39;: {},
+           &#39;sys&#39;: {&#39;pod&#39;: &#39;n&#39;},
+           &#39;weather&#39;: [{&#39;description&#39;: &#39;scattered clouds&#39;,
+                        &#39;icon&#39;: &#39;03n&#39;,
+                        &#39;id&#39;: 802,
+                        &#39;main&#39;: &#39;Clouds&#39;}],
+           &#39;wind&#39;: {&#39;deg&#39;: 283.001, &#39;speed&#39;: 2.97}}],
+ &#39;message&#39;: 0.0082}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Maintenant que vous avez récupéré les données à partir de la WEB API, retraitez les pour afficher un graphique qui représente la fluctuation des températures suivant les jours. Les températures doivent être affichées en degré Celsius (et non en Kelvin) et les jours doivent l’être dans un format lisible (non pas en timestamp).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">contenu</span><span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;dt&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">contenu</span><span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">])</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dt</th>
+      <th>weather</th>
+      <th>dt_txt</th>
+      <th>main.temp</th>
+      <th>main.temp_min</th>
+      <th>main.temp_max</th>
+      <th>main.pressure</th>
+      <th>main.sea_level</th>
+      <th>main.grnd_level</th>
+      <th>main.humidity</th>
+      <th>main.temp_kf</th>
+      <th>clouds.all</th>
+      <th>wind.speed</th>
+      <th>wind.deg</th>
+      <th>sys.pod</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1485799200</td>
+      <td>[{'id': 800, 'main': 'Clear', 'description': '...</td>
+      <td>2017-01-30 18:00:00</td>
+      <td>283.760</td>
+      <td>283.760</td>
+      <td>283.761</td>
+      <td>1017.24</td>
+      <td>1026.83</td>
+      <td>1017.24</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.27</td>
+      <td>15.0048</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1485810000</td>
+      <td>[{'id': 800, 'main': 'Clear', 'description': '...</td>
+      <td>2017-01-30 21:00:00</td>
+      <td>282.560</td>
+      <td>282.560</td>
+      <td>282.563</td>
+      <td>1020.06</td>
+      <td>1029.63</td>
+      <td>1020.06</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.21</td>
+      <td>31.5035</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1485820800</td>
+      <td>[{'id': 800, 'main': 'Clear', 'description': '...</td>
+      <td>2017-01-31 00:00:00</td>
+      <td>282.300</td>
+      <td>282.296</td>
+      <td>282.300</td>
+      <td>1022.71</td>
+      <td>1032.27</td>
+      <td>1022.71</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.71</td>
+      <td>51.0002</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1485831600</td>
+      <td>[{'id': 800, 'main': 'Clear', 'description': '...</td>
+      <td>2017-01-31 03:00:00</td>
+      <td>282.270</td>
+      <td>282.265</td>
+      <td>282.270</td>
+      <td>1023.68</td>
+      <td>1033.16</td>
+      <td>1023.68</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5.46</td>
+      <td>65.5000</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1485842400</td>
+      <td>[{'id': 800, 'main': 'Clear', 'description': '...</td>
+      <td>2017-01-31 06:00:00</td>
+      <td>282.656</td>
+      <td>282.656</td>
+      <td>282.656</td>
+      <td>1023.75</td>
+      <td>1033.22</td>
+      <td>1023.75</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.11</td>
+      <td>84.0055</td>
+      <td>d</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;main.temp&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>main.temp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>283.760</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>282.560</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>282.300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>282.270</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>282.656</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">-=</span> <span class="mi">273</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>main.temp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10.760</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9.560</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9.270</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9.656</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_txt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_txt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dt_txt</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>main.temp</th>
+    </tr>
+    <tr>
+      <th>dt_txt</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-30</th>
+      <td>10.760</td>
+    </tr>
+    <tr>
+      <th>2017-01-30</th>
+      <td>9.560</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>9.300</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>9.270</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>9.656</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>9.783</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>10.335</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>11.657</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>11.095</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>10.211</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;dt_txt&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">df4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="8" halign="left">main.temp</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>dt_txt</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-30</th>
+      <td>2.0</td>
+      <td>10.160000</td>
+      <td>0.848528</td>
+      <td>9.560</td>
+      <td>9.86000</td>
+      <td>10.1600</td>
+      <td>10.4600</td>
+      <td>10.760</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>8.0</td>
+      <td>10.163375</td>
+      <td>0.851571</td>
+      <td>9.270</td>
+      <td>9.56700</td>
+      <td>9.9970</td>
+      <td>10.5250</td>
+      <td>11.657</td>
+    </tr>
+    <tr>
+      <th>2017-02-01</th>
+      <td>8.0</td>
+      <td>11.251375</td>
+      <td>1.372577</td>
+      <td>8.856</td>
+      <td>10.77825</td>
+      <td>11.5040</td>
+      <td>12.2435</td>
+      <td>12.702</td>
+    </tr>
+    <tr>
+      <th>2017-02-02</th>
+      <td>8.0</td>
+      <td>10.811875</td>
+      <td>0.929658</td>
+      <td>8.978</td>
+      <td>10.67175</td>
+      <td>10.7765</td>
+      <td>11.0455</td>
+      <td>12.125</td>
+    </tr>
+    <tr>
+      <th>2017-02-03</th>
+      <td>8.0</td>
+      <td>12.275750</td>
+      <td>0.913251</td>
+      <td>10.818</td>
+      <td>11.80300</td>
+      <td>12.4980</td>
+      <td>12.9985</td>
+      <td>13.158</td>
+    </tr>
+    <tr>
+      <th>2017-02-04</th>
+      <td>6.0</td>
+      <td>11.876167</td>
+      <td>1.231431</td>
+      <td>10.157</td>
+      <td>10.93625</td>
+      <td>12.3865</td>
+      <td>12.8070</td>
+      <td>12.927</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Utilisez ces mêmes données pour afficher un graphique avec des barres d’erreurs, qui reprennent la température moyenne de la journée, la température min et la température max (en Celsius).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;dt_txt&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/WEBAPI_pour_PYTHON-Ludivine_15_1.png" src="../_images/WEBAPI_pour_PYTHON-Ludivine_15_1.png" />
+</div>
+</div>
+<p>Quand vos graphiques sont ok, codez une page WEB, grâce à FLASK, pour afficher ces mêmes graphiques en JavaScript. Evidemment, votre code doit obtenir les données à partir de l’API, comme dans le code ci-dessus.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

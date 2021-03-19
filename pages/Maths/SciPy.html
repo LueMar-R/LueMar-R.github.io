@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SciPy &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MySql" href="../mysql.html" />
+    <link rel="prev" title="Rappel des Notions Statistiques" href="Rappel_Notions_Statistiques_Lud.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/pages/Maths/SciPy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Maths/SciPy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   SciPy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition">
+     Définition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statistiques-a-un-echantillon">
+     Statistiques à un échantillon
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#statistiques-descriptives">
+       Statistiques descriptives
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calcul-des-seuils-et-des-probabilites-critiques">
+       Calcul des seuils et des probabilités critiques
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-dadequation-a-la-loi-normale">
+       Test d’adéquation à la loi normale
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#generation-de-nombres-aleatoires-echantillonnage-loi-normale-loi-exponentielle">
+       Génération de nombres aléatoires - Echantillonnage (loi normale, loi exponentielle)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-de-conformite-a-un-standard-test-de-student">
+       Test de conformité à un standard – Test de Student
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statistiques-a-2-vecteurs">
+     Statistiques à 2 vecteurs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#comparaison-de-population">
+       Comparaison de population
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-de-population">
+   Association de population
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="scipy">
+<h1>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h1>
+<p>SOMMAIRE :</p>
+<ul class="simple">
+<li><p>Définition<br></p></li>
+<li><p>Statistiques à 1 échantillon<br>
+– Statistiques descriptives <br>
+–- Calcul des seuils et des probabilités critiques<br>
+–- Test d’adéquation à la loi normale (ou autre)<br>
+–- Génération de nombres aléatoires - Echantillonnage (loi normale, loi exponentielle)<br>
+–- Test de conformité à un standard – Test de Student<br></p></li>
+<li><p>Statistiques à 2 vecteurs<br>
+–- Comparaison de populations<br>
+–- Mesures d’association<br></p></li>
+<li><p>Statistiques à k vecteurs (k&gt;2)<br>
+–- Classification automatique<br></p></li>
+</ul>
+<div class="section" id="definition">
+<h2>Définition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
+<p>SciPy est un projet visant à unifier et fédérer un ensemble de bibliothèques Python à usage scientifique. Il est construit sur la base de numpy et utilise des tableaux comme structure de données de base.<br>
+Il contient par notamment des modules pour l’optimisation, l’algèbre linéaire, les statistiques, le traitement du signal ou encore le traitement d’images.</p>
+</div>
+<div class="section" id="statistiques-a-un-echantillon">
+<h2>Statistiques à un échantillon<a class="headerlink" href="#statistiques-a-un-echantillon" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="statistiques-descriptives">
+<h3>Statistiques descriptives<a class="headerlink" href="#statistiques-descriptives" title="Permalink to this headline">¶</a></h3>
+<p>Le module ‘stats’ de la bibliothèque SciPy est utilisé pour les fonctions statistiques.</p>
+<p>la fonction ‘describe’ sert à appliquer les méthodes de statistiques descriptives à un échantillon donné. Elle renvoie les statistiques suivantes :</p>
+<ul class="simple">
+<li><p>nobs : nombre d’observations dans l’échantillon</p></li>
+<li><p>min : minimum</p></li>
+<li><p>max : maximum</p></li>
+<li><p>mean : moyenne</p></li>
+<li><p>variance : mesure de la dispersion de des valeurs de l’échantillon (distribution de probabilité)</p></li>
+<li><p>skewness : mesure de l’asymétrie de la distribution d’une variable aléatoire réelle</p></li>
+<li><p>kurtosis : coefficient d’apatissement</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on importe le module stats de la bibliothèque scipy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stat</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prennons un échantillon de valeurs e, correspondant aux notes d&#39;une classe de 20 étudiants</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">description</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DescribeResult(nobs=20, minmax=(2.0, 19.0), mean=9.55, variance=22.128947368421052, skewness=0.640079599669288, kurtosis=-0.3509423906490974)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#on peut obtenir l&#39;un des éléments par indice</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;moyenne =&quot;</span><span class="p">,</span> <span class="n">description</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1">#par nom</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;moyenne =&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> 
+
+<span class="c1"># ce qui équivaut à np.mean(x)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;moyenne =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>moyenne = 9.55
+moyenne = 9.55
+moyenne = 9.55
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#possiblité d&#39;éclater les résultats avec une affectation multiple</span>
+<span class="n">n</span><span class="p">,</span><span class="n">mm</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">sk</span><span class="p">,</span><span class="n">kt</span><span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nombre d&#39;observations :&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s2">&quot;- moyenne :&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nombre d&#39;observations : 20 - moyenne : 9.55
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calcul-des-seuils-et-des-probabilites-critiques">
+<h3>Calcul des seuils et des probabilités critiques<a class="headerlink" href="#calcul-des-seuils-et-des-probabilites-critiques" title="Permalink to this headline">¶</a></h3>
+<p>Ces calculs servent à obtenir les valeurs des quantiles et des fonctions de répartition pour différentes lois statistiques utilisées pour l’inférence.
+Ils permettent notamment la construction d’intervalles de confiance.</p>
+<p>Les principales méthodes de calculs de seuils pour les variables aléatoires continues sont :</p>
+<ul class="simple">
+<li><p>pdf : (Probability Density Function) : fonction de densité de probabilité</p></li>
+<li><p>cdf : (Cumulative Distribution Function) : fonction de distribution cumulative</p></li>
+<li><p>ppf : (Percent Point Function, = 1 / CDF) : fonction quantile</p></li>
+</ul>
+<p>Voici quelques exemples avec les lois de probabilité les plus utilisées :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loi normale centrée réduite</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># quantile d’ordre 0.95 de la loi normale d&#39;espérance 0 et de variance 1 </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">1.96</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6448536269514722
+0.9750021048517795
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">);</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x25ef0b5bbe0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/SciPy_12_1.png" src="../../_images/SciPy_12_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loi de Student-ddl= 30</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">1.96</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6972608943617378
+0.9703288435519748
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loi du khi-2 -ddl= 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">chi</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">chi</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">4.84</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.278672463892877
+0.9907199233490717
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loi de Fisher, ddl numérateur = 1, ddl dénominateur = 30</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span><span class="n">dfn</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">dfd</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">3.48</span><span class="p">,</span><span class="n">dfn</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">dfd</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.170876785766691
+0.9280786614651921
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-dadequation-a-la-loi-normale">
+<h3>Test d’adéquation à la loi normale<a class="headerlink" href="#test-dadequation-a-la-loi-normale" title="Permalink to this headline">¶</a></h3>
+<p>Les tests de normalité permettent de vérifier que la distribution des données est compatible avec la loi Normale (Gauss). On cherche ici simplement à vérifer l’adéquation à la loi normale, non à déterminer une loi de distribution.</p>
+<p>Le test de D’Agostino ou test du K² de D’Agostino est basé sur les coefficients d’asymétrie et d’aplatissement. Lorsque ces deux indicateurs diffèrent simultanément de la valeur de référence 0, on conclut que la distribution empirique n’est pas compatible avec la loi normale. L’enjeu est de construire une combinaison efficace de ces indicateurs. <br>
+La fonction ‘normaltest’ de SciPy retourne une statistique de test et un seuil critique (p-value). Si p-value &lt; α, on rejette de l’hypothèse de normalité.</p>
+<p>Le test d’Anderson-Darling est un test de normalité de l’échantillon statistique. Permet de détecter l’écart par rapport à la normalité des valeurs maximales et minimales d’une distribution. Il est le plus indiqué dans la phase d’évaluation des données précédant la mise en oeuvre d’un test paramétrique(comparaison de moyenne, de variances, etc.) <br>
+La fonction “anderson” renvoie une statistique de test, et des seuils critiques pour chaque niveau de risque.</p>
+<p>Le test de Shapiro est plus fiable que les deux précédents sur des échantillons réduits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#prennons un nouvel échantillon d, plus pertinent pour les tests d&#39;adéquation</span>
+<span class="n">d</span><span class="o">=</span><span class="p">[</span><span class="mf">0.553</span><span class="p">,</span><span class="mf">0.57</span><span class="p">,</span><span class="mf">0.576</span><span class="p">,</span><span class="mf">0.601</span><span class="p">,</span><span class="mf">0.606</span><span class="p">,</span><span class="mf">0.606</span><span class="p">,</span><span class="mf">0.609</span><span class="p">,</span><span class="mf">0.611</span><span class="p">,</span><span class="mf">0.615</span><span class="p">,</span><span class="mf">0.628</span><span class="p">,</span><span class="mf">0.654</span><span class="p">,</span><span class="mf">0.662</span><span class="p">,</span><span class="mf">0.668</span><span class="p">,</span><span class="mf">0.67</span><span class="p">,</span><span class="mf">0.672</span><span class="p">,</span><span class="mf">0.69</span><span class="p">,</span><span class="mf">0.693</span><span class="p">,</span><span class="mf">0.749</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#test de normalité d&#39;Agostino</span>
+<span class="n">ag</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># message d’avertissement, le nombre de valeurs est trop faible pour un test fiable</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NormaltestResult(statistic=0.7143907939185827, pvalue=0.699635777674135)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\utilisateur\anaconda3\lib\site-packages\scipy\stats\stats.py:1603: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=18
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test de Normalité d&#39;Anderson</span>
+<span class="n">ad</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">anderson</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">dist</span><span class="o">=</span><span class="s2">&quot;norm&quot;</span><span class="p">)</span> <span class="c1"># nb : le test possible pour autre loi que «norm»</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AndersonResult(statistic=0.34029632368620355, critical_values=array([0.503, 0.573, 0.687, 0.802, 0.954]), significance_level=array([15. , 10. ,  5. ,  2.5,  1. ]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#test de Normalité Shapiro-Wilks</span>
+<span class="n">sp</span><span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=0.9613385200500488, pvalue=0.627672016620636)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generation-de-nombres-aleatoires-echantillonnage-loi-normale-loi-exponentielle">
+<h3>Génération de nombres aléatoires - Echantillonnage (loi normale, loi exponentielle)<a class="headerlink" href="#generation-de-nombres-aleatoires-echantillonnage-loi-normale-loi-exponentielle" title="Permalink to this headline">¶</a></h3>
+<p>L’objectif est de disposer d’un générateur de nombres aléatoires permet de réaliser des simulations ou d’accéder à des techniques basées sur le ré-échantillonnage (bootstrap, etc.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#génération de valeurs aléatoires -loi normale (0, 1)</span>
+<span class="n">alea1</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alea1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.33376811 -1.34093431  0.31231603  2.16457424 -0.95760129 -0.65598172
+ -1.41807412  0.04427963 -0.8929473   0.53330146  0.18709978  1.18064015
+  0.07540029  0.33413872  0.80379568 -0.84961489  0.29623148  0.25729479
+  2.1482005   0.93389402  0.16287464  1.10313223  2.29174704  1.08585309
+  0.67053595 -1.24972546  1.12966359 -0.21766619 -1.14910938 -0.66744534]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">alea1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NormaltestResult(statistic=1.0708910539134857, pvalue=0.5854084168056652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#génération -loi exponentielle</span>
+<span class="n">alea2</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">expon</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">alea2</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NormaltestResult(statistic=8.119934857640967, pvalue=0.017249580945394038)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-de-conformite-a-un-standard-test-de-student">
+<h3>Test de conformité à un standard – Test de Student<a class="headerlink" href="#test-de-conformite-a-un-standard-test-de-student" title="Permalink to this headline">¶</a></h3>
+<p>Le test de Student est un test standard pour comparer les valeurs de 2 échantillons a et b. Il renvoie une paire : statistique t, p-value.</p>
+<p>Le test change selon que les échantillons ont le même nombre de valeurs ou un nombre différent.
+Pour des échantillons égaux on prendra scipy.stats.ttest_rel, pour des différents scipy.stats.ttest_ind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_relResult(statistic=-10.0, pvalue=0.009852457023325692)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=-2.496751135729437, pvalue=0.054707113913075575)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="statistiques-a-2-vecteurs">
+<h2>Statistiques à 2 vecteurs<a class="headerlink" href="#statistiques-a-2-vecteurs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comparaison-de-population">
+<h3>Comparaison de population<a class="headerlink" href="#comparaison-de-population" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stat</span>
+
+
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">24</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">58</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">52</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">57</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">57</span><span class="p">])</span>
+<span class="n">dc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">42</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">55</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">55</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">48</span><span class="p">])</span>
+
+
+<span class="n">d1968</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.42</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.43</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.34</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.54</span><span class="p">,</span><span class="mf">0.42</span><span class="p">,</span><span class="mf">0.51</span><span class="p">,</span><span class="mf">0.49</span><span class="p">,</span><span class="mf">0.54</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.58</span><span class="p">,</span><span class="mf">0.49</span><span class="p">,</span><span class="mf">0.56</span><span class="p">,</span><span class="mf">0.63</span><span class="p">])</span>
+<span class="n">d1972</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.46</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span><span class="mf">0.60</span><span class="p">,</span><span class="mf">0.49</span><span class="p">,</span><span class="mf">0.35</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.53</span><span class="p">,</span><span class="mf">0.57</span><span class="p">,</span><span class="mf">0.53</span><span class="p">,</span><span class="mf">0.59</span><span class="p">,</span><span class="mf">0.64</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.57</span><span class="p">,</span><span class="mf">0.64</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><b>1. Test de Welch – comparaison de moyennes</b><br></p>
+<p>Tester statistiquement l’hypothèse d’égalité de deux moyennes avec deux échantillons de variances inégales</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">dc</span><span class="p">,</span><span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=2.310889197854228, pvalue=0.02638241282442478)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b>2. Test de Bartlett – comparaison de paramètres d’échelle (variance)</b><br>
+Evaluer si k échantillons indépendants sont issus de populations de même variance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">bartlett</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">dc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BartlettResult(statistic=3.8455356421051388, pvalue=0.04987858739511786)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b>3. test de Ansari Bradley</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">ansari</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">dc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnsariResult(statistic=266.0, pvalue=0.24768048701691592)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\utilisateur\anaconda3\lib\site-packages\scipy\stats\morestats.py:2136: UserWarning: Ties preclude use of exact statistic.
+  warnings.warn(&quot;Ties preclude use of exact statistic.&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 4. Test de Levene</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">levene</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">dc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LeveneResult(statistic=2.3418185975754007, pvalue=0.133440294168933)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 5. Test de Kolomogorov-Smirnov – écart entre les fonctions de répartition empiriques</b> <br>
+Test d’hypothèse utilisé pour déterminer si un échantillon suit bien une loi donnée connue par sa fonction de répartition continue, ou bien si deux échantillons suivent la même loi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">dc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KstestResult(statistic=0.4699792960662526, pvalue=0.008988594868491018)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 6. Test des rangs signés – non paramétrique</b><br>
+Alternative non-paramétrique au test de Student pour des échantillons appariés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">d1968</span><span class="p">,</span><span class="n">d1972</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WilcoxonResult(statistic=16.0, pvalue=0.0122241123197889)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\utilisateur\anaconda3\lib\site-packages\scipy\stats\morestats.py:2958: UserWarning: Exact p-value calculation does not work if there are ties. Switching to normal approximation.
+  warnings.warn(&quot;Exact p-value calculation does not work if there are &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 7. T-test related samples - paramétrique</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">d1968</span><span class="p">,</span><span class="n">d1972</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_relResult(statistic=-2.457703815601802, pvalue=0.024352597586836344)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="association-de-population">
+<h1>Association de population<a class="headerlink" href="#association-de-population" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dalc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.47</span><span class="p">,</span><span class="mf">6.13</span><span class="p">,</span><span class="mf">6.19</span><span class="p">,</span><span class="mf">4.89</span><span class="p">,</span><span class="mf">5.63</span><span class="p">,</span><span class="mf">4.52</span><span class="p">,</span><span class="mf">5.89</span><span class="p">,</span><span class="mf">4.79</span><span class="p">,</span><span class="mf">5.27</span><span class="p">,</span><span class="mf">6.08</span><span class="p">])</span>
+<span class="n">dtob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.03</span><span class="p">,</span><span class="mf">3.76</span><span class="p">,</span><span class="mf">3.77</span><span class="p">,</span><span class="mf">3.34</span><span class="p">,</span><span class="mf">3.47</span><span class="p">,</span><span class="mf">2.92</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">2.71</span><span class="p">,</span><span class="mf">3.53</span><span class="p">,</span><span class="mf">4.51</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 1. Régression linéaire simple</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">dalc</span><span class="p">,</span><span class="n">dtob</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.6115012914647241, intercept=0.10815378587805125, rvalue=0.7842873201538676, pvalue=0.007234358351729509, stderr=0.17102020517368527)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b>2. Corrélation de Pearson</b> <br>
+Statistique qui mesure la corrélation linéaire entre deux variables X et Y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">dalc</span><span class="p">,</span><span class="n">dtob</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7842873201538678, 0.007234358351729485)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 3. Corrélation de Spearman - basé sur les rangs</b><br>
+Mesure de dépendance statistique non paramétrique entre deux variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">dalc</span><span class="p">,</span><span class="n">dtob</span><span class="p">))</span> <span class="c1"># (r = 0.7843, p-value pour test t = 0.0072)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7842873201538678, 0.007234358351729485)
+</pre></div>
+</div>
+</div>
+</div>
+<p><b> 4. Tau de Kendall - concordance et discordance</b><br>
+Mesure la corrélation de rang entre deux variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">kendalltau</span><span class="p">(</span><span class="n">dalc</span><span class="p">,</span><span class="n">dtob</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KendalltauResult(correlation=0.6444444444444444, pvalue=0.009148478835978836)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\Maths"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Rappel_Notions_Statistiques_Lud.html" title="previous page">Rappel des Notions Statistiques</a>
+    <a class='right-next' id="next-link" href="../mysql.html" title="next page">MySql</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

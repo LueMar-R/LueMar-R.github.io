@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Environnement Virtuel Conda &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rappel des Notions Statistiques" href="Maths/Rappel_Notions_Statistiques_Lud.html" />
+    <link rel="prev" title="Notebook et Markdown" href="notebook_et_markdown.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/pages/environnement_virtuel_conda.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/environnement_virtuel_conda.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creer-un-environnement-virtuel-avec-anaconda-prompt">
+   Créer un environnement virtuel avec Anaconda Prompt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creer-un-environnement">
+     Créer un environnement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemple-avec-python-3-6">
+     Exemple avec Python 3.6
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemple-avec-python-3-7">
+     Exemple avec Python 3.7
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environnements-conda">
+   Environnements Conda
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lister-les-environnements-installes-dans-anaconda">
+     Lister les environnements installés dans Anaconda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Créer un environnement
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installer-un-package">
+   Installer un package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fichiers-yaml-yml">
+   Fichiers YAML (.yml)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qu-est-ce-qu-un-fichier-yaml-yml">
+     Qu’est ce qu’un fichier YAML (.yml)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creer-un-environnement-a-partir-d-un-fichier-yaml-yml">
+     Créer un environnement à partir d’un fichier YAML (.yml)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exporter-un-environnement-en-yml">
+     exporter un environnement en .yml
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda-prompt">
+   Anaconda Prompt
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fichiers-batch-bat">
+   Fichiers BATCH (.bat)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activer-un-environnement-lancer-un-fichier-python-a-partir-dun-fichier-bat">
+     activer un environnement lancer un fichier python à partir d’un fichier .bat
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="environnement-virtuel-conda">
+<h1>Environnement Virtuel Conda<a class="headerlink" href="#environnement-virtuel-conda" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creer-un-environnement-virtuel-avec-anaconda-prompt">
+<h2>Créer un environnement virtuel avec Anaconda Prompt<a class="headerlink" href="#creer-un-environnement-virtuel-avec-anaconda-prompt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creer-un-environnement">
+<h3>Créer un environnement<a class="headerlink" href="#creer-un-environnement" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">&lt;envname&gt;</span> <span class="pre">python=&lt;version&gt;</span></code></p>
+</div>
+<div class="section" id="exemple-avec-python-3-6">
+<h3>Exemple avec Python 3.6<a class="headerlink" href="#exemple-avec-python-3-6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="exemple-avec-python-3-7">
+<h3>Exemple avec Python 3.7<a class="headerlink" href="#exemple-avec-python-3-7" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="environnements-conda">
+<h2>Environnements Conda<a class="headerlink" href="#environnements-conda" title="Permalink to this headline">¶</a></h2>
+<p>Il y a dans le dossier d’installation un dossier <code class="docutils literal notranslate"><span class="pre">envs</span></code>. Créer un environnement consiste simplement à créer un dossier dans <code class="docutils literal notranslate"><span class="pre">envs</span></code>, qui contiendra la même structure que le dossier principal (avec un dossier <code class="docutils literal notranslate"><span class="pre">bin</span></code>, <code class="docutils literal notranslate"><span class="pre">lib</span></code>…). Par défaut, une bibliothèque installée dans un environnement est donc inaccessible à python (car présente dans un dossier dans lequel le python ne va pas chercher).</p>
+<p>Lorsque qu’un environnement est activé, la commande <code class="docutils literal notranslate"><span class="pre">python</span></code> est redirigée vers le dossier de l’environnement, un script redéfinit les dossiers dans lesquels python devra chercher des bibliothèques, lui donnant ainsi accès aux bibliothèques de l’environnement (mais lui enlevant l’accès des bibliothèques de conda en dehors de l’environnement pour éviter les incompatibilités).</p>
+<div class="section" id="lister-les-environnements-installes-dans-anaconda">
+<h3>Lister les environnements installés dans Anaconda<a class="headerlink" href="#lister-les-environnements-installes-dans-anaconda" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span> <span class="pre">--envs</span> <span class="pre">#</span> <span class="pre">forme</span> <span class="pre">courte</span> <span class="pre">:</span> <span class="pre">-e</span></code>
+ou
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code></p>
+</div>
+<div class="section" id="id1">
+<h3>Créer un environnement<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">nom_environnement</span> <span class="pre">python=numero_de_version</span></code></p>
+<p>Pour activer cet environnement :</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">nom_environnement</span></code></p>
+<p>Pour désactiver :</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code></p>
+</div>
+</div>
+<div class="section" id="installer-un-package">
+<h2>Installer un package<a class="headerlink" href="#installer-un-package" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">--name</span> <span class="pre">nom_environnement</span> <span class="pre">[package]</span></code>
+ou
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">nom_environnement</span> <span class="pre">[package]</span></code></p>
+<p><img alt="listerEnvironnements" src="pages\..%5Cimages%5Cliste_enviro.png" />
+<img alt="creerEnvironnements" src="pages\..%5Cimages%5Ccrea_enviro.png" /></p>
+</div>
+<div class="section" id="fichiers-yaml-yml">
+<h2>Fichiers YAML (.yml)<a class="headerlink" href="#fichiers-yaml-yml" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qu-est-ce-qu-un-fichier-yaml-yml">
+<h3>Qu’est ce qu’un fichier YAML (.yml)<a class="headerlink" href="#qu-est-ce-qu-un-fichier-yaml-yml" title="Permalink to this headline">¶</a></h3>
+<p>YAML est un format de représentation de données par sérialisation Unicode. Son objet est de représenter des informations plus élaborées que le simple CSV en gardant cependant une lisibilité presque comparable, et bien plus grande en tout cas que du XML. (source : Wikipédia)</p>
+<p>Un fichier YAML permet de lire et d’écrire des données indépendamment du langage de programmation. Ainsi, les fichiers YML peuvent être utilisés avec de nombreux autres fichiers contenant du code source écrit via différents langages tels que C, C#, C++, Java, PHP, etc.</p>
+</div>
+<div class="section" id="creer-un-environnement-a-partir-d-un-fichier-yaml-yml">
+<h3>Créer un environnement à partir d’un fichier YAML (.yml)<a class="headerlink" href="#creer-un-environnement-a-partir-d-un-fichier-yaml-yml" title="Permalink to this headline">¶</a></h3>
+<p>Ligne de commande pour créer un environnement Conda à partir d’un fichier YAML (.yml) :</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">--file</span> <span class="pre">mon_enviro.yml</span></code></p>
+<p>L’environnement sera installé dans leur chemin d’environnement conda par défaut. Pour spécifier un chemin d’installation différent du chemin par défaut (non lié au préfixe dans l’environnement.yml), on utilise le drapeau <code class="docutils literal notranslate"><span class="pre">-p</span></code> suivi du chemin requis :</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mon_enviro.yml</span> <span class="pre">-p</span> <span class="pre">/home/user/anaconda3/envs/env_name</span></code></p>
+</div>
+<div class="section" id="exporter-un-environnement-en-yml">
+<h3>exporter un environnement en .yml<a class="headerlink" href="#exporter-un-environnement-en-yml" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">export</span> </code> a completer</p>
+</div>
+</div>
+<div class="section" id="anaconda-prompt">
+<h2>Anaconda Prompt<a class="headerlink" href="#anaconda-prompt" title="Permalink to this headline">¶</a></h2>
+<p>Pour exécuper un script Python à partir d’Anaconda Pompt, il est d’abord nécessaire de ce placer dans le bon répertoire. On navique dnas les répertoire à l’aide de la commande <code class="docutils literal notranslate"><span class="pre">cd</span></code>, on en affiche le contenu avec la commande <code class="docutils literal notranslate"><span class="pre">dir</span></code>.</p>
+<p>Une fois dans le répertoire choisi, on entre la commande :<br>
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">nom_du_script.py</span></code><br>
+ou<br>
+<code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">nom_du_script.py</span></code><br></p>
+<p>cela lancera le script avec la version de python par défaut. Pour spécifier le numero de version avec lequel éxecuter le script :<br>
+<code class="docutils literal notranslate"><span class="pre">python2</span> <span class="pre">nom_du_script.py</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">nom_du_script.py</span></code><br></p>
+</div>
+<div class="section" id="fichiers-batch-bat">
+<h2>Fichiers BATCH (.bat)<a class="headerlink" href="#fichiers-batch-bat" title="Permalink to this headline">¶</a></h2>
+<p>Les fichiers .bat sont des fichiers texte exécutables qui permettent de concevoir des scripts qui seront interprétés par le shell (l’interpréteur de commandes). Ces scripts DOS sont couramment utilisés pour faire des taches de maintenance (listing, suppression de fichiers etc.).</p>
+<div class="section" id="activer-un-environnement-lancer-un-fichier-python-a-partir-dun-fichier-bat">
+<h3>activer un environnement lancer un fichier python à partir d’un fichier .bat<a class="headerlink" href="#activer-un-environnement-lancer-un-fichier-python-a-partir-dun-fichier-bat" title="Permalink to this headline">¶</a></h3>
+<p>On peut regrouper les commandes vues ci-dessus pour créer un fichier Batch qui commande l’activation d’un environnement et le lancement d’un fichier python :</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="notebook_et_markdown.html" title="previous page">Notebook et Markdown</a>
+    <a class='right-next' id="next-link" href="Maths/Rappel_Notions_Statistiques_Lud.html" title="next page">Rappel des Notions Statistiques</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

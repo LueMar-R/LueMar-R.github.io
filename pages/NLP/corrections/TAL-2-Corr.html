@@ -1,0 +1,2589 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toxicity Classification: &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/pages/NLP/corrections/TAL-2-Corr.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/NLP/corrections/TAL-2-Corr.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-libraries">
+   Importing Libraries:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-data">
+   Reading Data:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploratory-data-analysis">
+   Exploratory Data Analysis:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#target-feature">
+     1. Target Feature:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toxicity-subtype-features">
+     2. Toxicity Subtype Features:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identity-attributes">
+     3. Identity Attributes:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments-text-feature">
+     5. Comments_text Feature:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing-text-and-train-test-split">
+   Preprocessing Text and Train-Test Split:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models">
+   Training Models:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bag-of-words-bow">
+     1. Bag of Words (BoW):
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sgdregressor">
+       1.1 SGDRegressor:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#hyperparameter-tuning">
+         1.1.1 Hyperparameter Tuning:
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#feature-importance">
+         1.1.2 Feature Importance:
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#decision-trees">
+       1.2 Decision Trees:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         1.2.1 Hyperparameter Tuning:
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         1.2.2 Feature Importance:
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#term-frequency-inverse-document-frequency-tfidf">
+     2. Term Frequency - Inverse Document Frequency (TFIDF) :
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.1 SGDRegressor:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id4">
+         2.1.1 Hyperparameter Tuning:
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         2.1.2 Feature Importance:
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.2 Decision Trees:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id7">
+         2.2.1 Hyperparameter Tuning:
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id8">
+         2.2.2 Feature Importance:
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="toxicity-classification">
+<h1>Toxicity Classification:<a class="headerlink" href="#toxicity-classification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="importing-libraries">
+<h2>Importing Libraries:<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span><span class="p">,</span> <span class="n">STOPWORDS</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">SnowballStemmer</span><span class="p">,</span> <span class="n">PorterStemmer</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span><span class="p">,</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">SGDRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">AdaBoostRegressor</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+<span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="c1"># import keras</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">CuDNNLSTM</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">keras.layers.embeddings</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">K</span><span class="o">.</span><span class="n">tensorflow_backend</span><span class="o">.</span><span class="n">_get_available_gpus</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:516: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint8 = np.dtype([(&quot;qint8&quot;, np.int8, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:517: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_quint8 = np.dtype([(&quot;quint8&quot;, np.uint8, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:518: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint16 = np.dtype([(&quot;qint16&quot;, np.int16, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:519: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_quint16 = np.dtype([(&quot;quint16&quot;, np.uint16, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:520: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint32 = np.dtype([(&quot;qint32&quot;, np.int32, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorflow\python\framework\dtypes.py:525: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  np_resource = np.dtype([(&quot;resource&quot;, np.ubyte, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:541: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint8 = np.dtype([(&quot;qint8&quot;, np.int8, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:542: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_quint8 = np.dtype([(&quot;quint8&quot;, np.uint8, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:543: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint16 = np.dtype([(&quot;qint16&quot;, np.int16, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:544: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_quint16 = np.dtype([(&quot;quint16&quot;, np.uint16, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:545: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  _np_qint32 = np.dtype([(&quot;qint32&quot;, np.int32, 1)])
+C:\Users\ISEN\anaconda3\envs\TF2\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:550: FutureWarning: Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &#39;(1,)type&#39;.
+  np_resource = np.dtype([(&quot;resource&quot;, np.ubyte, 1)])
+Using TensorFlow backend.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/job:localhost/replica:0/task:0/device:GPU:0&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-data">
+<h2>Reading Data:<a class="headerlink" href="#reading-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1804874, 44)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>comment_text</th>
+      <th>severe_toxicity</th>
+      <th>obscene</th>
+      <th>identity_attack</th>
+      <th>insult</th>
+      <th>threat</th>
+      <th>asian</th>
+      <th>atheist</th>
+      <th>bisexual</th>
+      <th>...</th>
+      <th>article_id</th>
+      <th>rating</th>
+      <th>funny</th>
+      <th>wow</th>
+      <th>sad</th>
+      <th>likes</th>
+      <th>disagree</th>
+      <th>sexual_explicit</th>
+      <th>identity_annotator_count</th>
+      <th>toxicity_annotator_count</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>59848</th>
+      <td>0.000000</td>
+      <td>This is so cool. It's like, 'would you want yo...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2006</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>59849</th>
+      <td>0.000000</td>
+      <td>Thank you!! This would make my life a lot less...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2006</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>59852</th>
+      <td>0.000000</td>
+      <td>This is such an urgent design problem; kudos t...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2006</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>59855</th>
+      <td>0.000000</td>
+      <td>Is this something I'll be able to install on m...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2006</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>59856</th>
+      <td>0.893617</td>
+      <td>haha you guys are a bunch of losers.</td>
+      <td>0.021277</td>
+      <td>0.0</td>
+      <td>0.021277</td>
+      <td>0.87234</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>2006</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>47</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 44 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">test_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(97320, 1)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>comment_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7097320</th>
+      <td>[ Integrity means that you pay your debts.]\n\...</td>
+    </tr>
+    <tr>
+      <th>7097321</th>
+      <td>This is malfeasance by the Administrator and t...</td>
+    </tr>
+    <tr>
+      <th>7097322</th>
+      <td>@Rmiller101 - Spoken like a true elitist. But ...</td>
+    </tr>
+    <tr>
+      <th>7097323</th>
+      <td>Paul: Thank you for your kind words.  I do, in...</td>
+    </tr>
+    <tr>
+      <th>7097324</th>
+      <td>Sorry you missed high school. Eisenhower sent ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1.3</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>severe_toxicity</th>
+      <th>obscene</th>
+      <th>identity_attack</th>
+      <th>insult</th>
+      <th>threat</th>
+      <th>asian</th>
+      <th>atheist</th>
+      <th>bisexual</th>
+      <th>black</th>
+      <th>...</th>
+      <th>parent_id</th>
+      <th>article_id</th>
+      <th>funny</th>
+      <th>wow</th>
+      <th>sad</th>
+      <th>likes</th>
+      <th>disagree</th>
+      <th>sexual_explicit</th>
+      <th>identity_annotator_count</th>
+      <th>toxicity_annotator_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>405130.000000</td>
+      <td>405130.000000</td>
+      <td>405130.000000</td>
+      <td>405130.000000</td>
+      <td>...</td>
+      <td>1.026228e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+      <td>1.804874e+06</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.030173e-01</td>
+      <td>4.582099e-03</td>
+      <td>1.387721e-02</td>
+      <td>2.263571e-02</td>
+      <td>8.115273e-02</td>
+      <td>9.311271e-03</td>
+      <td>0.011964</td>
+      <td>0.003205</td>
+      <td>0.001884</td>
+      <td>0.034393</td>
+      <td>...</td>
+      <td>3.722687e+06</td>
+      <td>2.813597e+05</td>
+      <td>2.779269e-01</td>
+      <td>4.420696e-02</td>
+      <td>1.091173e-01</td>
+      <td>2.446167e+00</td>
+      <td>5.843688e-01</td>
+      <td>6.605974e-03</td>
+      <td>1.439019e+00</td>
+      <td>8.784694e+00</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.970757e-01</td>
+      <td>2.286128e-02</td>
+      <td>6.460419e-02</td>
+      <td>7.873156e-02</td>
+      <td>1.760657e-01</td>
+      <td>4.942218e-02</td>
+      <td>0.087166</td>
+      <td>0.050193</td>
+      <td>0.026077</td>
+      <td>0.167900</td>
+      <td>...</td>
+      <td>2.450261e+06</td>
+      <td>1.039293e+05</td>
+      <td>1.055313e+00</td>
+      <td>2.449359e-01</td>
+      <td>4.555363e-01</td>
+      <td>4.727924e+00</td>
+      <td>1.866589e+00</td>
+      <td>4.529782e-02</td>
+      <td>1.787041e+01</td>
+      <td>4.350086e+01</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>6.100600e+04</td>
+      <td>2.006000e+03</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>3.000000e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>7.960188e+05</td>
+      <td>1.601200e+05</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>5.222993e+06</td>
+      <td>3.321260e+05</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.666667e-01</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>9.090909e-02</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>5.775758e+06</td>
+      <td>3.662370e+05</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>3.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>6.000000e+00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>6.333965e+06</td>
+      <td>3.995410e+05</td>
+      <td>1.020000e+02</td>
+      <td>2.100000e+01</td>
+      <td>3.100000e+01</td>
+      <td>3.000000e+02</td>
+      <td>1.870000e+02</td>
+      <td>1.000000e+00</td>
+      <td>1.866000e+03</td>
+      <td>4.936000e+03</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 41 columns</p>
+</div></div></div>
+</div>
+<p><strong>Looking at count values of asian,atheist etc columns we see that there are a lot of Null values present, but this is OK as we are only supposed to use ‘comment_text’ column so dealing with these is not really necessary here.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1.3</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 1804874 entries, 59848 to 6334010
+Data columns (total 44 columns):
+ #   Column                               Dtype  
+---  ------                               -----  
+ 0   target                               float64
+ 1   comment_text                         object 
+ 2   severe_toxicity                      float64
+ 3   obscene                              float64
+ 4   identity_attack                      float64
+ 5   insult                               float64
+ 6   threat                               float64
+ 7   asian                                float64
+ 8   atheist                              float64
+ 9   bisexual                             float64
+ 10  black                                float64
+ 11  buddhist                             float64
+ 12  christian                            float64
+ 13  female                               float64
+ 14  heterosexual                         float64
+ 15  hindu                                float64
+ 16  homosexual_gay_or_lesbian            float64
+ 17  intellectual_or_learning_disability  float64
+ 18  jewish                               float64
+ 19  latino                               float64
+ 20  male                                 float64
+ 21  muslim                               float64
+ 22  other_disability                     float64
+ 23  other_gender                         float64
+ 24  other_race_or_ethnicity              float64
+ 25  other_religion                       float64
+ 26  other_sexual_orientation             float64
+ 27  physical_disability                  float64
+ 28  psychiatric_or_mental_illness        float64
+ 29  transgender                          float64
+ 30  white                                float64
+ 31  created_date                         object 
+ 32  publication_id                       int64  
+ 33  parent_id                            float64
+ 34  article_id                           int64  
+ 35  rating                               object 
+ 36  funny                                int64  
+ 37  wow                                  int64  
+ 38  sad                                  int64  
+ 39  likes                                int64  
+ 40  disagree                             int64  
+ 41  sexual_explicit                      float64
+ 42  identity_annotator_count             int64  
+ 43  toxicity_annotator_count             int64  
+dtypes: float64(32), int64(9), object(3)
+memory usage: 619.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1.4</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target                                       0
+comment_text                                 0
+severe_toxicity                              0
+obscene                                      0
+identity_attack                              0
+insult                                       0
+threat                                       0
+asian                                  1399744
+atheist                                1399744
+bisexual                               1399744
+black                                  1399744
+buddhist                               1399744
+christian                              1399744
+female                                 1399744
+heterosexual                           1399744
+hindu                                  1399744
+homosexual_gay_or_lesbian              1399744
+intellectual_or_learning_disability    1399744
+jewish                                 1399744
+latino                                 1399744
+male                                   1399744
+muslim                                 1399744
+other_disability                       1399744
+other_gender                           1399744
+other_race_or_ethnicity                1399744
+other_religion                         1399744
+other_sexual_orientation               1399744
+physical_disability                    1399744
+psychiatric_or_mental_illness          1399744
+transgender                            1399744
+white                                  1399744
+created_date                                 0
+publication_id                               0
+parent_id                               778646
+article_id                                   0
+rating                                       0
+funny                                        0
+wow                                          0
+sad                                          0
+likes                                        0
+disagree                                     0
+sexual_explicit                              0
+identity_annotator_count                     0
+toxicity_annotator_count                     0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>No Null values for target and comment_text columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train and test shape: </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train and test shape: (1804874, 44) (97320, 1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exploratory-data-analysis">
+<h2>Exploratory Data Analysis:<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="target-feature">
+<h3>1. Target Feature:<a class="headerlink" href="#target-feature" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.1 </span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Target value Distributions&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_14_0.png" src="../../../_images/TAL-2-Corr_14_0.png" />
+</div>
+</div>
+<p><strong>We see that most of the comments present in the dataset are actually non-toxic (&lt;0.5) and only a few of them are actually toxic (&gt;0.5)</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.2 </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">fct</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;non-toxic&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;toxic&quot;</span>
+
+<span class="c1"># If toxicity rating &lt; 0.5 then the comment is non-toxic else it is toxic.</span>
+<span class="c1"># Get toxic and non-toxic comments.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fct</span><span class="p">)</span>
+
+
+
+
+<span class="c1"># 2.3 </span>
+
+<span class="c1"># Plot the number and percentage of toxic and non-toxic comments.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+<span class="c1"># Plot the count plot.</span>
+<span class="n">cntplot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="n">cntplot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Percentage of non-toxic and toxic comments&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the height and calculate percentage then display it the plot itself.</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
+<span class="c1">#     print(p)</span>
+<span class="c1">#     print(p.get_x())</span>
+<span class="c1">#     print(p.get_width()/2.0)</span>
+    <span class="c1"># Get height.</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="c1"># Plot at appropriate position.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="o">+</span><span class="mi">10</span> <span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:1.2f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="n">total</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_16_0.png" src="../../../_images/TAL-2-Corr_16_0.png" />
+</div>
+</div>
+<p><strong>The dataset is imbalanced as 92% of the comments are non-toxic and only 8% are toxic</strong></p>
+</div>
+<div class="section" id="toxicity-subtype-features">
+<h3>2. Toxicity Subtype Features:<a class="headerlink" href="#toxicity-subtype-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>severe_toxicity</p></li>
+<li><p>obscene</p></li>
+<li><p>threat</p></li>
+<li><p>insult</p></li>
+<li><p>identity_attack</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code from: https://www.kaggle.com/gpreda/jigsaw-eda</span>
+<span class="c1"># Modified a bit according to my needs</span>
+<span class="k">def</span> <span class="nf">plot_features_distribution</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+<span class="c1">#         sns.distplot(data[feature],kde=True,hist=False, bins=240, label=feature)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span><span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">feature</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Looking at the distribution of additional toxicity features on the comments that are actually considered toxic:</span>
+
+<span class="c1"># 2.4</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span>
+
+<span class="c1"># temp.shape</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;severe_toxicity&#39;</span><span class="p">,</span> <span class="s1">&#39;obscene&#39;</span><span class="p">,</span> <span class="s1">&#39;identity_attack&#39;</span><span class="p">,</span> <span class="s1">&#39;insult&#39;</span><span class="p">,</span> <span class="s1">&#39;threat&#39;</span><span class="p">]</span>
+
+<span class="n">plot_features_distribution</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="s2">&quot;Distribution of additional toxicity features in only toxic comments data&quot;</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_20_0.png" src="../../../_images/TAL-2-Corr_20_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(106438, 44)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We see that for toxic comments data, there are more insulting comments as compared to obscene comments</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.5 </span>
+
+
+<span class="c1"># Getting the count of additonal toxicity features in toxic comments data(temp):</span>
+<span class="k">def</span> <span class="nf">get_comment_nature</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="c1"># Extract type of toxic comment</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;severe_toxicity&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;obscene&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;identity_attack&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;insult&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;threat&#39;</span><span class="p">]]</span>
+    
+    <span class="n">maxarg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">))</span> <span class="c1"># Get the max value index.</span>
+    
+    <span class="k">if</span> <span class="n">maxarg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;severe_toxicity&#39;</span>
+    <span class="k">elif</span> <span class="n">maxarg</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;obscene&#39;</span>
+    <span class="k">elif</span> <span class="n">maxarg</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;identity_attack&#39;</span>
+    <span class="k">elif</span> <span class="n">maxarg</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;insult&#39;</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;threat&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_comment_nature</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Get nature of each toxic comment</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Plot the count plot.</span>
+<span class="n">cntplot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cntplot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Percentage of toxicity nature in toxic comments data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the height and calculate percentage then display it the plot itself.</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
+    <span class="c1"># Get height.</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="c1"># Plot at appropriate position.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:1.2f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="n">total</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_23_0.png" src="../../../_images/TAL-2-Corr_23_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7359,)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>In our train dataset only 8% of the data was toxic. Out of that 8%, 81% of the toxic comments made are insults, 8.37% are identity attacks, 7.20% are obscene, 3.35% are threats and a very small amount of toxic comments are severly toxic.</strong></p>
+</div>
+<div class="section" id="identity-attributes">
+<h3>3. Identity Attributes:<a class="headerlink" href="#identity-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Sensitive topics:</p>
+<ul class="simple">
+<li><p>male</p></li>
+<li><p>female</p></li>
+<li><p>homosexual_gay_or_lesbian</p></li>
+<li><p>bisexual</p></li>
+<li><p>heterosexual</p></li>
+<li><p>christian</p></li>
+<li><p>jewish</p></li>
+<li><p>muslim</p></li>
+<li><p>black</p></li>
+<li><p>white</p></li>
+<li><p>asian</p></li>
+<li><p>latino</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.6 </span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target                                 0
+comment_text                           0
+severe_toxicity                        0
+obscene                                0
+identity_attack                        0
+insult                                 0
+threat                                 0
+asian                                  0
+atheist                                0
+bisexual                               0
+black                                  0
+buddhist                               0
+christian                              0
+female                                 0
+heterosexual                           0
+hindu                                  0
+homosexual_gay_or_lesbian              0
+intellectual_or_learning_disability    0
+jewish                                 0
+latino                                 0
+male                                   0
+muslim                                 0
+other_disability                       0
+other_gender                           0
+other_race_or_ethnicity                0
+other_religion                         0
+other_sexual_orientation               0
+physical_disability                    0
+psychiatric_or_mental_illness          0
+transgender                            0
+white                                  0
+created_date                           0
+publication_id                         0
+parent_id                              0
+article_id                             0
+rating                                 0
+funny                                  0
+wow                                    0
+sad                                    0
+likes                                  0
+disagree                               0
+sexual_explicit                        0
+identity_annotator_count               0
+toxicity_annotator_count               0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;asian&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;jewish&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;latino&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;white&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span> <span class="c1"># Extract only toxic comments.</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_comment_nature</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Get nature of each toxic comment</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Plot the count plot.</span>
+<span class="n">cntplot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cntplot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Percentage of type of toxicity in comments where race/ethnic references are made&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the height and calculate percentage then display it the plot itself.</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
+    <span class="c1"># Get height.</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="c1"># Plot at appropriate position.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:1.2f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="n">total</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_27_0.png" src="../../../_images/TAL-2-Corr_27_0.png" />
+</div>
+</div>
+<p><strong>We see that the toxic comments involving words like black, asian etc. are mainly used for identity attacks or insults.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;bisexual&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;heterosexual&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;homosexual_gay_or_lesbian&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;other_sexual_orientation&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> 
+<span class="n">temp</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span> <span class="c1"># Extract only toxic comments.</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_comment_nature</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Get nature of each toxic comment</span>
+
+<span class="n">x</span>
+
+<span class="c1"># fig, ax = plt.subplots(1,1,figsize=(7,7))</span>
+<span class="c1"># total = float(len(x))</span>
+
+<span class="c1"># # Plot the count plot.</span>
+<span class="c1"># cntplot = sns.countplot(x)</span>
+<span class="c1"># cntplot.set_title(&#39;Percentage of type of toxicity in comments where sexual orientation references are made&#39;)</span>
+
+<span class="c1"># # Get the height and calculate percentage then display it the plot itself.</span>
+<span class="c1"># for p in ax.patches:</span>
+<span class="c1">#     # Get height.</span>
+<span class="c1">#     height = p.get_height()</span>
+<span class="c1">#     # Plot at appropriate position.</span>
+<span class="c1">#     ax.text(p.get_x() + p.get_width()/2.0, height + 3, &#39;{:1.2f}%&#39;.format(100*height/total), ha=&#39;center&#39;)</span>
+    
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id
+246210     identity_attack
+246297     identity_attack
+247398              insult
+248504              insult
+249748              insult
+                ...       
+6330571    identity_attack
+6330738    identity_attack
+6330842             insult
+6331740             insult
+6332162             insult
+Length: 2063, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We see from the plot that the toxic comments where sexual orientation references are made are mostly used for identity attacks.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;transgender&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;other_gender&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> 
+<span class="n">temp</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="c1"># Get data where race/ethnic references are made.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span> <span class="c1"># Extract only toxic comments.</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_comment_nature</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Get nature of each toxic comment</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Plot the count plot.</span>
+<span class="n">cntplot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">cntplot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Percentage of type of toxicity in comments where gender references are made&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the height and calculate percentage then display it the plot itself.</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
+    <span class="c1"># Get height.</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="c1"># Plot at appropriate position.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:1.2f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="n">total</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_31_0.png" src="../../../_images/TAL-2-Corr_31_0.png" />
+</div>
+</div>
+<p><strong>From the plot we see that the toxic comments which involve words like male, female etc are insults.</strong></p>
+</div>
+<div class="section" id="comments-text-feature">
+<h3>5. Comments_text Feature:<a class="headerlink" href="#comments-text-feature" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code From: https://www.kaggle.com/gpreda/jigsaw-eda</span>
+<span class="n">stpwrds</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">STOPWORDS</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">show_wordcloud</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    
+    
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+        <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+        <span class="n">stopwords</span><span class="o">=</span><span class="n">stpwrds</span><span class="p">,</span>
+        <span class="n">max_words</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">max_font_size</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> 
+        <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="c1">#     if title: </span>
+<span class="c1">#         fig.suptitle(title, fontsize=20)</span>
+<span class="c1">#         fig.subplots_adjust(top=2.3)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_wordcloud</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;comment_text&#39;</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Prevalent words in comments - train data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_35_0.png" src="../../../_images/TAL-2-Corr_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_wordcloud</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;insult&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.75</span><span class="p">][</span><span class="s1">&#39;comment_text&#39;</span><span class="p">],</span> 
+               <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Prevalent comments with insult score &gt; 0.75&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_36_0.png" src="../../../_images/TAL-2-Corr_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_wordcloud</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;threat&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.75</span><span class="p">][</span><span class="s1">&#39;comment_text&#39;</span><span class="p">],</span> 
+               <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Prevalent words in comments with threat score &gt; 0.75&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_37_0.png" src="../../../_images/TAL-2-Corr_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_wordcloud</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;obscene&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.75</span><span class="p">][</span><span class="s1">&#39;comment_text&#39;</span><span class="p">],</span> 
+               <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Prevalent words in comments with obscene score &gt; 0.75&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/TAL-2-Corr_38_0.png" src="../../../_images/TAL-2-Corr_38_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preprocessing-text-and-train-test-split">
+<h2>Preprocessing Text and Train-Test Split:<a class="headerlink" href="#preprocessing-text-and-train-test-split" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stemmer</span> <span class="o">=</span> <span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">text_string</span><span class="p">):</span>
+    <span class="n">text_string</span> <span class="o">=</span> <span class="n">text_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># Convert everything to lower case.</span>
+    <span class="n">text_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^A-Za-z0-9]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text_string</span><span class="p">)</span> <span class="c1"># Remove special characters and punctuations</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">text_string</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">new_text</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+            <span class="n">new_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+            
+    <span class="n">text_string</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">new_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;comment_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 11min 49s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>comment_text</th>
+      <th>severe_toxicity</th>
+      <th>obscene</th>
+      <th>identity_attack</th>
+      <th>insult</th>
+      <th>threat</th>
+      <th>asian</th>
+      <th>atheist</th>
+      <th>bisexual</th>
+      <th>...</th>
+      <th>rating</th>
+      <th>funny</th>
+      <th>wow</th>
+      <th>sad</th>
+      <th>likes</th>
+      <th>disagree</th>
+      <th>sexual_explicit</th>
+      <th>identity_annotator_count</th>
+      <th>toxicity_annotator_count</th>
+      <th>preprocessed_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>59848</th>
+      <td>0.000000</td>
+      <td>This is so cool. It's like, 'would you want yo...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>cool like would want mother read realli great ...</td>
+    </tr>
+    <tr>
+      <th>59849</th>
+      <td>0.000000</td>
+      <td>Thank you!! This would make my life a lot less...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>thank would make life lot less anxieti induc k...</td>
+    </tr>
+    <tr>
+      <th>59852</th>
+      <td>0.000000</td>
+      <td>This is such an urgent design problem; kudos t...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>urgent design problem kudo take impress</td>
+    </tr>
+    <tr>
+      <th>59855</th>
+      <td>0.000000</td>
+      <td>Is this something I'll be able to install on m...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>someth abl instal site releas</td>
+    </tr>
+    <tr>
+      <th>59856</th>
+      <td>0.893617</td>
+      <td>haha you guys are a bunch of losers.</td>
+      <td>0.021277</td>
+      <td>0.0</td>
+      <td>0.021277</td>
+      <td>0.87234</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>rejected</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>47</td>
+      <td>haha guy bunch loser</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 45 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;comment_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 37.8 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">]]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">]]</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_cv</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_cv</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_cv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_cv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1353655, 1)
+(451219, 1)
+(1353655, 1)
+(451219, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preprocessed_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5315390</th>
+      <td>articl list account</td>
+    </tr>
+    <tr>
+      <th>6034937</th>
+      <td>worri folk sit back roll big joint chill good ...</td>
+    </tr>
+    <tr>
+      <th>6287448</th>
+      <td>earth 4 55 0 01 billion year old even get right</td>
+    </tr>
+    <tr>
+      <th>5257047</th>
+      <td>general republican serv corpor wealthi democra...</td>
+    </tr>
+    <tr>
+      <th>6214060</th>
+      <td>hope get coal effort</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_cv</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preprocessed_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>282258</th>
+      <td>grabthar hammer shall aveng</td>
+    </tr>
+    <tr>
+      <th>5624548</th>
+      <td>trumpkin come stuff cbo non partisan sheesh</td>
+    </tr>
+    <tr>
+      <th>5544738</th>
+      <td>work joahn rupert none de klerk np 94 elect pa...</td>
+    </tr>
+    <tr>
+      <th>5054396</th>
+      <td>like victim love ms mckinney evil crime spree</td>
+    </tr>
+    <tr>
+      <th>6298721</th>
+      <td>think jorg bergoglio import offic hold papaci ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">]]</span>
+<span class="n">X_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preprocessed_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7097320</th>
+      <td>integr mean pay debt appli presid trump</td>
+    </tr>
+    <tr>
+      <th>7097321</th>
+      <td>malfeas administr board wast money</td>
+    </tr>
+    <tr>
+      <th>7097322</th>
+      <td>rmiller101 spoken like true elitist look bud a...</td>
+    </tr>
+    <tr>
+      <th>7097323</th>
+      <td>paul thank kind word inde strong belief hide b...</td>
+    </tr>
+    <tr>
+      <th>7097324</th>
+      <td>sorri miss high school eisenhow sent troop vie...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saving the files to csv so that we dont need to preprocess again.</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;X_train.pkl&#39;</span><span class="p">)</span>
+<span class="n">X_cv</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;X_cv.pkl&#39;</span><span class="p">)</span>
+<span class="n">X_test</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;X_test.pkl&#39;</span><span class="p">)</span>
+<span class="n">y_train</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;y_train.pkl&#39;</span><span class="p">)</span>
+<span class="n">y_cv</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;y_cv.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-models">
+<h2>Training Models:<a class="headerlink" href="#training-models" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To load the csv files:</span>
+<span class="c1"># Uncomment the block.</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;X_train.pkl&#39;</span><span class="p">)</span>
+<span class="n">X_cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;X_cv.pkl&#39;</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;X_test.pkl&#39;</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;y_train.pkl&#39;</span><span class="p">)</span>
+<span class="n">y_cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;y_cv.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preprocessed_text</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5315390</th>
+      <td>articl list account</td>
+    </tr>
+    <tr>
+      <th>6034937</th>
+      <td>worri folk sit back roll big joint chill good ...</td>
+    </tr>
+    <tr>
+      <th>6287448</th>
+      <td>earth 4 55 0 01 billion year old even get right</td>
+    </tr>
+    <tr>
+      <th>5257047</th>
+      <td>general republican serv corpor wealthi democra...</td>
+    </tr>
+    <tr>
+      <th>6214060</th>
+      <td>hope get coal effort</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5052216</th>
+      <td>ya think first dink economi temp economi uniqu...</td>
+    </tr>
+    <tr>
+      <th>5484983</th>
+      <td>think republican ultim defend renew local prod...</td>
+    </tr>
+    <tr>
+      <th>5921505</th>
+      <td>2 swamp creatur share cesspool bannon corpus c...</td>
+    </tr>
+    <tr>
+      <th>380938</th>
+      <td>find answer question retir payout go alaska re...</td>
+    </tr>
+    <tr>
+      <th>884685</th>
+      <td>ridicul statement russian media sinc day sovie...</td>
+    </tr>
+  </tbody>
+</table>
+<p>1353655 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="section" id="bag-of-words-bow">
+<h3>1. Bag of Words (BoW):<a class="headerlink" href="#bag-of-words-bow" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cnt_vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span>
+<span class="n">bow_train</span> <span class="o">=</span> <span class="n">cnt_vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+<span class="n">bow_cv</span> <span class="o">=</span> <span class="n">cnt_vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_cv</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+<span class="n">bow_test</span> <span class="o">=</span> <span class="n">cnt_vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1353655, 30000)
+(451219, 30000)
+(97320, 30000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bow_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bow_cv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bow_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1353655, 30000)
+(451219, 30000)
+(97320, 30000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sgdregressor">
+<h4>1.1 SGDRegressor:<a class="headerlink" href="#sgdregressor" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="hyperparameter-tuning">
+<h5>1.1.1 Hyperparameter Tuning:<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performing hyperparameter tuning:</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">penalty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="s1">&#39;l2&#39;</span><span class="p">]</span>
+<span class="n">xticks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tr_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cv_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">best_error</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">penalty</span><span class="p">:</span>
+        <span class="n">xticks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">p</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="s2">&quot; :&quot;</span><span class="p">)</span>
+        
+        <span class="n">model</span> <span class="o">=</span> <span class="n">SGDRegressor</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> 
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bow_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># Train</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">bow_train</span><span class="p">)</span> <span class="c1"># Get predictions</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on trainset</span>
+        <span class="n">tr_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on train set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">bow_cv</span><span class="p">)</span> <span class="c1"># Get predictions on CV set</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cv</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on cv set</span>
+        <span class="n">cv_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on cv set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">err</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span> <span class="c1"># Get best model trained</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">err</span>
+            <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1e-05 l1 :
+Mean Squared Error on train set:  0.022833108494307423
+Mean Squared Error on cv set:  0.022977581127519586
+**************************************************
+1e-05 l2 :
+Mean Squared Error on train set:  0.022533352183765686
+Mean Squared Error on cv set:  0.022830353450770873
+**************************************************
+0.0001 l1 :
+Mean Squared Error on train set:  0.02446497610471607
+Mean Squared Error on cv set:  0.024588638056217645
+**************************************************
+0.0001 l2 :
+Mean Squared Error on train set:  0.02236877667708354
+Mean Squared Error on cv set:  0.022790064397955133
+**************************************************
+0.001 l1 :
+Mean Squared Error on train set:  0.03142414359722233
+Mean Squared Error on cv set:  0.03160426654944687
+**************************************************
+0.001 l2 :
+Mean Squared Error on train set:  0.023212369405749944
+Mean Squared Error on cv set:  0.023535333392134684
+**************************************************
+0.01 l1 :
+Mean Squared Error on train set:  0.03879196697514337
+Mean Squared Error on cv set:  0.03897944905082453
+**************************************************
+0.01 l2 :
+Mean Squared Error on train set:  0.02788663469679355
+Mean Squared Error on cv set:  0.02805033010318831
+**************************************************
+0.1 l1 :
+Mean Squared Error on train set:  0.03879196742196907
+Mean Squared Error on cv set:  0.038979434948826705
+**************************************************
+0.1 l2 :
+Mean Squared Error on train set:  0.034780320343566595
+Mean Squared Error on cv set:  0.03495928284069252
+**************************************************
+1 l1 :
+Mean Squared Error on train set:  0.03879196696303468
+Mean Squared Error on cv set:  0.03897945082206459
+**************************************************
+1 l2 :
+Mean Squared Error on train set:  0.03797835610391299
+Mean Squared Error on cv set:  0.03816997354050555
+**************************************************
+10 l1 :
+Mean Squared Error on train set:  0.038791968892790615
+Mean Squared Error on cv set:  0.03897949050300768
+**************************************************
+10 l2 :
+Mean Squared Error on train set:  0.03868933384228624
+Mean Squared Error on cv set:  0.03887726669041194
+**************************************************
+100 l1 :
+Mean Squared Error on train set:  0.03879196828524496
+Mean Squared Error on cv set:  0.03897948364910324
+**************************************************
+100 l2 :
+Mean Squared Error on train set:  0.038778405566823076
+Mean Squared Error on cv set:  0.038965507480034654
+**************************************************
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Hyperparameters vs MSE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">tr_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">cv_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cv&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hyperparameter: alpha + penalty&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Getting the best model parameters:</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-importance">
+<h5>1.1.2 Feature Importance:<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Printing the 20 most important features/words which contribute to a comment being toxic.</span>
+<span class="n">feat_names</span> <span class="o">=</span> <span class="n">cnt_vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 20 most important features/words which contribute to comment being non-toxic.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="decision-trees">
+<h4>1.2 Decision Trees:<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id1">
+<h5>1.2.1 Hyperparameter Tuning:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performing hyperparameter tuning:</span>
+<span class="n">max_depth</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">min_samples</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="n">xticks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tr_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cv_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">best_error</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">max_depth</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">samp</span> <span class="ow">in</span> <span class="n">min_samples</span><span class="p">:</span>
+        <span class="n">xticks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Depth- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Min Samples leaf-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">samp</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Min Samples leaf-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">samp</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; :&quot;</span><span class="p">)</span>
+        
+        <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">samp</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bow_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># Train</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">bow_train</span><span class="p">)</span> <span class="c1"># Get predictions</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on trainset</span>
+        <span class="n">tr_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on train set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">bow_cv</span><span class="p">)</span> <span class="c1"># Get predictions on CV set</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cv</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on cv set</span>
+        <span class="n">cv_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on cv set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">err</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span> <span class="c1"># Get best model trained</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">err</span>
+            <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Hyperparameters vs MSE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">tr_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">cv_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cv&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hyperparameter: max depth + min_samples_leaf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Best models parameters:</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h5>1.2.2 Feature Importance:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="term-frequency-inverse-document-frequency-tfidf">
+<h3>2. Term Frequency - Inverse Document Frequency (TFIDF) :<a class="headerlink" href="#term-frequency-inverse-document-frequency-tfidf" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vec</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span>
+<span class="n">tfidf_train</span> <span class="o">=</span> <span class="n">tfidf_vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+<span class="n">tfidf_cv</span> <span class="o">=</span> <span class="n">tfidf_vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_cv</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+<span class="n">tfidf_test</span> <span class="o">=</span> <span class="n">tfidf_vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;preprocessed_text&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_cv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>2.1 SGDRegressor:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h5>2.1.1 Hyperparameter Tuning:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performing hyperparameter tuning:</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">penalty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="s1">&#39;l2&#39;</span><span class="p">]</span>
+<span class="n">xticks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tr_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cv_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">best_error</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">penalty</span><span class="p">:</span>
+        <span class="n">xticks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">p</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="s2">&quot; :&quot;</span><span class="p">)</span>
+        
+        <span class="n">model</span> <span class="o">=</span> <span class="n">SGDRegressor</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> 
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># Train</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">)</span> <span class="c1"># Get predictions</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on trainset</span>
+        <span class="n">tr_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on train set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf_cv</span><span class="p">)</span> <span class="c1"># Get predictions on CV set</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cv</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on cv set</span>
+        <span class="n">cv_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on cv set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">err</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span> <span class="c1"># Get best model trained</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">err</span>
+            <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Hyperparameters vs MSE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">tr_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">cv_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cv&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">penalty</span><span class="p">)),</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hyperparameter: alpha + penalty&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h5>2.1.2 Feature Importance:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Printing the 20 most important features/words which contribute to a comment being toxic.</span>
+<span class="n">feat_names</span> <span class="o">=</span> <span class="n">tfidf_vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 20 most important features/words which contribute to comment being non-toxic.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>2.2 Decision Trees:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h5>2.2.1 Hyperparameter Tuning:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performing hyperparameter tuning:</span>
+<span class="n">max_depth</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">min_samples</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="n">xticks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tr_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cv_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">best_error</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">max_depth</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">samp</span> <span class="ow">in</span> <span class="n">min_samples</span><span class="p">:</span>
+        <span class="n">xticks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Depth- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Min Samples leaf-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">samp</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Min Samples leaf-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">samp</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; :&quot;</span><span class="p">)</span>
+        
+        <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">samp</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># Train</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">)</span> <span class="c1"># Get predictions</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on trainset</span>
+        <span class="n">tr_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on train set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf_cv</span><span class="p">)</span> <span class="c1"># Get predictions on CV set</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cv</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">preds</span><span class="p">)</span> <span class="c1"># Calculate error on cv set</span>
+        <span class="n">cv_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error on cv set: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">err</span> <span class="o">&lt;</span> <span class="n">best_error</span><span class="p">:</span> <span class="c1"># Get best model trained</span>
+            <span class="n">best_error</span> <span class="o">=</span> <span class="n">err</span>
+            <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Hyperparameters vs MSE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">tr_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">cv_errors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cv&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">min_samples</span><span class="p">)),</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hyperparameter: max depth + min_samples_leaf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h5>2.2.2 Feature Importance:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\NLP\corrections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

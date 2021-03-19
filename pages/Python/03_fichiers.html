@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les fichiers &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/pages/Python/03_fichiers.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Python/03_fichiers.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-et-ecriture-dans-un-fichier">
+   Lecture et écriture dans un fichier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#les-modes-d-ouverture">
+     Les modes d’ouverture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fonction-read">
+     Fonction read
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fonction-write">
+   Fonction Write
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manipulation-de-fichiers-avec-with">
+   Manipulation de fichiers avec With
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enregistrer-des-objets-dans-des-fichiers">
+   Enregistrer des objets dans des fichiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources :
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="les-fichiers">
+<h1>Les fichiers<a class="headerlink" href="#les-fichiers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lecture-et-ecriture-dans-un-fichier">
+<h2>Lecture et écriture dans un fichier<a class="headerlink" href="#lecture-et-ecriture-dans-un-fichier" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="les-modes-d-ouverture">
+<h3>Les modes d’ouverture<a class="headerlink" href="#les-modes-d-ouverture" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'r'</span></code> ouverture en lecture (Read).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'w'</span></code> ouverture en écriture (Write). Le contenu du fichier est écrasé. Si le fichier n’existe pas, il est créé.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'a'</span></code> ouverture en écriture en mode ajout (Append). On écrit à la fin du fichier sans écraser l’ancien contenu du fichier. Si le fichier n’existe pas, il est créé.</p></li>
+</ul>
+<p>On peut ajouter à tous ces modes le signe <code class="docutils literal notranslate"><span class="pre">b</span></code> pour ouvrir le fichier en mode binaire.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;..\..\..\P03_mail&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mon_fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;apprenantmail.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="c1"># on a ouvert le fichier en mode lecture</span>
+
+<span class="c1"># il ne faut pas oublier de fermer le fichier</span>
+<span class="n">mon_fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fonction-read">
+<h3>Fonction read<a class="headerlink" href="#fonction-read" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mon_fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;apprenantmail.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span>  <span class="n">mon_fichier</span> <span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+<span class="n">mon_fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;amaury.bonneau@isen-ouest.yncrea.fr&#39;, &#39;aude.pertron@isen-ouest.yncrea.fr&#39;, &#39;baptiste.le-berre@isen-ouest.yncrea.fr&#39;, &#39;baptiste.le-goff@isen-ouest.yncrea.fr&#39;, &#39;celine.guillen@isen-ouest.yncrea.fr&#39;, &#39;christelle.karfaoui@isen-ouest.yncrea.fr&#39;, &#39;christian.mbarga-mvogo@isen-ouest.yncrea.fr&#39;, &#39;erwan.cloatre@isen-ouest.yncrea.fr&#39;, &#39;eva.moulard@isen-ouest.yncrea.fr&#39;, &#39;guillaume.verpoest@isen-ouest.yncrea.fr&#39;, &#39;jamal.ibanni@isen-ouest.yncrea.fr&#39;, &#39;jeremy.le-joncour@isen-ouest.yncrea.fr&#39;, &#39;julien.furiga@isen-ouest.yncrea.fr&#39;, &#39;ludivine.maintier@isen-ouest.yncrea.fr&#39;, &#39;luigi.bokalli@isen-ouest.yncrea.fr&#39;, &#39;patricia.le-moal@isen-ouest.yncrea.fr&#39;, &#39;paul.sabia@isen-ouest.yncrea.fr&#39;, &#39;pereg.hergoualch@isen-ouest.yncrea.fr&#39;, &#39;ronan.rioual@isen-ouest.yncrea.fr&#39;, &#39;thomas.chaigneau@isen-ouest.yncrea.fr&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fonction-write">
+<h2>Fonction Write<a class="headerlink" href="#fonction-write" title="Permalink to this headline">¶</a></h2>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">write</span> </code>n’accepte en paramètre que des chaînes de caractères. Pour écrire des nombres dnas un fichier,  il vous faut les convertir en chaîne avant de les écrire et les reconvertir en entier après les avoir lus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mon_fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;readme.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="c1"># si le fichier n&#39;existe pas, il est créé dans le dossier courant</span>
+
+<span class="n">mon_fichier</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Le fichier &#39;apprenantmail.txt&#39; contient la liste des adresses mail de tous les apprenants&quot;</span><span class="p">)</span>
+
+<span class="n">mon_fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on lit le fichier pour vérifier qu&#39;il a bien été créé et modifié en écriture</span>
+
+<span class="n">mon_fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;readme.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">contenu</span> <span class="o">=</span> <span class="n">mon_fichier</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contenu</span><span class="p">)</span>
+<span class="n">mon_fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Le fichier &#39;apprenantmail.txt&#39; contient la liste des adresses mail de tous les apprenants
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le fichier a bien été créé et contient le texte spécifié !</p>
+</div>
+<div class="section" id="manipulation-de-fichiers-avec-with">
+<h2>Manipulation de fichiers avec With<a class="headerlink" href="#manipulation-de-fichiers-avec-with" title="Permalink to this headline">¶</a></h2>
+<p>Pour éviter les erreurs de lecture et d’écriture des fichiers, il est nécessaire de les fermer dès qu’on en a plus besoin. Ci-dessus, nous avons explicitement demandé la fermeture avec la fonction <code class="docutils literal notranslate"><span class="pre">close()</span></code>.
+Cependant, lorsque l’on code des programmes qui nécesitent la manipulation de plusieurs fichiers, on peut rapidement oublier de les refermer.</p>
+<p>Pour éviter cette situation, on utilise le plus souvent la fonction <code class="docutils literal notranslate"><span class="pre">with</span></code>, avec la syntaxe suivante : <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(mon_fichier,</span> <span class="pre">mode_ouverture)</span> <span class="pre">as</span> <span class="pre">variable:</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;readme.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">contenu</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contenu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Le fichier &#39;apprenantmail.txt&#39; contient la liste des adresses mail de tous les apprenants
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="enregistrer-des-objets-dans-des-fichiers">
+<h2>Enregistrer des objets dans des fichiers<a class="headerlink" href="#enregistrer-des-objets-dans-des-fichiers" title="Permalink to this headline">¶</a></h2>
+<p>On peut enregistrer des objets dnas des fichiers grâce au module <code class="docutils literal notranslate"><span class="pre">pickle</span></code>, en utilisant deux classes incluses dans ce module : la classe <code class="docutils literal notranslate"><span class="pre">Pickler</span></code> et la classe <code class="docutils literal notranslate"><span class="pre">Unpickler</span></code>, et les méthodes <code class="docutils literal notranslate"><span class="pre">dump</span></code> et <code class="docutils literal notranslate"><span class="pre">load</span></code>.</p>
+<p>Enregistrement : utilisation de <code class="docutils literal notranslate"><span class="pre">Pickler</span></code> et de <code class="docutils literal notranslate"><span class="pre">dump</span></code> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="n">donnees</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;Nantes&quot;</span><span class="p">:</span> <span class="s2">&quot;Loire Atlantique&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;Lyon&quot;</span> <span class="p">:</span> <span class="s2">&quot;Rhône&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;Brest&quot;</span> <span class="p">:</span> <span class="s2">&quot;Finistère&quot;</span><span class="p">}]</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;donnees.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mon_pickler</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">Pickler</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">mon_pickler</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">donnees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Récupération des objets enregistrés : utilisation de <code class="docutils literal notranslate"><span class="pre">Unpickler</span></code> et de <code class="docutils literal notranslate"><span class="pre">load</span></code> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;donnees.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
+    <span class="n">mon_depickler</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">Unpickler</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">donnees_recuperees</span> <span class="o">=</span> <span class="n">mon_depickler</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">donnees_recuperees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;Nantes&#39;: &#39;Loire Atlantique&#39;}, {&#39;Lyon&#39;: &#39;Rhône&#39;}, {&#39;Brest&#39;: &#39;Finistère&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sources">
+<h2>Sources :<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://openclassrooms.com/fr/courses/235344-apprenez-a-programmer-en-python/232431-utilisez-des-fichiers">cours sur les fichiers sur OpenClassrooms</a></p>
+<p><a class="reference external" href="https://docs.python.org/fr/3/library/functions.html">documentation officielle Python</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages\Python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

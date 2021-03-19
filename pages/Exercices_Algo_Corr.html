@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercice 1 &#8212; Cahier</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/accueil.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Cahier</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cmd.html">
+   Commandes DOS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook_et_markdown.html">
+   Notebook et Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="environnement_virtuel_conda.html">
+   Environnement Virtuel Conda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/Rappel_Notions_Statistiques_Lud.html">
+   Rappel des Notions Statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html">
+   SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maths/SciPy.html#association-de-population">
+   Association de population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mysql.html">
+   MySql
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp1.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/nlp2.html">
+   NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL3/Tal_3.html">
+   Partie I : Analyse des sentiments des films - Word2Vec
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NLP/TAL4/Tal_4.html">
+   Partie II : Analyse des sentiments des films - Word2Vec (Suite)
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/pages/Exercices_Algo_Corr.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pages/Exercices_Algo_Corr.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Exercice 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-2">
+   Exercice 2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-3">
+   Exercice 3
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-4">
+   Exercice 4
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-5">
+   Exercice 5
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-6">
+   Exercice 6
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-7">
+   Exercice 7
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-8">
+   Exercice 8
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-9">
+   Exercice 9
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-10">
+   Exercice 10
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-11">
+   Exercice 11
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-12">
+   Exercice 12
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-13">
+   Exercice 13
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1><center> Exercice pour apprendre l'Algorithme</center></h1><div class="section" id="exercice-1">
+<h1>Exercice 1<a class="headerlink" href="#exercice-1" title="Permalink to this headline">¶</a></h1>
+<p>Quelles seront les valeurs des variables A et B après exécution des instructions suivantes ?<br/></p>
+<p>VAR <br/>
+A , B : entiers <br/>
+DEBUT <br/>
+A← 1 <br/>
+B← A+4 <br/>
+A← 4<br/>
+FIN</p>
+</div>
+<div class="section" id="exercice-2">
+<h1>Exercice 2<a class="headerlink" href="#exercice-2" title="Permalink to this headline">¶</a></h1>
+<p>Quelles sont les valeurs de A et B à la fin du code suivant ? Adaptez l’algorithme pour échanger les valeurs de A et B.</p>
+<p>VAR <br/>
+A , B : entiers <br/>
+DEBUT <br/>
+A← 1 <br/>
+B← 3 <br/>
+A← B <br/>
+B← A <br/>
+FIN</p>
+</div>
+<div class="section" id="exercice-3">
+<h1>Exercice 3<a class="headerlink" href="#exercice-3" title="Permalink to this headline">¶</a></h1>
+<p>Qu’affiche l’algorithme suivant ?</p>
+<p>VAR <br/>
+A , B : chaîne <br/>
+DEBUT  <br/>
+A← “12” <br/>
+B← “34” <br/>
+Afficher A+B <br/>
+FIN</p>
+</div>
+<div class="section" id="exercice-4">
+<h1>Exercice 4<a class="headerlink" href="#exercice-4" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme qui demande à l’utilisateur un nombre compris entre 2 et 7 jusqu’à ce
+que la réponse convienne.</p>
+</div>
+<div class="section" id="exercice-5">
+<h1>Exercice 5<a class="headerlink" href="#exercice-5" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme qui demande un nombre compris entre 9 et 18, jusqu’à ce que la
+réponse convienne. Si la réponse est supérieure à 18, on affichera un message : « Plus
+petit !», et inversement, « Plus grand ! » si le nombre est inférieur à 9.</p>
+</div>
+<div class="section" id="exercice-6">
+<h1>Exercice 6<a class="headerlink" href="#exercice-6" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme qui demande à l’utilisateur un nombre de départ, ensuite il affiche les dix nombres
+suivants. Par exemple, si l’utilisateur entre le nombre 8, le programme affichera les nombres
+de 9 à 18.</p>
+</div>
+<div class="section" id="exercice-7">
+<h1>Exercice 7<a class="headerlink" href="#exercice-7" title="Permalink to this headline">¶</a></h1>
+<p>Écrire, avec des comparaisons, un algorithme qui lira au clavier les heures et les minutes, et qui affichera l’heure qu’il sera une minute plus tard. Par exemple, si l’utilisateur tape 20 puis 33, l’algorithme doit répondre :<br/><br/></p>
+<center>"Dans une minute il sera 20 heure(s) 34 minute(s)."</center><br/>
+<p>NB : on suppose que l’utilisateur entre une heure valide.<br/>
+        on va prendre en considération le cas où on a 59 minute(s) et 23 heure(s).</p>
+</div>
+<div class="section" id="exercice-8">
+<h1>Exercice 8<a class="headerlink" href="#exercice-8" title="Permalink to this headline">¶</a></h1>
+<p>Écrire un algorithme qui détermine la catégorie sportive d’un utilisateur en fonction de son âge :<br/></p>
+<p>18 à 19 ans : junior<br/></p>
+<p>20 à 22 ans : espoir<br/></p>
+<p>23 à 39 ans : sénior<br/></p>
+<p>40 ans et plus : vétéran</p>
+</div>
+<div class="section" id="exercice-9">
+<h1>Exercice 9<a class="headerlink" href="#exercice-9" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme qui demande un nombre de départ, et qui calcule la somme des entiers
+jusqu’à ce nombre. Par exemple, si l’on entre 5, le programme doit calculer :<br/><br/>
+1 + 2 + 3 + 4 + 5 = 15<br/> <br/>
+NB : on souhaite afficher uniquement le résultat, pas la décomposition du calcul.</p>
+</div>
+<div class="section" id="exercice-10">
+<h1>Exercice 10<a class="headerlink" href="#exercice-10" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme qui demande un nombre de départ, et qui ensuite écrit la table de
+multiplication de ce nombre, présentée comme suit (cas où l’utilisateur entre le nombre 7) :<br/> <br/>
+Table de 7 :<br/>
+7 x 1 = 7<br/>
+7 x 2 = 14<br/>
+7 x 3 = 21<br/>
+…<br/>
+7 x 10 = 70<br/></p>
+</div>
+<div class="section" id="exercice-11">
+<h1>Exercice 11<a class="headerlink" href="#exercice-11" title="Permalink to this headline">¶</a></h1>
+<p>Écrire un algorithme qui demande un nombre de départ, et qui affiche ensuite la factorielle de ce nombre. Exemple avec le nombre 7 :<br/></p>
+<p>1 x 2 x 3 x 4 x 5 x 6 x 7 = 5040<br/></p>
+<p>Écrire l’algorithme avec la boucle Pour puis avec la boucle Tant Que.</p>
+</div>
+<div class="section" id="exercice-12">
+<h1>Exercice 12<a class="headerlink" href="#exercice-12" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire un algorithme permettant  de saisir 5 réelles au clavier,les stocker dans un tableau, calculer leur somme et les afficher avec leur somme à l’ecran.</p>
+</div>
+<div class="section" id="exercice-13">
+<h1>Exercice 13<a class="headerlink" href="#exercice-13" title="Permalink to this headline">¶</a></h1>
+<p>Ecrire les algorithmes permettant :</p>
+<ol class="simple">
+<li><p>Le calcul du nombre d’occurences d’un élément donné dans un tableau.</p></li>
+<li><p>Le calcul de la moyenne et du minimum des ´el´ements d’un tableau.</p></li>
+<li><p>De tester si un tableau est trié.</p></li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./pages"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
